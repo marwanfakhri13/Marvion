@@ -35,3 +35,8 @@ footer{
     font-weight:bold;
     border:2px solid #008080;
 }
+
+.card{
+    text-decoration:none;
+    color:black;
+}
