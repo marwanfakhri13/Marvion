@@ -88,7 +88,7 @@ footer {
     }
 
     header {
-    padding: 5px 15px;
+    padding: 5px 10px;
   }
 
 .logo {
@@ -130,5 +130,18 @@ header p {
     }
     50% {
         transform: scale(1.02);
+    }
+}
+
+/* Logo untuk telefon */
+@media (max-width: 600px) {
+    header {
+        padding: 10px 10px;
+    }
+
+    header img {
+        width: 180px;
+        max-width: 180px;
+        height: auto;
     }
 }
