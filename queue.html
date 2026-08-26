@@ -22,12 +22,25 @@
 
 <br><br>
 
-<button>Semak Giliran</button>
+<button type="button" onclick="semakGiliran()">Semak Giliran</button>
 
-<p>Status: Sila tunggu giliran anda.</p>
+<p id="status">Status: Sila tunggu giliran anda.</p>
 
 <p><a href="index.html">⬅ Kembali ke Laman Utama</a></p>
 
+<script>
+function semakGiliran() {
+    let nombor = document.querySelector("input").value;
+
+    if (nombor === "") {
+        document.getElementById("status").innerText =
+            "Status: Sila masukkan nombor giliran.";
+    } else {
+        document.getElementById("status").innerText =
+            "Status: Giliran " + nombor + " sedang diproses.";
+    }
+}
+</script>
 </main>
 
 <footer>
