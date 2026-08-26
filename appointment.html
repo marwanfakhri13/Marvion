@@ -7,7 +7,7 @@
 
 <body>
 
-<header>    
+<header>
     <h1>💙💚 Marvion</h1>
     <p>Smart Healthcare Communication Platform</p>
     <p>Connecting Care. Empowering Lives.</p>
@@ -25,23 +25,26 @@
     <form>
 
         <label>Nama Pesakit</label><br>
-        <input type="text" placeholder="Masukkan nama"><br><br>
+        <input type="text" id="nama" placeholder="Masukkan nama"><br><br>
 
         <label>Tarikh Janji Temu</label><br>
-        <input type="date"><br><br>
+        <input type="date" id="tarikh"><br><br>
 
         <label>Masa</label><br>
-        <input type="time"><br><br>
+        <input type="time" id="masa"><br><br>
 
-        <label>Jenis Temujanji</label><br>
-        <select>
+        <label>Jenis Temu Janji</label><br>
+
+        <select id="jenis">
             <option>Pemeriksaan Kesihatan</option>
             <option>Rawatan Susulan</option>
             <option>Konsultasi Doktor</option>
             <option>Lain-lain</option>
-        </select><br><br>
+        </select>
 
-        <button type="button" onclick="alert('Janji temu berjaya dihantar!')">
+        <br><br>
+
+        <button type="button" onclick="hantarTempahan()">
             ✅ Hantar Tempahan
         </button>
 
@@ -49,9 +52,41 @@
 
     <br>
 
+    <div id="pengesahan"></div>
+
+    <br>
+
     <a href="index.html">⬅️ Kembali ke Laman Utama</a>
 
 </main>
+
+<script>
+
+function hantarTempahan() {
+
+    let nama = document.getElementById("nama").value;
+    let tarikh = document.getElementById("tarikh").value;
+    let masa = document.getElementById("masa").value;
+    let jenis = document.getElementById("jenis").value;
+
+    if (nama === ""  tarikh === ""  masa === "") {
+
+        alert("⚠️ Sila lengkapkan semua maklumat tempahan.");
+
+        return;
+    }
+
+    document.getElementById("pengesahan").innerHTML =
+        "<h3>✅ Tempahan Berjaya!</h3>" +
+        "<p><b>Nama:</b> " + nama + "</p>" +
+        "<p><b>Tarikh:</b> " + tarikh + "</p>" +
+        "<p><b>Masa:</b> " + masa + "</p>" +
+        "<p><b>Jenis Temu Janji:</b> " + jenis + "</p>" +
+        "<p>Terima kasih kerana menggunakan MARVION.</p>";
+
+}
+
+</script>
 
 <footer>
     <p>© 2026 Marvion | Connecting Care. Empowering Lives.</p>
