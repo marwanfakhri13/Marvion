@@ -142,8 +142,8 @@ header p {
 
     header img,
     .logo {
-        width: 150px !important;
-        max-width: 150px !important;
+        width: 100px !important;
+        max-width: 100px !important;
         height: auto !important;
         display: block;
         margin: 0 auto;
