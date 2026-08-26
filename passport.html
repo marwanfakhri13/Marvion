@@ -27,12 +27,27 @@
 
 <br><br>
 
-<button>Simpan Maklumat</button>
+<button type="button" onclick="simpanMaklumat()">Simpan Maklumat</button>
 
 <p><a href="index.html">⬅ Kembali ke Laman Utama</a></p>
 
 </main>
 
+<script>
+function simpanMaklumat() {
+    let input = document.querySelectorAll('input[type="text"]');
+    let nama = input[0].value;
+    let darah = input[1].value;
+    let alamat = input[2].value;
+
+    if (nama === "" || darah === "" || alamat === "") {
+        alert("Sila lengkapkan semua maklumat kesihatan.");
+    } else {
+        alert("Maklumat kesihatan " + nama + " berjaya disimpan.");
+    }
+}
+</script>
+  
 <footer>
 <p>© 2026 MARVION</p>
 </footer>
