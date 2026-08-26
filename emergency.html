@@ -16,6 +16,30 @@
 
 <h2>🚨 Panduan Kecemasan</h2>
 
+<div>
+    <h3>🚨 Maklumat Kecemasan Pesakit</h3>
+
+    <p><b>Nama:</b> <span id="namaPesakit">-</span></p>
+    <p><b>Kumpulan Darah:</b> <span id="darahPesakit">-</span></p>
+    <p><b>Alahan:</b> <span id="alahanPesakit">-</span></p>
+</div>
+
+<script>
+let data = localStorage.getItem("maklumatKesihatan");
+
+if (data) {
+    let maklumat = JSON.parse(data);
+
+    document.getElementById("namaPesakit").textContent = maklumat.nama;
+    document.getElementById("darahPesakit").textContent = maklumat.darah;
+    document.getElementById("alahanPesakit").textContent = maklumat.alahan;
+} else {
+    document.getElementById("namaPesakit").textContent = "Tiada maklumat disimpan";
+    document.getElementById("darahPesakit").textContent = "-";
+    document.getElementById("alahanPesakit").textContent = "-";
+}
+</script>
+  
 <h3>Nombor Kecemasan</h3>
 
 <p>📞 <a href="tel:999">Hubungi 999</a></p>
