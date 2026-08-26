@@ -61,7 +61,6 @@
 </main>
 
 <script>
-
 function hantarTempahan() {
 
     let nama = document.getElementById("nama").value;
@@ -70,11 +69,14 @@ function hantarTempahan() {
     let jenis = document.getElementById("jenis").value;
 
     if (nama === ""  tarikh === ""  masa === "") {
-
         alert("⚠️ Sila lengkapkan semua maklumat tempahan.");
-
         return;
     }
+
+    alert("✅ Tempahan berjaya dihantar!\n\nNama: " + nama +
+          "\nTarikh: " + tarikh +
+          "\nMasa: " + masa +
+          "\nJenis: " + jenis);
 
     document.getElementById("pengesahan").innerHTML =
         "<h3>✅ Tempahan Berjaya!</h3>" +
@@ -83,9 +85,7 @@ function hantarTempahan() {
         "<p><b>Masa:</b> " + masa + "</p>" +
         "<p><b>Jenis Temu Janji:</b> " + jenis + "</p>" +
         "<p>Terima kasih kerana menggunakan MARVION.</p>";
-
 }
-
 </script>
 
 <footer>
