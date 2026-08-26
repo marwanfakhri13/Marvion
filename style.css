@@ -79,3 +79,31 @@ footer {
         font-size: 30px;
     }
 }
+
+/* EMERGENCY MODE */
+.emergency-card {
+    background: #fff0f0;
+    border: 3px solid #d32f2f;
+    color: #b71c1c;
+    font-size: 22px;
+    padding: 25px 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+    animation: emergencyPulse 1.5s infinite;
+}
+
+.emergency-card small {
+    display: block;
+    font-size: 14px;
+    margin-top: 8px;
+    color: #7f0000;
+}
+
+@keyframes emergencyPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
