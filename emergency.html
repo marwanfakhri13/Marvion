@@ -22,6 +22,7 @@
     <p><b>Nama:</b> <span id="namaPesakit">-</span></p>
     <p><b>Kumpulan Darah:</b> <span id="darahPesakit">-</span></p>
     <p><b>Alahan:</b> <span id="alahanPesakit">-</span></p>
+  <p><b>🩺 Penyakit Sedia Ada:</b> <span id="penyakitPesakit"></span></p>
 </div>
 
 <script>
@@ -33,10 +34,12 @@ if (data) {
     document.getElementById("namaPesakit").textContent = maklumat.nama;
     document.getElementById("darahPesakit").textContent = maklumat.darah;
     document.getElementById("alahanPesakit").textContent = maklumat.alahan;
+    document.getElementById("penyakitPesakit").textContent = maklumat.penyakit || "Tiada";
 } else {
     document.getElementById("namaPesakit").textContent = "Tiada maklumat disimpan";
     document.getElementById("darahPesakit").textContent = "-";
     document.getElementById("alahanPesakit").textContent = "-";
+    document.getElementById("penyakitPesakit").textContent = "-";
 }
 </script>
   
