@@ -136,7 +136,7 @@ header p {
 /* Logo untuk telefon */
 @media (max-width: 600px) {
     header {
-        padding: 8px 10px !important;
+        padding: 3px 10px !important;
     }
 
     header img,
