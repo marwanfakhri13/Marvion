@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARVION | Emergency Mode</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #fff5f5;
+            color: #222;
+        }
+
+        header {
+            background: #b71c1c;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        main {
+            max-width: 700px;
+            margin: auto;
+            padding: 25px 20px;
+        }
+
+        .alert-box {
+            background: white;
+            border: 3px solid #d32f2f;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .alert-box h2 {
+            color: #b71c1c;
+            margin-top: 0;
+        }
+
+        .info {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .danger {
+            background: #ffebee;
+            border-left: 6px solid #d32f2f;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .call {
+            display: block;
+            text-align: center;
+            background: #d32f2f;
+            color: white;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: bold;
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .call:hover {
+            background: #b71c1c;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        footer {
+            background: #0d1b3d;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚨 EMERGENCY MODE</h1>
+    <p>Maklumat penting pesakit</p>
+</header>
+
+<main>
+
+    <div class="alert-box">
+
+        <h2>🚨 MAKLUMAT KECEMASAN PESAKIT</h2>
+
+        <div class="info">
+            <span class="label">Nama:</span>
+            <span id="namaPesakit">-</span>
+        </div>
+
+        <div class="info">
+            <span class="label">Kumpulan Darah:</span>
+            <span id="darahPesakit">-</span>
+        </div>
+
+        <div class="info">
+            <span class="label">Alahan:</span>
+            <span id="alahanPesakit">-</span>
+        </div>
+
+        <div class="danger">
+            <strong>🩺 Penyakit Sedia Ada:</strong>
+            <div id="penyakitPesakit">Tiada</div>
+        </div>
+
+        <a href="tel:999" class="call">
+            📞 HUBUNGI 999
+        </a>
+
+    </div>
+
+    <a href="index.html" class="back">
+        ← Kembali ke Laman Utama
+    </a>
+
+</main>
+
+<footer>
+    © 2026 Marvion | Connecting Care. Empowering Lives.
+</footer>
+
+<script>
+
+    let data = localStorage.getItem("maklumatKesihatan");
+
+    if (data) {
+
+        let maklumat = JSON.parse(data);
+
+        document.getElementById("namaPesakit").textContent =
+            maklumat.nama || "-";
+
+        document.getElementById("darahPesakit").textContent =
+            maklumat.darah || "-";
+
+        document.getElementById("alahanPesakit").textContent =
+            maklumat.alahan || "-";
+
+        document.getElementById("penyakitPesakit").textContent =
+            maklumat.penyakit || "Tiada";
+
+    } else {
+
+        document.getElementById("namaPesakit").textContent =
+            "Tiada maklumat disimpan";
+
+    }
+
+</script>
+
+</body>
+</html>
