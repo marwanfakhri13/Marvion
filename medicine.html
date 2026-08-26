@@ -24,12 +24,25 @@
 
 <br><br>
 
-<button>Simpan</button>
+<button type="button" onclick="simpanUbat()">Simpan</button>
 
 <p><a href="index.html">⬅ Kembali ke Laman Utama</a></p>
 
 </main>
 
+<script>
+function simpanUbat() {
+    let nama = document.querySelector('input[type="text"]').value;
+    let masa = document.querySelector('input[type="time"]').value;
+
+    if (nama === "" || masa === "") {
+        alert("Sila masukkan nama ubat dan waktu pengambilan.");
+    } else {
+        alert("Peringatan ubat " + nama + " ditetapkan pada " + masa + ".");
+    }
+}
+</script>    
+    
 <footer>
 <p>© 2026 MARVION</p>
 </footer>
