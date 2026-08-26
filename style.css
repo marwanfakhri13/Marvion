@@ -26,11 +26,11 @@ header p strong {
 }
 
 .logo {
-    width: 320px;
-    max-width: 85%;
+    width: 190px;
+    max-width: 65%;
     height: auto;
     display: block;
-    margin: 0 auto 15px;
+    margin: 0 auto 5px;
 }
 
 main {
