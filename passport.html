@@ -36,15 +36,25 @@
 <script>
 function simpanMaklumat() {
     let input = document.querySelectorAll('input[type="text"]');
+
     let nama = input[0].value;
     let darah = input[1].value;
     let alahan = input[2].value;
 
-    if (nama === "" || darah === "" || alahan === "") {
-        alert("Sila lengkapkan semua maklumat kesihatan.");
-    } else {
-        alert("Maklumat kesihatan " + nama + " berjaya disimpan.");
+    if (nama === ""  darah === ""  alahan === "") {
+        alert("⚠️ Sila lengkapkan semua maklumat kesihatan.");
+        return;
     }
+
+    let maklumatKesihatan = {
+        nama: nama,
+        darah: darah,
+        alahan: alahan
+    };
+
+    localStorage.setItem("maklumatKesihatan", JSON.stringify(maklumatKesihatan));
+
+    alert("✅ Maklumat kesihatan " + nama + " berjaya disimpan.");
 }
 </script>
   
