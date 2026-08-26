@@ -25,6 +25,38 @@
 <p>Alahan</p>
 <input type="text">
 
+<h3>🩺 Penyakit Sedia Ada</h3>
+
+<label>
+  <input type="checkbox" name="penyakit" value="Kencing Manis">
+  Kencing Manis
+</label><br>
+
+<label>
+  <input type="checkbox" name="penyakit" value="Darah Tinggi">
+  Darah Tinggi
+</label><br>
+
+<label>
+  <input type="checkbox" name="penyakit" value="Penyakit Jantung">
+  Penyakit Jantung
+</label><br>
+
+<label>
+  <input type="checkbox" name="penyakit" value="Asma">
+  Asma
+</label><br>
+
+<label>
+  <input type="checkbox" name="penyakit" value="Kanser">
+  Kanser
+</label><br>
+
+<label>
+  <input type="checkbox" name="penyakit" value="Lain-lain">
+  Lain-lain
+</label>
+    
 <br><br>
 
 <button type="button" onclick="simpanMaklumat()">Simpan Maklumat</button>
@@ -40,17 +72,26 @@ function simpanMaklumat() {
     let nama = input[0].value;
     let darah = input[1].value;
     let alahan = input[2].value;
+    let penyakitDipilih = document.querySelectorAll('input[name="penyakit"]:checked');
+let penyakit = Array.from(penyakitDipilih)
+  .map(item => item.value)
+  .join(", ");
 
+if (penyakit === "") {
+  penyakit = "Tiada";
+}
+    
     if (nama === "" || darah === "" || alahan === "") {
         alert("⚠️ Sila lengkapkan semua maklumat kesihatan.");
         return;
     }
 
-    let maklumatKesihatan = {
-        nama: nama,
-        darah: darah,
-        alahan: alahan
-    };
+   let maklumatKesihatan = {
+    nama: nama,
+    darah: darah,
+    alahan: alahan,
+    penyakit: penyakit
+};
 
     localStorage.setItem("maklumatKesihatan", JSON.stringify(maklumatKesihatan));
 
