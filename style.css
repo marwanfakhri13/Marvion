@@ -149,3 +149,24 @@ header p {
         margin: 0 auto;
     }
 }
+
+@media (max-width: 600px) {
+    header {
+        padding: 5px 10px;
+    }
+
+    .logo {
+        width: 220px;
+        max-width: 70%;
+        margin: 0 auto 5px;
+    }
+
+    header + hr {
+        margin: 5px 0;
+    }
+
+    main h2 {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+}
