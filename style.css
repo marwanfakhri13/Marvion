@@ -258,33 +258,34 @@ form button:hover {
         font-size: 15px;
     }
 
- /* ===== KEMASAN HALAMAN MARVION ===== */
+/* ===== KEMASAN HALAMAN MARVION ===== */
 
-/* Semua kandungan utama ke tengah */
 main {
     text-align: center;
 }
 
-/* Borang kekal kemas */
+main > p {
+    text-align: center;
+}
+
 main form {
-    text-align: left;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Status semakan giliran */
-#status {
+#status,
+#pengesahan {
     max-width: 600px;
     margin: 20px auto;
     text-align: center;
 }
 
-/* Kembali ke Laman Utama */
-main > p:last-child {
+main > a,
+main > p > a {
+    display: inline-block;
     text-align: center;
 }
 
-/* Logo MARVION di header */
 header {
     text-align: center;
 }
