@@ -275,6 +275,7 @@ main form {
 
 #status {
     max-width: 600px;
+    width: fit-content;
     margin: 25px auto;
     padding: 25px;
     text-align: center;
