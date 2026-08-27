@@ -170,3 +170,91 @@ header p {
         margin-bottom: 15px;
     }
 }
+
+/* ===== BORANG TEMPAHAN ===== */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(13, 27, 61, 0.08);
+    border: 2px solid #d8eee5;
+}
+
+form label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    color: #0d1b3d;
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+
+form input,
+form select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 2px solid #d8eee5;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #f9fdfb;
+}
+
+form input:focus,
+form select:focus {
+    outline: none;
+    border-color: #059669;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    margin-top: 22px;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #059669;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #047857;
+    transform: translateY(-2px);
+}
+
+#pengesahan {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ecfdf5;
+    border: 2px solid #059669;
+    border-radius: 14px;
+    text-align: center;
+}
+
+#pengesahan h3 {
+    color: #047857;
+}
+
+/* Paparan telefon */
+@media (max-width: 600px) {
+    form {
+        padding: 18px;
+        margin: 0 10px;
+    }
+
+    form input,
+    form select {
+        font-size: 15px;
+    }
+
+    #pengesahan {
+        margin: 20px 10px;
+    }
+}
