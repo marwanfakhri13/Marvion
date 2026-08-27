@@ -1,37 +1,292 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
+
 <head>
-<title>Hubungi Klinik</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hubungi Klinik | MARVION</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5faf7;
+            color: #183b2b;
+        }
+
+        header {
+            background: white;
+            text-align: center;
+            padding: 25px 15px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            display: block;
+            width: 230px;
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        main {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 30px 15px 45px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin: 5px 0 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            max-width: 620px;
+            margin: 0 auto 22px;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            text-align: center;
+            color: #168044;
+            margin-top: 0;
+            margin-bottom: 22px;
+            font-size: 22px;
+        }
+
+        .info {
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .info p {
+            margin: 12px 0;
+        }
+
+        .info strong {
+            display: block;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .contact-button {
+            display: block;
+            width: 100%;
+            max-width: 420px;
+            margin: 12px auto;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .phone {
+            background: #168044;
+            color: white;
+        }
+
+        .email {
+            background: #eaf5ef;
+            color: #168044;
+            border: 2px solid #168044;
+        }
+
+        .hours {
+            background: #f7fbf9;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .hours p {
+            margin: 8px 0;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 28px auto 0;
+            color: #174c8a;
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #123d6a;
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+
+            main {
+                padding: 22px 12px 35px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .card {
+                padding: 22px 18px;
+            }
+
+            .logo {
+                width: 200px;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
+
 <header>
-<h1>❤️ MARVION</h1>
-<p>Platform Komunikasi Penjagaan Kesihatan Pintar</p>
+
+    <img
+        src="marvion-logo.png"
+        alt="MARVION Smart Healthcare Communication Platform"
+        class="logo">
+
 </header>
+
 
 <main>
 
-<h2>☎ Hubungi Klinik</h2>
 
-<p>Nama Klinik:</p>
-<p>Klinik Kesihatan Contoh</p>
+    <h1>☎️ Hubungi Klinik</h1>
 
-<p>Telefon:</p>
-<p><a href="tel:0312345678">03-12345678</a></p>
+    <p class="subtitle">
+        Hubungi klinik dengan mudah untuk mendapatkan
+        maklumat dan bantuan berkaitan penjagaan kesihatan.
+    </p>
 
-<p>E-mel:</p>
-<p><a href="mailto:klinik@example.com">klinik@example.com</a></p>
 
-<p><a href="index.html">⬅ Kembali ke Laman Utama</a></p>
+    <!-- MAKLUMAT KLINIK -->
+
+    <div class="card">
+
+        <h2>🏥 Klinik Kesihatan Contoh</h2>
+
+        <div class="info">
+
+            <p>
+                <strong>📍 Alamat</strong>
+                Jalan Kesihatan, 32000 Sitiawan, Perak
+            </p>
+            <p>
+                <strong>📞 Telefon</strong>
+                03-12345678
+            </p>
+
+            <p>
+                <strong>✉️ E-mel</strong>
+                klinik@example.com
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- HUBUNGI -->
+
+    <div class="card">
+
+        <h2>📲 Hubungi Kami</h2>
+
+        <a
+            href="tel:0312345678"
+            class="contact-button phone">
+
+            📞 Telefon Klinik
+
+        </a>
+
+        <a
+            href="mailto:klinik@example.com"
+            class="contact-button email">
+
+            ✉️ Hantar E-mel
+
+        </a>
+
+    </div>
+
+
+    <!-- WAKTU OPERASI -->
+
+    <div class="card">
+
+        <h2>🕐 Waktu Operasi</h2>
+
+        <div class="hours">
+
+            <p><strong>Isnin – Jumaat</strong></p>
+
+            <p>8:00 pagi – 5:00 petang</p>
+
+            <p><strong>Sabtu & Ahad</strong></p>
+
+            <p>Tutup</p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back">
+
+        ← Kembali ke Laman Utama
+
+    </a>
+
 
 </main>
 
+
 <footer>
-<p>© 2026 MARVION</p>
+
+    <p>© 2026 MARVION</p>
+
+    <p>
+        Smart Healthcare Communication Platform
+    </p>
+
 </footer>
 
+
 </body>
+
 </html>
