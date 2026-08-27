@@ -258,67 +258,39 @@ form button:hover {
         font-size: 15px;
     }
 
-    #pengesahan {
-        margin: 20px 10px;
-    }
-}
+  /* ===== KEMASAN HALAMAN MARVION ===== */
 
-/* SEMAKAN GILIRAN */
-
-.queue-box {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 25px;
-    background: white;
-    border: 2px solid #d8eee5;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(13, 27, 61, 0.08);
-}
-
-.queue-box label {
-    display: block;
-    text-align: left;
-    font-weight: bold;
-    color: #0d1b3d;
-    margin-bottom: 8px;
-}
-
-.queue-box input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 12px;
-    border: 2px solid #d8eee5;
-    border-radius: 10px;
-    font-size: 16px;
-    background: #f9fdfb;
-}
-
-.queue-box button {
-    display: block;
-    width: 100%;
-    margin-top: 18px;
-    padding: 13px;
-    border: none;
-    border-radius: 10px;
-    background: #059669;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.queue-box button:hover {
-    background: #047857;
-    transform: translateY(-2px);
-}
-
-.queue-status {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #ecfdf5;
-    border: 2px solid #059669;
-    border-radius: 14px;
+/* Semua arahan utama di tengah */
+main > p {
     text-align: center;
-    line-height: 1.7;
+}
+
+/* Status semakan giliran */
+#status {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Kembali ke Laman Utama */
+main > p a {
+    display: inline-block;
+    text-align: center;
+}
+
+/* Pastikan borang kekal di tengah */
+form {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Logo MARVION di header */
+header {
+    text-align: center;
+}
+
+header .logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
