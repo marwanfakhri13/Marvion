@@ -46,6 +46,10 @@ main h2 {
     margin-bottom: 25px;
 }
 
+.arahan {
+    text-align: center;
+    margin-bottom: 20px;
+}
 .menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
