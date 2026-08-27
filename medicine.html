@@ -1,4 +1,194 @@
-<button type="button" onclick="simpanPeringatan()">
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peringatan Ubat | MARVION</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7fbff;
+            color: #172b4d;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px 15px;
+        }
+
+        .logo {
+            width: 230px;
+            max-width: 80%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        main {
+            text-align: center;
+            padding: 10px 20px 50px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 20px 0 10px;
+            color: #172b4d;
+        }
+
+        .intro {
+            font-size: 17px;
+            color: #53657d;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 35px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #172b4d;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ccd6e0;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            background: #fff;
+        }
+
+        input:focus {
+            outline: none;
+            border: 2px solid #159957;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            background: #159957;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #107a45;
+        }
+
+        #mesej {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #eaf8f0;
+            border: 1px solid #159957;
+            border-radius: 12px;
+            text-align: center;
+            color: #107a45;
+        }
+
+        .nota {
+            margin-top: 30px;
+            padding: 20px;
+            background: #eefaf4;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .nota h3 {
+            margin-top: 0;
+            color: #159957;
+        }
+
+        .kembali {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            color: #6b3fa0;
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #082b5c;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        footer p {
+            margin: 6px 0;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 26px;
+            }
+
+            .card {
+                padding: 25px 20px;
+            }
+
+            .intro {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="marvion-logo.png"
+         alt="MARVION Smart Healthcare Communication Platform"
+         class="logo">
+</header>
+
+<main>
+
+    <h1>❤️ Peringatan Ubat 💊</h1>
+
+    <p class="intro">
+        Masukkan maklumat ubat anda untuk diingatkan
+        pada waktu yang ditetapkan.
+    </p>
+
+    <div class="card">
+
+        <label for="namaUbat">💊 Nama Ubat</label>
+
+        <input
+            type="text"
+            id="namaUbat"
+            placeholder="Contoh: Paracetamol 500mg">
+
+        <label for="masaUbat">🕐 Waktu Pengambilan</label>
+
+        <input
+            type="time"
+            id="masaUbat">
+   <button type="button" onclick="simpanPeringatan()">
             💾 Simpan Peringatan
         </button>
 
