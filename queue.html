@@ -47,13 +47,11 @@
 <script>
 function semakGiliran() {
 
-    let nombor = document.getElementById("queueNumber").value.trim();
+    let nombor = document.querySelector("input").value.trim();
 
     if (nombor === "") {
-
         document.getElementById("status").innerHTML =
         "⚠️ Sila masukkan nombor giliran.";
-
         return;
     }
 
@@ -63,7 +61,6 @@ function semakGiliran() {
     "🟢 <strong>Giliran " + nombor + "</strong><br>" +
     "Sedang dipanggil ke Bilik 3.<br>" +
     "Sila bersedia dan tunggu arahan petugas.";
-   }
 }
 </script>
 </main>
