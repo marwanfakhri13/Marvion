@@ -305,119 +305,28 @@
 
 <script>
 
-/* ==========================================
-   AMBIL MAKLUMAT DARIPADA PASPORT KESIHATAN
-========================================== */
+/* ============================================
+   AMBIL MAKLUMAT DARIPADA PASSPORT KESIHATAN
+============================================ */
 
+let data = localStorage.getItem("maklumatKesihatan");
 
-/* Maklumat daripada passport.html versi baru */
-
-let nama =
-    localStorage.getItem("marvionNama");
-
-let darah =
-    localStorage.getItem("marvionDarah");
-
-let penyakitData =
-    localStorage.getItem("marvionPenyakit");
-
-
-/* Jika data versi baru ada */
-
-if (nama) {
-
-    document.getElementById("namaPesakit").textContent =
-        nama;
-
-}
-
-
-if (darah) {
-
-    document.getElementById("darahPesakit").textContent =
-        darah;
-
-}
-
-
-if (penyakitData) {
-
+if (data) {
     try {
+        let maklumat = JSON.parse(data);
 
-        let penyakit =
-            JSON.parse(penyakitData);
+        document.getElementById("namaPesakit").textContent =
+            maklumat.nama || "Tiada maklumat";
 
-        if (Array.isArray(penyakit)) {
-
-            document.getElementById("penyakitPesakit").textContent =
-                penyakit.join(", ");
-
-        } else {
-
-            document.getElementById("penyakitPesakit").textContent =
-                penyakit;
-
-        }
-
-    } catch (error) {
+        document.getElementById("darahPesakit").textContent =
+            maklumat.darah || "Tiada maklumat";
 
         document.getElementById("penyakitPesakit").textContent =
-            penyakitData;
-
-    }
-
-}
-
-
-/* ==========================================
-   SOKONG DATA LAMA JUGA
-========================================== */
-
-let dataLama =
-    localStorage.getItem("maklumatKesihatan");
-
-
-if (dataLama) {
-
-    try {
-
-        let maklumat =
-            JSON.parse(dataLama);
-
-
-        if (!nama && maklumat.nama) {
-
-            document.getElementById("namaPesakit").textContent =
-                maklumat.nama;
-
-        }
-
-
-        if (!darah && maklumat.darah) {
-
-            document.getElementById("darahPesakit").textContent =
-                maklumat.darah;
-
-        }
-
-
-        if (!penyakitData && maklumat.penyakit) {
-
-            document.getElementById("penyakitPesakit").textContent =
-                maklumat.penyakit;
-
-        }
-
+            maklumat.penyakit || "Tiada";
     } catch (error) {
-
-        console.log(
-            "Data lama tidak dapat dibaca."
-        );
-
+        console.error("Ralat membaca maklumat kesihatan:", error);
     }
-
 }
-
 </script>
 
 
