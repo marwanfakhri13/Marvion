@@ -258,7 +258,7 @@ form button:hover {
         font-size: 15px;
     }
 
-/* ===== KEMASAN HALAMAN MARVION ===== */
+/* ===== KEMASAN AKHIR MARVION ===== */
 
 main {
     text-align: center;
@@ -294,4 +294,8 @@ header .logo {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+footer {
+    text-align: center;
 }
