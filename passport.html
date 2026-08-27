@@ -1,107 +1,570 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
-<title>Pasport Kesihatan</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pasport Kesihatan | MARVION</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5faf7;
+            color: #183b2b;
+        }
+
+        header {
+            background: white;
+            text-align: center;
+            padding: 25px 15px 18px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            display: block;
+            width: 230px;
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        main {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 30px 15px 45px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin: 5px 0 10px;
+            color: #183b2b;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 auto 25px;
+            max-width: 600px;
+        }
+
+        .passport-box {
+            background: white;
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 16px 0 8px;
+            color: #183b2b;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 13px;
+            font-size: 16px;
+            border: 2px solid #d6e5dd;
+            border-radius: 10px;
+            background: #fbfefd;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #159957;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: #159957;
+        }
+
+        .checkbox-list {
+            background: #f7fbf9;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #dcebe3;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 3px;
+            font-size: 16px;
+        }
+
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .save-button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #159957;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background: #107a45;
+        }
+
+        .success {
+            display: none;
+            width: 100%;
+            max-width: 620px;
+            margin: 22px auto 0;
+            padding: 22px;
+            background: #eefaf2;
+            border: 2px solid #55a875;
+            border-radius: 15px;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .success h2 {
+            margin-top: 0;
+            color: #168044;
+        }
+
+        .health-card {
+            margin-top: 18px;
+            padding: 20px;
+            background: white;
+            border: 2px solid #d6e5dd;
+            border-radius: 14px;
+            text-align: left;
+        }
+
+        .health-card p {
+            margin: 9px 0;
+        }
+
+        .note {
+            width: 100%;
+            max-width: 620px;
+            margin: 25px auto;
+            padding: 20px;
+            background: #eefaf4;
+            border-radius: 14px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .note h3 {
+            margin-top: 0;
+            color: #159957;
+        }
+
+      .back {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 0;
+            color: #174c8a;
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #123d6a;
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+
+            main {
+                padding: 22px 12px 35px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .passport-box {
+                padding: 20px;
+            }
+
+            .logo {
+                width: 200px;
+            }
+
+        }
+
+    </style>
 </head>
 
 <body>
 
+
 <header>
-<h1>❤️ MARVION</h1>
-<p>Platform Komunikasi Penjagaan Kesihatan Pintar</p>
+
+    <img
+        src="marvion-logo.png"
+        alt="MARVION Smart Healthcare Communication Platform"
+        class="logo">
+
 </header>
+
 
 <main>
 
-<h2>🩺 Pasport Kesihatan</h2>
+    <h1>🩺 Pasport Kesihatan</h1>
 
-<p>Nama</p>
-<input type="text">
+    <p class="intro">
+        Simpan maklumat kesihatan penting anda
+        untuk rujukan yang lebih mudah dan teratur.
+    </p>
 
-<p>Kumpulan Darah</p>
-<input type="text">
 
-<p>Alahan</p>
-<input type="text">
+    <div class="passport-box">
 
-<h3>🩺 Penyakit Sedia Ada</h3>
+        <label for="nama">
+            👤 Nama
+        </label>
 
-<label>
-  <input type="checkbox" name="penyakit" value="Kencing Manis">
-  Kencing Manis
-</label><br>
+        <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan nama anda">
 
-<label>
-  <input type="checkbox" name="penyakit" value="Darah Tinggi">
-  Darah Tinggi
-</label><br>
 
-<label>
-  <input type="checkbox" name="penyakit" value="Penyakit Jantung">
-  Penyakit Jantung
-</label><br>
+        <label for="darah">
+            🩸 Kumpulan Darah
+        </label>
 
-<label>
-  <input type="checkbox" name="penyakit" value="Asma">
-  Asma
-</label><br>
+        <input
+            type="text"
+            id="darah"
+            placeholder="Contoh: A+, B+, O+">
 
-<label>
-  <input type="checkbox" name="penyakit" value="Kanser">
-  Kanser
-</label><br>
 
-<label>
-  <input type="checkbox" name="penyakit" value="Lain-lain">
-  Lain-lain
-</label>
-    
-<br><br>
+        <div class="section-title">
+            🩺 Penyakit Sedia Ada
+        </div>
 
-<button type="button" onclick="simpanMaklumat()">Simpan Maklumat</button>
 
-<p><a href="index.html">⬅ Kembali ke Laman Utama</a></p>
+        <div class="checkbox-list">
+
+            <label class="checkbox-item">
+                <input type="checkbox" value="Kencing Manis">
+                Kencing Manis
+            </label>
+
+            <label class="checkbox-item">
+                <input type="checkbox" value="Darah Tinggi">
+                Darah Tinggi
+            </label>
+
+            <label class="checkbox-item">
+                <input type="checkbox" value="Penyakit Jantung">
+                Penyakit Jantung
+            </label>
+
+            <label class="checkbox-item">
+                <input type="checkbox" value="Asma">
+                Asma
+            </label>
+
+            <label class="checkbox-item">
+                <input type="checkbox" value="Kanser">
+                Kanser
+            </label>
+
+            <label class="checkbox-item">
+                <input type="checkbox" value="Lain-lain">
+                Lain-lain
+            </label>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="save-button"
+            onclick="simpanPasport()">
+
+            💾 Simpan Maklumat
+
+        </button>
+
+    </div>
+
+
+    <div id="success" class="success"></div>
+
+
+    <div class="note">
+
+        <h3>🔔 Nota Penting</h3>
+
+        <p>
+            Maklumat kesihatan ini adalah untuk rujukan
+            dan komunikasi sahaja.
+        </p>
+
+        <p>
+            Sila dapatkan nasihat daripada doktor atau
+            petugas kesihatan untuk urusan perubatan.
+        </p>
+
+    </div>
+
+
+    <a href="index.html" class="back">
+        ← Kembali ke Laman Utama
+    </a>
 
 </main>
 
+
+<footer>
+
+    <p>© 2026 MARVION</p>
+
+    <p>
+        Smart Healthcare Communication Platform
+    </p>
+
+</footer>
+
+
 <script>
-function simpanMaklumat() {
-    let input = document.querySelectorAll('input[type="text"]');
 
-    let nama = input[0].value;
-    let darah = input[1].value;
-    let alahan = input[2].value;
-    let penyakitDipilih = document.querySelectorAll('input[name="penyakit"]:checked');
-let penyakit = Array.from(penyakitDipilih)
-  .map(item => item.value)
-  .join(", ");
+function simpanPasport() {
 
-if (penyakit === "") {
-  penyakit = "Tiada";
-}
-    
-    if (nama === "" || darah === "" || alahan === "") {
-        alert("⚠️ Sila lengkapkan semua maklumat kesihatan.");
+    const nama =
+        document.getElementById("nama").value.trim();
+
+    const darah =
+        document.getElementById("darah").value.trim();
+
+
+    if (nama === "") {
+
+        alert(
+            "⚠️ Sila masukkan nama anda."
+        );
+
         return;
     }
 
-   let maklumatKesihatan = {
-    nama: nama,
-    darah: darah,
-    alahan: alahan,
-    penyakit: penyakit
-};
 
-    localStorage.setItem("maklumatKesihatan", JSON.stringify(maklumatKesihatan));
+    if (darah === "") {
 
-    alert("✅ Maklumat kesihatan " + nama + " berjaya disimpan.");
+        alert(
+            "⚠️ Sila masukkan kumpulan darah."
+        );
+
+        return;
+    }
+
+
+    const checkbox =
+        document.querySelectorAll(
+            '.checkbox-list input[type="checkbox"]:checked'
+        );
+
+
+    let penyakit = [];
+
+
+    checkbox.forEach(function(item) {
+
+        penyakit.push(item.value);
+
+    });
+
+
+    if (penyakit.length === 0) {
+
+        penyakit.push("Tiada maklumat penyakit dipilih");
+
+    }
+
+  /* Simpan maklumat */
+
+    localStorage.setItem(
+        "marvionNama",
+        nama
+    );
+
+    localStorage.setItem(
+        "marvionDarah",
+        darah
+    );
+
+    localStorage.setItem(
+        "marvionPenyakit",
+        JSON.stringify(penyakit)
+    );
+
+
+    /* Paparkan keputusan */
+
+    const success =
+        document.getElementById("success");
+
+
+    success.style.display = "block";
+
+
+    success.innerHTML =
+
+        "<h2>✅ Pasport Kesihatan Berjaya Disimpan!</h2>" +
+
+        "<div class='health-card'>" +
+
+        "<p><strong>👤 Nama:</strong> " +
+        nama +
+        "</p>" +
+
+        "<p><strong>🩸 Kumpulan Darah:</strong> " +
+        darah +
+        "</p>" +
+
+        "<p><strong>🩺 Penyakit Sedia Ada:</strong><br>" +
+        penyakit.join(", ") +
+        "</p>" +
+
+        "</div>";
+
 }
+
+
+/* ============================
+   PAPARKAN DATA YANG DISIMPAN
+============================ */
+
+window.addEventListener(
+    "load",
+    function() {
+
+        const nama =
+            localStorage.getItem(
+                "marvionNama"
+            );
+
+
+        const darah =
+            localStorage.getItem(
+                "marvionDarah"
+            );
+
+
+        const dataPenyakit =
+            localStorage.getItem(
+                "marvionPenyakit"
+            );
+
+
+        if (
+            nama &&
+            darah &&
+            dataPenyakit
+        ) {
+
+            document.getElementById(
+                "nama"
+            ).value = nama;
+
+
+            document.getElementById(
+                "darah"
+            ).value = darah;
+
+
+            const penyakit =
+                JSON.parse(dataPenyakit);
+
+
+            const checkbox =
+                document.querySelectorAll(
+                    '.checkbox-list input[type="checkbox"]'
+                );
+
+
+            checkbox.forEach(function(item) {
+
+                if (
+                    penyakit.includes(
+                        item.value
+                    )
+                ) {
+
+                    item.checked = true;
+
+                }
+
+            });
+
+
+            const success =
+                document.getElementById(
+                    "success"
+                );
+
+
+            success.style.display =
+                "block";
+
+
+            success.innerHTML =
+
+                "<h2>🩺 Pasport Kesihatan Tersimpan</h2>" +
+
+                "<div class='health-card'>" +
+
+                "<p><strong>👤 Nama:</strong> " +
+                nama +
+                "</p>" +
+
+                "<p><strong>🩸 Kumpulan Darah:</strong> " +
+                darah +
+                "</p>" +
+
+                "<p><strong>🩺 Penyakit Sedia Ada:</strong><br>" +
+                penyakit.join(", ") +
+                "</p>" +
+
+                "</div>";
+
+        }
+
+    }
+
+);
+
 </script>
-  
-<footer>
-<p>© 2026 MARVION</p>
-</footer>
 
 </body>
 </html>
