@@ -1,67 +1,426 @@
-  <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="ms">
+
 <head>
-<title>Panduan Kecemasan</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panduan Kecemasan | MARVION</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5faf7;
+            color: #183b2b;
+        }
+
+        header {
+            background: white;
+            text-align: center;
+            padding: 25px 15px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            display: block;
+            width: 230px;
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        main {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 30px 15px 45px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin: 5px 0 25px;
+            color: #183b2b;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto 22px;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #168044;
+            font-size: 21px;
+        }
+
+        .info {
+            background: #f7fbf9;
+            border: 1px solid #dcebe3;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .info p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .emergency-card {
+            background: #fff5f5;
+            border: 2px solid #dc3545;
+            text-align: center;
+        }
+
+        .emergency-card h2 {
+            color: #c62828;
+        }
+
+        .call-button {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px 35px;
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        .call-button:hover {
+            background: #b71c1c;
+        }
+
+        .steps {
+            padding-left: 25px;
+            margin-bottom: 0;
+        }
+
+        .steps li {
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 0;
+            color: #174c8a;
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #123d6a;
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .warning {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-top: 18px;
+        }
+
+        @media (max-width: 600px) {
+
+            main {
+                padding: 22px 12px 35px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .logo {
+                width: 200px;
+            }
+
+            .call-button {
+                width: 100%;
+                padding: 15px;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
+
 <header>
-<h1>❤️ MARVION</h1>
-<p>Platform Komunikasi Penjagaan Kesihatan Pintar</p>
+
+    <img
+        src="marvion-logo.png"
+        alt="MARVION Smart Healthcare Communication Platform"
+        class="logo">
+
 </header>
+
 
 <main>
 
-<h2>🚨 Panduan Kecemasan</h2>
 
-<div>
-    <h3>🚨 Maklumat Kecemasan Pesakit</h3>
+    <h1>🚨 Panduan Kecemasan</h1>
 
-    <p><b>Nama:</b> <span id="namaPesakit">-</span></p>
-    <p><b>Kumpulan Darah:</b> <span id="darahPesakit">-</span></p>
-    <p><b>Alahan:</b> <span id="alahanPesakit">-</span></p>
-  <p><b>🩺 Penyakit Sedia Ada:</b> <span id="penyakitPesakit"></span></p>
-</div>
 
-<script>
-let data = localStorage.getItem("maklumatKesihatan");
+    <!-- MAKLUMAT PASPORT KESIHATAN -->
 
-if (data) {
-    let maklumat = JSON.parse(data);
+    <div class="card">
 
-    document.getElementById("namaPesakit").textContent = maklumat.nama;
-    document.getElementById("darahPesakit").textContent = maklumat.darah;
-    document.getElementById("alahanPesakit").textContent = maklumat.alahan;
-    document.getElementById("penyakitPesakit").textContent = maklumat.penyakit || "Tiada";
-} else {
-    document.getElementById("namaPesakit").textContent = "Tiada maklumat disimpan";
-    document.getElementById("darahPesakit").textContent = "-";
-    document.getElementById("alahanPesakit").textContent = "-";
-    document.getElementById("penyakitPesakit").textContent = "-";
-}
-</script>
-  
-<h3>Nombor Kecemasan</h3>
+        <h2>🩺 Maklumat Kecemasan Pesakit</h2>
 
-<p>📞 <a href="tel:999">Hubungi 999</a></p>
+        <div class="info">
 
-<h3>Langkah Asas</h3>
+            <p>
+                <strong>👤 Nama:</strong>
+                <span id="namaPesakit">Tiada maklumat</span>
+            </p>
 
-<ul>
-<li>Hubungi 999.</li>
-<li>Pastikan mangsa berada di tempat yang selamat.</li>
-<li>Ikut arahan pegawai kecemasan.</li>
-</ul>
+          <p>
+                <strong>🩸 Kumpulan Darah:</strong>
+                <span id="darahPesakit">Tiada maklumat</span>
+            </p>
 
-<p><a href="index.html">⬅ Kembali ke Laman Utama</a></p>
+            <p>
+                <strong>💊 Penyakit Sedia Ada:</strong>
+                <span id="penyakitPesakit">Tiada maklumat</span>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOMBOR KECEMASAN -->
+
+    <div class="card emergency-card">
+
+        <h2>📞 Nombor Kecemasan</h2>
+
+        <p>
+            Jika berlaku kecemasan, hubungi:
+        </p>
+
+        <a
+            href="tel:999"
+            class="call-button">
+
+            📞 Hubungi 999
+
+        </a>
+
+    </div>
+
+
+    <!-- LANGKAH KECEMASAN -->
+
+    <div class="card">
+
+        <h2>🆘 Langkah Asas Kecemasan</h2>
+
+        <ol class="steps">
+
+            <li>
+                Hubungi <strong>999</strong> jika keadaan serius.
+            </li>
+
+            <li>
+                Pastikan mangsa berada di tempat yang selamat.
+            </li>
+
+            <li>
+                Jangan panik dan cuba bertenang.
+            </li>
+
+            <li>
+                Ikut arahan pegawai kecemasan.
+            </li>
+
+            <li>
+                Berikan maklumat kesihatan pesakit jika diperlukan.
+            </li>
+
+        </ol>
+
+    </div>
+
+
+    <p class="warning">
+        ⚠️ Maklumat Pasport Kesihatan adalah untuk membantu
+        komunikasi semasa kecemasan dan bukan pengganti
+        nasihat atau rawatan doktor.
+    </p>
+
+
+    <a
+        href="index.html"
+        class="back">
+
+        ← Kembali ke Laman Utama
+
+    </a>
+
 
 </main>
 
+
 <footer>
-<p>© 2026 MARVION</p>
+
+    <p>© 2026 MARVION</p>
+
+    <p>
+        Smart Healthcare Communication Platform
+    </p>
+
 </footer>
 
+
+<script>
+
+/* ==========================================
+   AMBIL MAKLUMAT DARIPADA PASPORT KESIHATAN
+========================================== */
+
+
+/* Maklumat daripada passport.html versi baru */
+
+let nama =
+    localStorage.getItem("marvionNama");
+
+let darah =
+    localStorage.getItem("marvionDarah");
+
+let penyakitData =
+    localStorage.getItem("marvionPenyakit");
+
+
+/* Jika data versi baru ada */
+
+if (nama) {
+
+    document.getElementById("namaPesakit").textContent =
+        nama;
+
+}
+
+
+if (darah) {
+
+    document.getElementById("darahPesakit").textContent =
+        darah;
+
+}
+
+
+if (penyakitData) {
+
+    try {
+
+        let penyakit =
+            JSON.parse(penyakitData);
+
+        if (Array.isArray(penyakit)) {
+
+            document.getElementById("penyakitPesakit").textContent =
+                penyakit.join(", ");
+
+        } else {
+
+            document.getElementById("penyakitPesakit").textContent =
+                penyakit;
+
+        }
+
+    } catch (error) {
+
+        document.getElementById("penyakitPesakit").textContent =
+            penyakitData;
+
+    }
+
+}
+
+
+/* ==========================================
+   SOKONG DATA LAMA JUGA
+========================================== */
+
+let dataLama =
+    localStorage.getItem("maklumatKesihatan");
+
+
+if (dataLama) {
+
+    try {
+
+        let maklumat =
+            JSON.parse(dataLama);
+
+
+        if (!nama && maklumat.nama) {
+
+            document.getElementById("namaPesakit").textContent =
+                maklumat.nama;
+
+        }
+
+
+        if (!darah && maklumat.darah) {
+
+            document.getElementById("darahPesakit").textContent =
+                maklumat.darah;
+
+        }
+
+
+        if (!penyakitData && maklumat.penyakit) {
+
+            document.getElementById("penyakitPesakit").textContent =
+                maklumat.penyakit;
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Data lama tidak dapat dibaca."
+        );
+
+    }
+
+}
+
+</script>
+
+
 </body>
+
 </html>
