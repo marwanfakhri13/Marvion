@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Semakan Giliran</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -8,66 +10,72 @@
 <body>
 
 <header>
-    <h1>❤️ MARVION</h1>
-    <p>Platform Komunikasi Penjagaan Kesihatan Pintar</p>
+    <img src="marvion-logo.png"
+         alt="MARVION Smart Healthcare Communication Platform"
+         class="logo">
 </header>
+
+<hr>
 
 <main>
 
-<h2>⌛ Semakan Giliran</h2>
+    <h2>⌛ Semakan Giliran</h2>
 
-<p>Masukkan nombor giliran anda untuk menyemak status.</p>
+    <p class="arahan">
+        Masukkan nombor giliran anda untuk menyemak status.
+    </p>
 
-<div class="queue-box">
+    <form id="queueForm">
 
-<label for="queueNumber">🎫 Nombor Giliran</label>
+        <label for="nombor">
+            🎫 Nombor Giliran
+        </label>
 
-<input 
-    type="text" 
-    id="queueNumber"
-    placeholder="Contoh: A102"
->
+        <input
+            type="text"
+            id="nombor"
+            placeholder="Contoh: A102"
+        >
 
-<button type="button" onclick="semakGiliran()">
-    🔍 Semak Giliran
-</button>
+        <button type="button" onclick="semakGiliran()">
+            🔍 Semak Giliran
+        </button>
 
-</div>
+    </form>
 
-<div id="status" class="queue-status">
-    Status: Sila masukkan nombor giliran anda.
-</div>
+    <div id="status">
+        Status: Sila masukkan nombor giliran anda.
+    </div>
 
-<p>
-    <a href="index.html">⬅ Kembali ke Laman Utama</a>
-</p>
+    <p>
+        <a href="index.html">⬅ Kembali ke Laman Utama</a>
+    </p>
 
-</main>
-    
-<script>
-function semakGiliran() {
-
-    let nombor = document.querySelector("input").value.trim();
-
-    if (nombor === "") {
-        document.getElementById("status").innerHTML =
-        "⚠️ Sila masukkan nombor giliran.";
-        return;
-    }
-
-    nombor = nombor.toUpperCase();
-
-    document.getElementById("status").innerHTML =
-    "🟢 <strong>Giliran " + nombor + "</strong><br>" +
-    "Sedang dipanggil ke Bilik 3.<br>" +
-    "Sila bersedia dan tunggu arahan petugas.";
-}
-</script>
 </main>
 
 <footer>
-<p>© 2026 MARVION</p>
+    <p>© 2026 MARVION</p>
 </footer>
+
+<script>
+function semakGiliran() {
+
+    let nombor = document.getElementById("nombor").value.trim();
+
+    if (nombor === "") {
+
+        document.getElementById("status").innerHTML =
+            "⚠️ Sila masukkan nombor giliran anda.";
+
+    } else {
+
+        document.getElementById("status").innerHTML =
+            "🟢 Giliran " + nombor +
+            "<br>Sedang dipanggil ke Bilik 3." +
+            "<br>Sila bersedia dan tunggu arahan petugas.";
+    }
+}
+</script>
 
 </body>
 </html>
