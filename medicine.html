@@ -1,403 +1,768 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peringatan Ubat | MARVION</title>
 
-  <title>Peringatan Ubat | MARVION</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5faf7;
+            color: #183b2b;
+            text-align: center;
+        }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5faf7;
-      color: #183b2b;
-      text-align: center;
-    }
+        header {
+            background: white;
+            padding: 25px 15px 15px;
+            border-bottom: 1px solid #ddd;
+        }
 
-    header {
-      padding: 25px 15px 15px;
-      background: white;
-      border-bottom: 1px solid #ddd;
-    }
+        .logo {
+            display: block;
+            width: 230px;
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
 
-    .logo {
-      display: block;
-      width: 230px;
-      max-width: 80%;
-      margin: 0 auto;
-    }
+        main {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 25px 15px 45px;
+        }
 
-    main {
-      width: 100%;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 25px 15px 40px;
-    }
+        h1 {
+            font-size: 30px;
+            margin: 10px 0;
+            color: #183b2b;
+        }
 
-    h1 {
-      font-size: 30px;
-      margin: 10px 0;
-    }
+        .intro {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0 auto 28px;
+            max-width: 600px;
+        }
 
-    .intro {
-      font-size: 17px;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
+        .form-box {
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 28px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: left;
+        }
 
-    .form-box {
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
-      text-align: left;
-    }
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 15px 0 8px;
+            color: #183b2b;
+        }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin: 15px 0 8px;
-      font-size: 16px;
-    }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #d6e5dd;
+            border-radius: 10px;
+            font-size: 17px;
+            background: #fbfefd;
+        }
 
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #bbb;
-      border-radius: 10px;
-      font-size: 17px;
-    }
+        input:focus {
+            outline: none;
+            border-color: #159957;
+        }
 
-    button {
-      width: 100%;
-      padding: 15px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 10px;
-      background: #0aa65c;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .save-button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            background: #159957;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-    button:hover {
-      background: #078b4d;
-    }
+        .save-button:hover {
+            background: #107a45;
+        }
 
-    .success {
-      display: none;
-      margin-top: 25px;
-      padding: 22px;
-      background: #eefaf2;
-      border: 2px solid #55a875;
-      border-radius: 14px;
-      text-align: center;
-      font-size: 17px;
-      line-height: 1.7;
-    }
+        .success {
+            display: none;
+            width: 100%;
+            max-width: 620px;
+            margin: 22px auto;
+            padding: 22px;
+            background: #eefaf2;
+            border: 2px solid #55a875;
+            border-radius: 14px;
+            text-align: center;
+            line-height: 1.7;
+        }
 
-    .note {
-      margin-top: 25px;
-      padding: 20px;
-      background: #fffdf0;
-      border-radius: 14px;
-      text-align: center;
-      line-height: 1.6;
-    }
+        .alarm {
+            display: none;
+            width: 100%;
+            max-width: 620px;
+            margin: 22px auto;
+            padding: 25px;
+            background: #fff3cd;
+            border: 3px solid #f0b400;
+            border-radius: 16px;
+            text-align: center;
+        }
 
-    .back {
-      display: inline-block;
-      margin-top: 25px;
-      color: #174c8a;
-      font-weight: bold;
-      text-decoration: none;
-    }
+        .alarm h2 {
+            margin-top: 0;
+            color: #9a6500;
+        }
 
-    footer {
-      background: #123d6a;
-      color: white;
-      padding: 18px;
-      margin-top: 20px;
-    }
+        .alarm-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #159957;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-    /* Kotak notifikasi di dalam laman */
-    .alarm {
-      display: none;
-      margin-top: 25px;
-      padding: 25px;
-      background: #fff3cd;
-      border: 3px solid #f0b400;
-      border-radius: 16px;
-      text-align: center;
-      animation: berkelip 1s infinite alternate;
-    }
+        .note {
+            width: 100%;
+            max-width: 620px;
+            margin: 25px auto;
+            padding: 20px;
+            background: #eefaf4;
+            border-radius: 14px;
+            text-align: center;
+            line-height: 1.6;
+        }
 
-    .alarm h2 {
-      margin-top: 0;
-      color: #9a6500;
-    }
+        .note h3 {
+            margin-top: 0;
+            color: #159957;
+        }
 
-    @keyframes berkelip {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.02);
-      }
-    }
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 28px auto 0;
+            color: #174c8a;
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 25px;
-      }
+        footer {
+            background: #123d6a;
+            color: white;
+            padding: 20px 15px;
+        }
 
-      .form-box {
-        padding: 20px;
-      }
-    }
-  </style>
+        footer p {
+            margin: 5px 0;
+        }
+
+  @media (max-width: 600px) {
+
+            .logo {
+                width: 200px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .intro {
+                font-size: 15px;
+            }
+
+            .form-box {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-  <img src="marvion-logo.png"
-       alt="MARVION Smart Healthcare Communication Platform"
-       class="logo">
+
+    <img src="marvion-logo.png"
+         alt="MARVION Smart Healthcare Communication Platform"
+         class="logo">
+
 </header>
 
 <main>
 
-  <h1>❤️ Peringatan Ubat 💊</h1>
+    <h1>💊 Peringatan Ubat</h1>
 
-  <p class="intro">
-    Masukkan maklumat ubat anda untuk diingatkan
-    pada waktu yang ditetapkan.
-  </p>
-
-  <div class="form-box">
-
-    <label for="namaUbat">💊 Nama Ubat</label>
-    <input
-      type="text"
-      id="namaUbat"
-      placeholder="Contoh: Aspirin">
-
-    <label for="masaUbat">⏰ Waktu Pengambilan</label>
-    <input
-      type="time"
-      id="masaUbat">
-
-    <button onclick="simpanPeringatan()">
-      💾 Simpan Peringatan
-    </button>
-
-  </div>
-
-  <div id="berjaya" class="success"></div>
-
-  <div id="alarm" class="alarm">
-    <h2>⏰ MASA AMBIL UBAT!</h2>
-    <p id="alarmText"></p>
-    <button onclick="tutupAlarm()">
-      ✅ Saya Sudah Ambil Ubat
-    </button>
-  </div>
-
-  <div class="note">
-    <strong>🔔 Nota Penting</strong>
-    <p>
-      Pastikan anda mengambil ubat mengikut arahan doktor.
-      Jangan berhenti mengambil ubat tanpa nasihat doktor.
+    <p class="intro">
+        Masukkan maklumat ubat anda untuk diingatkan
+        pada waktu yang ditetapkan.
     </p>
-  </div>
 
-  <a href="index.html" class="back">
-    ← Kembali ke Laman Utama
-  </a>
+
+    <div class="form-box">
+
+        <label for="namaUbat">
+            💊 Nama Ubat
+        </label>
+
+        <input
+            type="text"
+            id="namaUbat"
+            placeholder="Contoh: Paracetamol 500mg">
+
+
+        <label for="masaUbat">
+            ⏰ Waktu Pengambilan
+        </label>
+
+        <input
+            type="time"
+            id="masaUbat">
+
+
+        <button
+            type="button"
+            class="save-button"
+            onclick="simpanPeringatan()">
+
+            🔔 Simpan Peringatan
+
+        </button>
+
+    </div>
+
+
+    <div id="berjaya" class="success"></div>
+
+
+    <div id="alarm" class="alarm">
+
+        <h2>⏰ MASA AMBIL UBAT!</h2>
+
+        <p id="alarmText"></p>
+
+        <button
+            type="button"
+            class="alarm-button"
+            onclick="tutupAlarm()">
+
+            ✅ Saya Sudah Ambil Ubat
+
+        </button>
+
+    </div>
+
+
+    <div class="note">
+
+        <h3>🔔 Nota Penting</h3>
+
+        <p>
+            Pastikan anda mengambil ubat mengikut arahan doktor.
+            Jangan berhenti mengambil ubat tanpa nasihat doktor.
+        </p>
+
+    </div>
+
+
+    <a href="index.html" class="back">
+        ← Kembali ke Laman Utama
+    </a>
 
 </main>
 
+
 <footer>
-  © 2026 MARVION | Connecting Care, Empowering Lives.
+
+    <p>© 2026 MARVION</p>
+
+    <p>
+        Smart Healthcare Communication Platform
+    </p>
+
 </footer>
+
 
 <script>
 
-  let namaUbatDisimpan = "";
-  let masaUbatDisimpan = "";
+let audioContext = null;
 
-  /* Minta kebenaran notifikasi */
-  function mintaKebenaranNotifikasi() {
-    if ("Notification" in window &&
-        Notification.permission === "default") {
 
-      Notification.requestPermission();
-    }
-  }
+/* ================================
+   SIMPAN PERINGATAN
+================================ */
 
-  /* Simpan peringatan */
-  function simpanPeringatan() {
+function simpanPeringatan() {
 
-    const nama = document.getElementById("namaUbat").value.trim();
-    const masa = document.getElementById("masaUbat").value;
+    const nama =
+        document.getElementById("namaUbat").value.trim();
+
+    const masa =
+        document.getElementById("masaUbat").value;
+
 
     if (nama === "" || masa === "") {
 
-      alert("⚠️ Sila masukkan nama ubat dan waktu pengambilan.");
+        alert(
+            "⚠️ Sila masukkan nama ubat dan waktu pengambilan."
+        );
 
-      return;
+        return;
     }
 
-    namaUbatDisimpan = nama;
-    masaUbatDisimpan = masa;
 
-    /* Simpan dalam telefon/browser */
-    localStorage.setItem("marvionNamaUbat", nama);
-    localStorage.setItem("marvionMasaUbat", masa);
+    /* Simpan maklumat */
 
-    /* Minta kebenaran notifikasi */
-    mintaKebenaranNotifikasi();
-
-    document.getElementById("berjaya").style.display = "block";
-
-    document.getElementById("berjaya").innerHTML =
-      "<h2>✅ Peringatan Berjaya Disimpan!</h2>" +
-      "<p><strong>Nama Ubat:</strong> " + nama + "</p>" +
-      "<p><strong>Waktu Pengambilan:</strong> " + masa + "</p>" +
-      "<p>🔔 MARVION akan mengingatkan anda pada waktu tersebut.</p>";
-
-    alert(
-      "✅ Peringatan berjaya disimpan!\n\n" +
-      "Ubat: " + nama +
-      "\nWaktu: " + masa
+    localStorage.setItem(
+        "marvionNamaUbat",
+        nama
     );
-  }
 
-
-  /* Semak masa setiap saat */
-  setInterval(function() {
-
-    const nama = localStorage.getItem("marvionNamaUbat");
-    const masa = localStorage.getItem("marvionMasaUbat");
-
-    if (!nama || !masa) {
-      return;
-    }
-
-    const sekarang = new Date();
-
-    const jam =
-      String(sekarang.getHours()).padStart(2, "0");
-
-    const minit =
-      String(sekarang.getMinutes()).padStart(2, "0");
-
-    const masaSekarang = jam + ":" + minit;
-
-    /*
-      Guna tarikh + masa sebagai ID supaya
-      notifikasi tidak keluar berkali-kali
-      dalam minit yang sama.
-    */
-    const hariIni =
-      sekarang.getFullYear() + "-" +
-      String(sekarang.getMonth() + 1).padStart(2, "0") + "-" +
-      String(sekarang.getDate()).padStart(2, "0");
-
-    const idPeringatan =
-      hariIni + "-" + masa + "-" + nama;
-
-    const sudahDiberi =
-      localStorage.getItem("marvionLastAlarm");
-
-    if (masaSekarang === masa && sudahDiberi !== idPeringatan) {
-
-      localStorage.setItem(
-        "marvionLastAlarm",
-        idPeringatan
-      );
-
-      keluarkanNotifikasi(nama);
-    }
-
-  }, 1000);
-
-
-  /* Paparkan notifikasi */
-  function keluarkanNotifikasi(nama) {
-
-    document.getElementById("alarm").style.display = "block";
-
-    document.getElementById("alarmText").innerHTML =
-      "Sudah sampai waktu untuk mengambil <strong>" +
-      nama +
-      "</strong>.<br><br>" +
-      "Sila ambil ubat mengikut arahan doktor.";
-
-    /* Notifikasi browser */
-    if ("Notification" in window &&
-        Notification.permission === "granted") {
-
-      new Notification("⏰ MARVION - Masa Ambil Ubat", {
-        body:
-          "Sudah sampai masa mengambil " +
-          nama +
-          ".",
-        icon: "marvion-logo.png"
-      });
-
-    }
-
-    /* Bunyi dan popup */
-    alert(
-      "⏰ MASA AMBIL UBAT!\n\n" +
-      "Ubat: " + nama +
-      "\n\nSila ambil ubat mengikut arahan doktor."
+    localStorage.setItem(
+        "marvionMasaUbat",
+        masa
     );
-  }
 
 
-  /* Tutup kotak alarm */
-  function tutupAlarm() {
+    /* Simpan tarikh */
 
-    document.getElementById("alarm").style.display = "none";
-  }
+    localStorage.setItem(
+        "marvionTarikhSimpan",
+        new Date().toDateString()
+    );
 
 
-  /* Paparkan semula peringatan apabila laman dibuka */
-  window.onload = function() {
+    /* Aktifkan bunyi */
+
+    aktifkanAudio();
+
+
+    /* Minta kebenaran notification */
+
+    if (
+        "Notification" in window &&
+        Notification.permission === "default"
+    ) {
+
+        Notification.requestPermission();
+
+    }
+
+
+    /* Paparan berjaya */
+
+    const berjaya =
+        document.getElementById("berjaya");
+
+
+    berjaya.style.display = "block";
+
+
+    berjaya.innerHTML =
+
+        "<h2>✅ Peringatan Berjaya Disimpan!</h2>" +
+
+        "<p><strong>Nama Ubat:</strong> " +
+        nama +
+        "</p>" +
+
+        "<p><strong>Waktu:</strong> " +
+        masa +
+        "</p>" +
+
+        "<p>🔔 Peringatan MARVION sedang aktif.</p>";
+
+}
+
+
+/* ================================
+   AKTIFKAN AUDIO
+================================ */
+
+function aktifkanAudio() {
+
+    try {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        if (!AudioContext) {
+            return;
+        }
+
+
+        audioContext =
+            new AudioContext();
+
+
+        if (audioContext.state === "suspended") {
+
+            audioContext.resume();
+
+        }
+
+    } catch (error) {
+
+        console.log("Audio tidak tersedia.");
+
+    }
+
+}
+
+
+/* ================================
+   BUNYI PERINGATAN
+================================ */
+
+function bunyiPeringatan() {
+
+    if (!audioContext) {
+      aktifkanAudio();
+
+    }
+
+
+    if (!audioContext) {
+        return;
+    }
+
+
+    function bunyi(freq, masa) {
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+
+        oscillator.frequency.value =
+            freq;
+
+
+        gain.gain.setValueAtTime(
+            0.001,
+            audioContext.currentTime + masa
+        );
+
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.3,
+            audioContext.currentTime + masa + 0.03
+        );
+
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioContext.currentTime + masa + 0.45
+        );
+
+
+        oscillator.start(
+            audioContext.currentTime + masa
+        );
+
+
+        oscillator.stop(
+            audioContext.currentTime + masa + 0.5
+        );
+
+    }
+
+
+    /* Ting Ting */
+
+    bunyi(880, 0);
+
+    bunyi(1047, 0.65);
+
+}
+
+
+/* ================================
+   SEMAK MASA
+================================ */
+
+setInterval(function() {
 
     const nama =
-      localStorage.getItem("marvionNamaUbat");
+        localStorage.getItem(
+            "marvionNamaUbat"
+        );
+
 
     const masa =
-      localStorage.getItem("marvionMasaUbat");
+        localStorage.getItem(
+            "marvionMasaUbat"
+        );
 
-    if (nama && masa) {
 
-      document.getElementById("namaUbat").value = nama;
-      document.getElementById("masaUbat").value = masa;
-
-      namaUbatDisimpan = nama;
-      masaUbatDisimpan = masa;
-
-      document.getElementById("berjaya").style.display = "block";
-      document.getElementById("berjaya").innerHTML =
-        "<h2>✅ Peringatan Aktif</h2>" +
-        "<p><strong>Nama Ubat:</strong> " + nama + "</p>" +
-        "<p><strong>Waktu Pengambilan:</strong> " + masa + "</p>" +
-        "<p>🔔 Peringatan MARVION sedang aktif.</p>";
+    if (!nama || !masa) {
+        return;
     }
-  };
+
+
+    const sekarang =
+        new Date();
+
+
+    const jam =
+        String(
+            sekarang.getHours()
+        ).padStart(2, "0");
+
+
+    const minit =
+        String(
+            sekarang.getMinutes()
+        ).padStart(2, "0");
+
+
+    const masaSekarang =
+        jam + ":" + minit;
+
+
+    const tarikhHariIni =
+
+        sekarang.getFullYear() +
+        "-" +
+        String(
+            sekarang.getMonth() + 1
+        ).padStart(2, "0") +
+        "-" +
+        String(
+            sekarang.getDate()
+        ).padStart(2, "0");
+
+
+    const idAlarm =
+
+        tarikhHariIni +
+        "-" +
+        masa +
+        "-" +
+        nama;
+
+
+    const alarmTerakhir =
+
+        localStorage.getItem(
+            "marvionAlarmTerakhir"
+        );
+
+
+    if (
+        masaSekarang === masa &&
+        alarmTerakhir !== idAlarm
+    ) {
+
+        localStorage.setItem(
+            "marvionAlarmTerakhir",
+            idAlarm
+        );
+
+
+        keluarkanPeringatan(nama);
+
+    }
+
+}, 1000);
+
+
+/* ================================
+   KELUARKAN PERINGATAN
+================================ */
+
+function keluarkanPeringatan(nama) {
+
+
+    /* Bunyi */
+
+    bunyiPeringatan();
+
+
+    /* Kotak dalam laman */
+
+    const alarm =
+        document.getElementById("alarm");
+
+
+    const alarmText =
+        document.getElementById("alarmText");
+
+
+    alarm.style.display =
+        "block";
+
+
+    alarmText.innerHTML =
+
+        "Sudah sampai masa untuk mengambil " +
+
+        "<strong>" +
+        nama +
+        "</strong>." +
+
+        "<br><br>" +
+
+        "Sila ambil ubat mengikut arahan doktor.";
+
+
+    /* Notification browser */
+
+    if (
+        "Notification" in window &&
+        Notification.permission === "granted"
+    ) {
+
+        try {
+
+            new Notification(
+                "⏰ MARVION - Masa Ambil Ubat",
+                {
+                    body:
+                        "Sudah sampai masa mengambil " +
+                        nama +
+                        ".",
+
+                    icon:
+                        "marvion-logo.png"
+                }
+            );
+
+        } catch (error) {
+
+            console.log(
+                "Notification tidak tersedia."
+            );
+
+        }
+
+    }
+
+
+    /* Popup */
+
+    setTimeout(function() {
+
+        alert(
+            "⏰ MASA AMBIL UBAT!\n\n" +
+            "Ubat: " +
+            nama +
+            "\n\n" +
+            "Sila ambil ubat mengikut arahan doktor."
+        );
+
+    }, 100);
+
+}
+
+
+/* ================================
+   TUTUP PERINGATAN
+================================ */
+
+function tutupAlarm() {
+
+    document.getElementById(
+        "alarm"
+    ).style.display = "none";
+
+}
+
+/* ================================
+   PAPARKAN PERINGATAN LAMA
+================================ */
+
+window.addEventListener(
+    "load",
+    function() {
+
+        const nama =
+            localStorage.getItem(
+                "marvionNamaUbat"
+            );
+
+
+        const masa =
+            localStorage.getItem(
+                "marvionMasaUbat"
+            );
+
+
+        if (nama && masa) {
+
+            document.getElementById(
+                "namaUbat"
+            ).value = nama;
+
+
+            document.getElementById(
+                "masaUbat"
+            ).value = masa;
+
+
+            const berjaya =
+                document.getElementById(
+                    "berjaya"
+                );
+
+
+            berjaya.style.display =
+                "block";
+
+
+            berjaya.innerHTML =
+
+                "<h2>🔔 Peringatan Aktif</h2>" +
+
+                "<p><strong>Nama Ubat:</strong> " +
+                nama +
+                "</p>" +
+
+                "<p><strong>Waktu:</strong> " +
+                masa +
+                "</p>" +
+
+                "<p>MARVION sedang mengingatkan anda.</p>";
+
+        }
+
+    }
+
+);
 
 </script>
 
 </body>
-</html>      
+</html>
