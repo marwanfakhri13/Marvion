@@ -1,51 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Peringatan Ubat</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<button type="button" onclick="simpanPeringatan()">
+            💾 Simpan Peringatan
+        </button>
 
-<body>
+        <div id="mesej"></div>
 
-<header>
-<h1>❤️ MARVION</h1>
-<p>Platform Komunikasi Penjagaan Kesihatan Pintar</p>
-</header>
+        <div class="nota">
+            <h3>🔔 Nota Penting</h3>
+            <p>
+                Pastikan anda mengambil ubat mengikut arahan doktor.
+                Jangan berhenti mengambil ubat tanpa nasihat doktor.
+            </p>
+        </div>
 
-<main>
+    </div>
 
-<h2>💊 Peringatan Ubat</h2>
-
-<p>Nama Ubat</p>
-<input type="text">
-
-<p>Waktu Pengambilan</p>
-<input type="time">
-
-<br><br>
-
-<button type="button" onclick="simpanUbat()">Simpan</button>
-
-<p><a href="index.html">⬅ Kembali ke Laman Utama</a></p>
+    <a href="index.html" class="kembali">
+        ← Kembali ke Laman Utama
+    </a>
 
 </main>
 
+<footer>
+    <p>© 2026 MARVION</p>
+    <p>Smart Healthcare Communication Platform</p>
+</footer>
+
 <script>
-function simpanUbat() {
-    let nama = document.querySelector('input[type="text"]').value;
-    let masa = document.querySelector('input[type="time"]').value;
+function simpanPeringatan() {
+
+    let nama = document.getElementById("namaUbat").value.trim();
+    let masa = document.getElementById("masaUbat").value;
 
     if (nama === "" || masa === "") {
-        alert("Sila masukkan nama ubat dan waktu pengambilan.");
-    } else {
-        alert("Peringatan ubat " + nama + " ditetapkan pada " + masa + ".");
+        alert("⚠️ Sila lengkapkan nama ubat dan waktu pengambilan.");
+        return;
     }
+
+    let mesej = document.getElementById("mesej");
+
+    mesej.style.display = "block";
+
+    mesej.innerHTML =
+        "<h3>✅ Peringatan Berjaya Disimpan!</h3>" +
+        "<p><b>Nama Ubat:</b> " + nama + "</p>" +
+        "<p><b>Waktu Pengambilan:</b> " + masa + "</p>" +
+        "<p>🔔 Sila ambil ubat pada waktu yang ditetapkan.</p>";
 }
-</script>    
-    
-<footer>
-<p>© 2026 MARVION</p>
-</footer>
+</script>
 
 </body>
 </html>
