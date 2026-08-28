@@ -1,360 +1,491 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Status Giliran | MARVION</title>
+<title>Semakan Giliran | MARVION</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5faf7;
-            color: #183b2b;
-            text-align: center;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        header {
-            background: white;
-            text-align: center;
-            padding: 25px 15px 20px;
-            border-bottom: 1px solid #ddd;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5faf7;
+    color: #183b2b;
+    text-align: center;
+}
 
-        .logo {
-            display: block;
-            width: 230px;
-            max-width: 80%;
-            height: auto;
-            margin: 0 auto;
-        }
+header {
+    background: white;
+    padding: 25px 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
 
-        main {
-            width: 100%;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 30px 15px 45px;
-        }
+.logo {
+    display: block;
+    width: 230px;
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
 
-        h1 {
-            color: #183b2b;
-            font-size: 30px;
-            margin: 5px 0 10px;
-        }
+main {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 30px 15px 45px;
+}
 
-        .subtitle {
-            font-size: 17px;
-            color: #555;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
+h1 {
+    font-size: 30px;
+    margin: 5px 0 10px;
+}
 
-        .card {
-            background: white;
-            width: 100%;
-            max-width: 620px;
-            margin: 0 auto 22px;
-            padding: 25px;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
+.subtitle {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 25px;
+}
 
-        .card h2 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: #168044;
-            font-size: 22px;
-        }
+.card {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto 22px;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
 
-        .queue-display {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
+.card h2 {
+    margin-top: 0;
+    color: #168044;
+}
 
-        .queue-box {
-            background: #f7fbf9;
-            border: 2px solid #dcebe3;
-            border-radius: 15px;
-            padding: 18px;
-        }
+.queue-box {
+    background: #f7fbf9;
+    border: 2px solid #dcebe3;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 15px;
+}
 
-        .queue-label {
-            display: block;
-            font-size: 16px;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 8px;
-        }
+.label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+}
 
-        .queue-number {
-            display: block;
-            font-size: 42px;
-            font-weight: bold;
-            color: #168044;
-            margin: 5px 0;
-        }
+.number {
+    display: block;
+    font-size: 42px;
+    font-weight: bold;
+    color: #168044;
+}
 
-        .room-number {
-            display: block;
-            font-size: 30px;
-            font-weight: bold;
-            color: #183b2b;
-            margin: 5px 0;
-        }
+.room {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    color: #183b2b;
+}
 
-        .next-box {
-            background: #fff8e6;
-            border: 2px solid #f0c75e;
-        }
+.my-number {
+    background: #eaf7ef;
+    border: 3px solid #168044;
+}
 
-        .next-box .queue-number {
-            color: #b87900;
-        }
+.my-number .number {
+    font-size: 50px;
+}
 
-        .status {
-            margin-top: 20px;
-            font-size: 15px;
-            color: #555;
-        }
+.get-button {
+    width: 100%;
+    max-width: 450px;
+    padding: 16px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 12px;
+    background: #168044;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .back {
-            display: inline-block;
-            margin: 10px auto 0;
-            color: #174c8a;
-            font-size: 17px;
-            font-weight: bold;
-            text-decoration: none;
-        }
+.get-button:hover {
+    background: #10703b;
+}
 
-        .back:hover {
-            text-decoration: underline;
-        }
+.message {
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 1.6;
+}
 
-        footer {
-            background: #123d6a;
-            color: white;
-            text-align: center;
-            padding: 20px 15px;
-        }
+.back {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+    color: #174c8a;
+    font-weight: bold;
+    text-decoration: none;
+}
 
-        footer p {
-            margin: 5px 0;
-        }
+footer {
+    background: #123d6a;
+    color: white;
+    text-align: center;
+    padding: 20px 15px;
+}
 
-        .slogan {
-            font-size: 15px;
-        }
+footer p {
+    margin: 5px 0;
+}
 
-        @media (max-width: 600px) {
-            main {
-                padding: 22px 12px 35px;
-            }
+@media (max-width: 600px) {
 
-            h1 {
-                font-size: 26px;
-            }
+    main {
+        padding: 22px 12px 35px;
+    }
 
-            .card {
-                padding: 20px;
-            }
+    h1 {
+        font-size: 26px;
+    }
 
-            .queue-number {
-                font-size: 36px;
-            }
+    .card {
+        padding: 20px;
+    }
 
-            .room-number {
-                font-size: 26px;
-            }
+    .number {
+        font-size: 36px;
+    }
 
-            .logo {
-                width: 200px;
-            }
-        }
-    </style>
+    .my-number .number {
+        font-size: 44px;
+    }
+
+    .logo {
+        width: 200px;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <header>
-        <img
-            src="marvion-logo.png"
-            alt="MARVION Smart Healthcare Communication Platform"
-            class="logo"
-        >
-    </header>
 
-    <main>
+<header>
 
-        <h1>⏳ Status Giliran Pesakit</h1>
+    <img
+        src="marvion-logo.png"
+        alt="MARVION Smart Healthcare Communication Platform"
+        class="logo">
 
-        <p class="subtitle">
-            Sila lihat nombor yang sedang menerima rawatan
-            dan bersedia apabila nombor anda hampir dipanggil.
+</header>
+
+
+<main>
+
+    <h1>⏳ Semakan Giliran</h1>
+
+    <p class="subtitle">
+        Dapatkan nombor giliran anda dan lihat
+        nombor yang sedang menerima rawatan.
+    </p>
+
+
+    <!-- GILIRAN SEMASA -->
+
+    <div class="card">
+
+        <h2>🔔 Giliran Semasa</h2>
+
+        <div class="queue-box">
+
+            <span class="label">
+                Nombor Sedang Dirawat
+            </span>
+
+            <span
+                id="currentNumber"
+                class="number">
+                A102
+            </span>
+
+        </div>
+
+
+        <div class="queue-box">
+
+            <span class="label">
+                🏥 Bilik Rawatan
+            </span>
+
+            <span
+                id="currentRoom"
+                class="room">
+                Bilik 3
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- DAPATKAN NOMBOR -->
+
+    <div class="card">
+
+        <h2>🎫 Nombor Giliran Anda</h2>
+
+        <p>
+            Tekan butang di bawah untuk mendapatkan
+            nombor giliran secara automatik.
         </p>
 
-        <div class="card">
 
-            <h2>🔔 Giliran Semasa</h2>
+        <button
+            type="button"
+            class="get-button"
+            onclick="dapatkanNombor()">
 
-            <div class="queue-display">
+            🎫 Dapatkan Nombor Giliran
 
-                <div class="queue-box">
-                    <span class="queue-label">
-                        🎫 Nombor Sedang Dirawat
-                    </span>
+        </button>
 
-                    <span
-                        id="currentNumber"
-                        class="queue-number">
-                        A102
-                    </span>
-                </div>
 
-                <div class="queue-box">
-                    <span class="queue-label">
-                        🏥 Bilik Rawatan
-                    </span>
+        <div
+            id="myNumberBox"
+            class="queue-box my-number"
+            style="display:none;">
 
-                    <span
-                        id="currentRoom"
-                        class="room-number">
-                        Bilik 3
-                    </span>
-                </div>
+            <span class="label">
+                Nombor Anda
+            </span>
 
-                <div class="queue-box next-box">
-                    <span class="queue-label">
-                        ⏭️ Sila Bersedia
-                    </span>
-
-                    <span
-                        id="nextNumber"
-                        class="queue-number">
-                        A103
-                    </span>
-                </div>
-
-            </div>
+            <span
+                id="myNumber"
+                class="number">
+                -
+            </span>
 
             <div
-                id="status"
-                class="status">
-                🔄 Paparan dikemas kini secara automatik.
+                id="message"
+                class="message">
             </div>
 
         </div>
 
-        <a
-            href="index.html"
-            class="back">
-            ← Kembali ke Laman Utama
-        </a>
-
-    </main>
-
-    <footer>
-
-        <p>© 2026 MARVION</p>
-
-        <p class="slogan">
-            Smart Healthcare Communication Platform
-        </p>
-
-    </footer>
-
-    <script>
-
-        /*
-        =====================================================
-        PAPARAN GILIRAN MARVION
-        =====================================================
-        Sistem akan cuba membaca data daripada localStorage.
-
-        Nama data yang digunakan:
-        - currentQueue
-        - currentRoom
-        - nextQueue
-
-        Jika data belum wujud, paparan contoh akan digunakan.
-        =====================================================
-        */
-
-        function updateQueue() {
-
-            let currentNumber =
-                localStorage.getItem("currentQueue");
-
-            let currentRoom =
-                localStorage.getItem("currentRoom");
-
-            let nextNumber =
-                localStorage.getItem("nextQueue");
+    </div>
 
 
-            /*
-            Nilai contoh jika belum ada data.
-            */
+    <a
+        href="index.html"
+        class="back">
 
-            if (!currentNumber) {
-                currentNumber = "A102";
-            }
+        ← Kembali ke Laman Utama
 
-            if (!currentRoom) {
-                currentRoom = "Bilik 3";
-            }
+    </a>
 
-            if (!nextNumber) {
-                nextNumber = "A103";
-            }
+</main>
 
 
-            /*
-            Paparkan data.
-            */
+<footer>
 
-            document.getElementById("currentNumber")
-                .textContent = currentNumber;
+    <p>© 2026 MARVION</p>
 
-            document.getElementById("currentRoom")
-                .textContent = currentRoom;
+    <p>
+        Smart Healthcare Communication Platform
+    </p>
 
-            document.getElementById("nextNumber")
-                .textContent = nextNumber;
+    <p>
+        Connecting Care. Empowering Lives.
+    </p>
 
-            document.getElementById("status")
-                .textContent =
-                "🔄 Paparan dikemas kini secara automatik.";
+</footer>
+
+
+<script>
+
+/*
+====================================================
+MARVION - SISTEM GILIRAN
+====================================================
+*/
+
+
+/* -------------------------------
+   GILIRAN SEMASA
+-------------------------------- */
+
+function paparkanGiliranSemasa() {
+
+    let currentNumber =
+        localStorage.getItem("currentQueue");
+
+    let currentRoom =
+        localStorage.getItem("currentRoom");
+
+
+    /*
+    Jika belum ada data, guna contoh.
+    */
+
+    if (!currentNumber) {
+        currentNumber = "A102";
+    }
+
+    if (!currentRoom) {
+        currentRoom = "Bilik 3";
+    }
+
+
+    document.getElementById("currentNumber")
+        .textContent = currentNumber;
+
+    document.getElementById("currentRoom")
+        .textContent = currentRoom;
+}
+
+
+/* -------------------------------
+   DAPATKAN NOMBOR PESAKIT
+-------------------------------- */
+
+function dapatkanNombor() {
+
+    /*
+    Ambil nombor terakhir.
+    */
+
+    let lastNumber =
+        parseInt(
+            localStorage.getItem("marvionLastQueueNumber")
+        );
+
+
+    /*
+    Jika belum ada nombor,
+    mula daripada 100.
+    */
+
+    if (isNaN(lastNumber)) {
+        lastNumber = 100;
+    }
+
+
+    /*
+    Tambah satu nombor.
+    */
+
+    lastNumber++;
+
+
+    /*
+    Simpan nombor terakhir.
+    */
+
+    localStorage.setItem(
+        "marvionLastQueueNumber",
+        lastNumber
+    );
+
+
+    /*
+    Bentukkan nombor.
+    Contoh A101, A102, A103.
+    */
+
+    let nomborAnda =
+        "A" + lastNumber;
+
+
+    /*
+    Simpan nombor pesakit.
+    */
+
+    localStorage.setItem(
+        "marvionMyQueueNumber",
+        nomborAnda
+    );
+
+
+    /*
+    Paparkan nombor.
+    */
+
+    document.getElementById("myNumber")
+        .textContent = nomborAnda;
+
+
+    document.getElementById("myNumberBox")
+        .style.display = "block";
+
+
+    document.getElementById("message")
+        .innerHTML =
+        "✅ Nombor giliran anda telah berjaya diperoleh.<br>" +
+        "Sila tunggu sehingga nombor anda dipanggil.";
+}
+
+
+/* -------------------------------
+   PAPARKAN NOMBOR YANG TELAH ADA
+-------------------------------- */
+
+window.addEventListener(
+    "load",
+    function() {
+
+        paparkanGiliranSemasa();
+
+
+        let nomborSaya =
+            localStorage.getItem(
+                "marvionMyQueueNumber"
+            );
+
+
+        if (nomborSaya) {
+
+            document.getElementById("myNumber")
+                .textContent = nomborSaya;
+
+            document.getElementById("myNumberBox")
+                .style.display = "block";
+
+            document.getElementById("message")
+                .innerHTML =
+                "🎫 Nombor giliran anda masih aktif.<br>" +
+                "Sila tunggu sehingga nombor anda dipanggil.";
         }
 
-
-        /*
-        Jalankan apabila halaman dibuka.
-        */
-
-        updateQueue();
+    }
+);
 
 
-        /*
-        Semak perubahan setiap 2 saat.
-        */
+/* -------------------------------
+   KEMAS KINI PAPARAN
+-------------------------------- */
 
-        setInterval(updateQueue, 2000);
+setInterval(
+    paparkanGiliranSemasa,
+    2000
+);
 
+</script>
 
-        /*
-        Kemas kini terus jika data localStorage
-        berubah daripada halaman/tab lain.
-        */
-
-        window.addEventListener("storage", updateQueue);
-
-    </script>
 
 </body>
 </html>
