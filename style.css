@@ -8,11 +8,8 @@ body {
 header {
     background: white;
     color: white;
-    padding: 10px;
+    padding: 5px 10px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 3px solid #d8eee5;
 }
 
 header h1 {
@@ -100,16 +97,16 @@ footer {
   }
 
 .logo {
-    display: block;
-    width: 180px;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
 }
 
 header p {
-    margin: 2px 0;
-    font-size: 12px;
+    margin: 2px 0;
+    font-size: 12px;
   }
 }
 
@@ -278,7 +275,6 @@ main form {
 
 #status {
     max-width: 600px;
-    width: fit-content;
     margin: 25px auto;
     padding: 25px;
     text-align: center;
