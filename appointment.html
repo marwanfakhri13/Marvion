@@ -1,94 +1,239 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
+
 <head>
     <title>Tempahan Janji Temu | Marvion</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        main h2 {
+            text-align: center;
+        }
+
+        main > p {
+            text-align: center;
+        }
+
+        form {
+            max-width: 650px;
+            margin: 25px auto;
+            text-align: left;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form button {
+            display: block;
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        #pengesahan {
+            max-width: 650px;
+            margin: 25px auto;
+            text-align: center;
+        }
+
+        main > a {
+            display: inline-block;
+            margin: 20px auto;
+        }
+
+        footer {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <img src="marvion-logo.png" alt="MARVION Smart Healthcare Communication Platform" class="logo">
-</header>
+    <header>
+        <img
+            src="marvion-logo.png"
+            alt="MARVION Smart Healthcare Communication Platform"
+            class="logo">
+    </header>
 
-<main>
 
-    <h2>📅 Tempahan Janji Temu</h2>
+    <main>
 
-    <p>
-        Tempah janji temu dengan klinik atau hospital
-        dengan lebih mudah dan teratur.
-    </p>
+        <h2>📅 Tempahan Janji Temu</h2>
 
-    <form>
+        <p>
+            Tempah janji temu dengan klinik atau hospital
+            dengan lebih mudah dan teratur.
+        </p>
 
-        <label>Nama Pesakit</label><br>
-        <input type="text" id="nama" placeholder="Masukkan nama"><br><br>
 
-        <label>Tarikh Janji Temu</label><br>
-        <input type="date" id="tarikh"><br><br>
+        <form>
 
-        <label>Masa</label><br>
-        <input type="time" id="masa"><br><br>
+            <label>Nama Pesakit</label><br>
+            <input
+                type="text"
+                id="nama"
+                placeholder="Masukkan nama"><br><br>
 
-        <label>Jenis Temu Janji</label><br>
 
-        <select id="jenis">
-            <option>Pemeriksaan Kesihatan</option>
-            <option>Rawatan Susulan</option>
-            <option>Konsultasi Doktor</option>
-            <option>Lain-lain</option>
-        </select>
+            <label>Tarikh Janji Temu</label><br>
+            <input
+                type="date"
+                id="tarikh"><br><br>
 
-        <br><br>
 
-        <button type="button" onclick="hantarTempahan()">
-            ✅ Hantar Tempahan
-        </button>
+            <label>Masa</label><br>
+            <input
+                type="time"
+                id="masa"><br><br>
 
-    </form>
 
-    <br>
+            <label>Jenis Temu Janji</label><br>
 
-    <div id="pengesahan"></div>
+            <select id="jenis">
 
-    <br>
+                <option>Pemeriksaan Kesihatan</option>
 
-    <a href="index.html">⬅️ Kembali ke Laman Utama</a>
+                <option>Rawatan Susulan</option>
 
-</main>
+                <option>Konsultasi Doktor</option>
 
-<script>
-function hantarTempahan() {
+                <option>Lain-lain</option>
 
-    let nama = document.getElementById("nama").value;
-    let tarikh = document.getElementById("tarikh").value;
-    let masa = document.getElementById("masa").value;
-    let jenis = document.getElementById("jenis").value;
+            </select>
 
-    if (nama === "" || tarikh === "" || masa === "") {
-        alert("⚠️ Sila lengkapkan semua maklumat tempahan.");
-        return;
-    }
+            <br><br>
 
-    alert("✅ Tempahan berjaya dihantar!\n\nNama: " + nama +
-          "\nTarikh: " + tarikh +
-          "\nMasa: " + masa +
-          "\nJenis: " + jenis);
 
-    document.getElementById("pengesahan").innerHTML =
-        "<h3>✅ Tempahan Berjaya!</h3>" +
-        "<p><b>Nama:</b> " + nama + "</p>" +
-        "<p><b>Tarikh:</b> " + tarikh + "</p>" +
-        "<p><b>Masa:</b> " + masa + "</p>" +
-        "<p><b>Jenis Temu Janji:</b> " + jenis + "</p>" +
-        "<p>Terima kasih kerana menggunakan MARVION.</p>";
-}
-</script>
+            <button
+                type="button"
+                onclick="hantarTempahan()">
 
-<footer>
-    <p>© 2026 Marvion | Connecting Care. Empowering Lives.</p>
-</footer>
+                📩 Hantar Tempahan
+
+            </button>
+
+        </form>
+
+
+        <br>
+
+
+        <div id="pengesahan"></div>
+
+
+        <br>
+
+
+        <a href="index.html">
+            🏠 Kembali ke Laman Utama
+        </a>
+
+    </main>
+
+
+    <script>
+
+        function hantarTempahan() {
+
+            let nama =
+                document.getElementById("nama").value;
+
+            let tarikh =
+                document.getElementById("tarikh").value;
+
+            let masa =
+                document.getElementById("masa").value;
+
+            let jenis =
+                document.getElementById("jenis").value;
+
+
+            if (
+                nama === "" ||
+                tarikh === "" ||
+                masa === ""
+            ) {
+
+                alert(
+                    "⚠️ Sila lengkapkan semua maklumat tempahan."
+                );
+
+                return;
+            }
+
+
+            alert(
+                "📩 Tempahan berjaya dihantar!\n\n" +
+                "Nama: " + nama +
+                "\nTarikh: " + tarikh +
+                "\nMasa: " + masa +
+                "\nJenis: " + jenis
+            );
+
+
+            document
+                .getElementById("pengesahan")
+                .innerHTML =
+
+                "<h3>📩 Tempahan Berjaya!</h3>" +
+
+                "<p><b>Nama:</b> " +
+                nama +
+                "</p>" +
+
+                "<p><b>Tarikh:</b> " +
+                tarikh +
+                "</p>" +
+
+                "<p><b>Masa:</b> " +
+                masa +
+                "</p>" +
+
+                "<p><b>Jenis Temu Janji:</b> " +
+                jenis +
+                "</p>" +
+
+                "<p>Terima kasih kerana menggunakan MARVION.</p>";
+
+        }
+
+    </script>
+
+
+    <footer>
+
+        <p>
+            © 2026 MARVION
+        </p>
+
+        <p>
+            Smart Healthcare Communication Platform
+        </p>
+
+    </footer>
 
 </body>
+
 </html>
