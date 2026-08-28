@@ -616,3 +616,18 @@ main a {
         font-size: 15px;
     }
 }
+
+/* ===== SAIZ LOGO TELEFON - FINAL ===== */
+@media (max-width: 600px) {
+    .logo {
+        width: 120px !important;
+        max-width: 120px !important;
+        height: auto !important;
+        display: block;
+        margin: 0 auto 4px;
+    }
+
+    header {
+        padding: 5px 10px 12px;
+    }
+}
