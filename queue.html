@@ -3,79 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semakan Giliran</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Status Giliran | MARVION</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5faf7;
+            color: #183b2b;
+            text-align: center;
+        }
+
+        header {
+            background: white;
+            text-align: center;
+            padding: 25px 15px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            display: block;
+            width: 230px;
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        main {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 30px 15px 45px;
+        }
+
+        h1 {
+            color: #183b2b;
+            font-size: 30px;
+            margin: 5px 0 10px;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto 22px;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #168044;
+            font-size: 22px;
+        }
+
+        .queue-display {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .queue-box {
+            background: #f7fbf9;
+            border: 2px solid #dcebe3;
+            border-radius: 15px;
+            padding: 18px;
+        }
+
+        .queue-label {
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .queue-number {
+            display: block;
+            font-size: 42px;
+            font-weight: bold;
+            color: #168044;
+            margin: 5px 0;
+        }
+
+        .room-number {
+            display: block;
+            font-size: 30px;
+            font-weight: bold;
+            color: #183b2b;
+            margin: 5px 0;
+        }
+
+        .next-box {
+            background: #fff8e6;
+            border: 2px solid #f0c75e;
+        }
+
+        .next-box .queue-number {
+            color: #b87900;
+        }
+
+        .status {
+            margin-top: 20px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 10px auto 0;
+            color: #174c8a;
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #123d6a;
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .slogan {
+            font-size: 15px;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 22px 12px 35px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .queue-number {
+                font-size: 36px;
+            }
+
+            .room-number {
+                font-size: 26px;
+            }
+
+            .logo {
+                width: 200px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <img src="marvion-logo.png"
-         alt="MARVION Smart Healthcare Communication Platform"
-         class="logo">
-</header>
-
-<hr>
-
-<main>
-
-    <h2>⌛ Semakan Giliran</h2>
-
-    <p class="arahan">
-        Masukkan nombor giliran anda untuk menyemak status.
-    </p>
-
-    <form id="queueForm">
-
-        <label for="nombor">
-            🎫 Nombor Giliran
-        </label>
-
-        <input
-            type="text"
-            id="nombor"
-            placeholder="Contoh: A102"
+    <header>
+        <img
+            src="marvion-logo.png"
+            alt="MARVION Smart Healthcare Communication Platform"
+            class="logo"
         >
+    </header>
 
-        <button type="button" onclick="semakGiliran()">
-            🔍 Semak Giliran
-        </button>
+    <main>
 
-    </form>
+        <h1>⏳ Status Giliran Pesakit</h1>
 
-    <div id="status">
-        Status: Sila masukkan nombor giliran anda.
-    </div>
+        <p class="subtitle">
+            Sila lihat nombor yang sedang menerima rawatan
+            dan bersedia apabila nombor anda hampir dipanggil.
+        </p>
 
-    <p>
-        <a href="index.html">⬅ Kembali ke Laman Utama</a>
-    </p>
+        <div class="card">
 
-</main>
+            <h2>🔔 Giliran Semasa</h2>
 
-<footer>
-    <p>© 2026 MARVION</p>
-</footer>
+            <div class="queue-display">
 
-<script>
-function semakGiliran() {
+                <div class="queue-box">
+                    <span class="queue-label">
+                        🎫 Nombor Sedang Dirawat
+                    </span>
 
-    let nombor = document.getElementById("nombor").value.trim();
+                    <span
+                        id="currentNumber"
+                        class="queue-number">
+                        A102
+                    </span>
+                </div>
 
-    if (nombor === "") {
+                <div class="queue-box">
+                    <span class="queue-label">
+                        🏥 Bilik Rawatan
+                    </span>
 
-        document.getElementById("status").innerHTML =
-            "⚠️ Sila masukkan nombor giliran anda.";
+                    <span
+                        id="currentRoom"
+                        class="room-number">
+                        Bilik 3
+                    </span>
+                </div>
 
-    } else {
+                <div class="queue-box next-box">
+                    <span class="queue-label">
+                        ⏭️ Sila Bersedia
+                    </span>
 
-        document.getElementById("status").innerHTML =
-            "🟢 Giliran " + nombor +
-            "<br>Sedang dipanggil ke Bilik 3." +
-            "<br>Sila bersedia dan tunggu arahan petugas.";
-    }
-}
-</script>
+                    <span
+                        id="nextNumber"
+                        class="queue-number">
+                        A103
+                    </span>
+                </div>
+
+            </div>
+
+            <div
+                id="status"
+                class="status">
+                🔄 Paparan dikemas kini secara automatik.
+            </div>
+
+        </div>
+
+        <a
+            href="index.html"
+            class="back">
+            ← Kembali ke Laman Utama
+        </a>
+
+    </main>
+
+    <footer>
+
+        <p>© 2026 MARVION</p>
+
+        <p class="slogan">
+            Smart Healthcare Communication Platform
+        </p>
+
+    </footer>
+
+    <script>
+
+        /*
+        =====================================================
+        PAPARAN GILIRAN MARVION
+        =====================================================
+        Sistem akan cuba membaca data daripada localStorage.
+
+        Nama data yang digunakan:
+        - currentQueue
+        - currentRoom
+        - nextQueue
+
+        Jika data belum wujud, paparan contoh akan digunakan.
+        =====================================================
+        */
+
+        function updateQueue() {
+
+            let currentNumber =
+                localStorage.getItem("currentQueue");
+
+            let currentRoom =
+                localStorage.getItem("currentRoom");
+
+            let nextNumber =
+                localStorage.getItem("nextQueue");
+
+
+            /*
+            Nilai contoh jika belum ada data.
+            */
+
+            if (!currentNumber) {
+                currentNumber = "A102";
+            }
+
+            if (!currentRoom) {
+                currentRoom = "Bilik 3";
+            }
+
+            if (!nextNumber) {
+                nextNumber = "A103";
+            }
+
+
+            /*
+            Paparkan data.
+            */
+
+            document.getElementById("currentNumber")
+                .textContent = currentNumber;
+
+            document.getElementById("currentRoom")
+                .textContent = currentRoom;
+
+            document.getElementById("nextNumber")
+                .textContent = nextNumber;
+
+            document.getElementById("status")
+                .textContent =
+                "🔄 Paparan dikemas kini secara automatik.";
+        }
+
+
+        /*
+        Jalankan apabila halaman dibuka.
+        */
+
+        updateQueue();
+
+
+        /*
+        Semak perubahan setiap 2 saat.
+        */
+
+        setInterval(updateQueue, 2000);
+
+
+        /*
+        Kemas kini terus jika data localStorage
+        berubah daripada halaman/tab lain.
+        */
+
+        window.addEventListener("storage", updateQueue);
+
+    </script>
 
 </body>
 </html>
