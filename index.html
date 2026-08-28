@@ -1,62 +1,134 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvion | Smart Healthcare Communication Platform</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Marvion | Smart Healthcare Communication Platform</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Kemaskan paparan halaman utama */
+    main {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+      padding: 20px 15px 25px;
+    }
+
+    main h2 {
+      margin: 10px 0 22px;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .menu .card {
+      display: block;
+      padding: 20px 15px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .menu .card small {
+      display: block;
+      margin-top: 6px;
+    }
+
+    footer {
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+
+      main {
+        padding: 15px 12px 20px;
+      }
+
+      main h2 {
+        font-size: 27px;
+        margin: 5px 0 18px;
+      }
+
+      .menu {
+        gap: 10px;
+      }
+
+      .menu .card {
+        padding: 18px 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <img src="marvion-logo.png" alt="MARVION Smart Healthcare Communication Platform" class="logo">
-        </header>
+  <header>
+    <img
+      src="marvion-logo.png"
+      alt="MARVION Smart Healthcare Communication Platform"
+      class="logo">
+  </header>
 
-<hr>
+  <hr>
 
-<main>
+  <main>
+
     <h2>👋 Selamat Datang ke MARVION</h2>
 
     <div class="menu">
 
-        <a href="appointment.html" class="card">
-            📅 Tempahan Janji Temu
-        </a>
+      <!-- 1. TEMPAHAN JANJI TEMU -->
+      <a href="appointment.html" class="card">
+        📅 Tempahan Janji Temu
+      </a>
 
-        <a href="queue.html" class="card">
-            ⏳ Semakan Giliran
-        </a>
+      <!-- 2. PASPORT KESIHATAN -->
+      <a href="passport.html" class="card">
+        🩺 Pasport Kesihatan
+      </a>
 
-        <a href="medicine.html" class="card">
-            💊 Peringatan Ubat
-        </a>
+      <!-- 3. DAPATKAN NOMBOR GILIRAN -->
+      <a href="queue.html" class="card">
+        🎟️ Dapatkan Nombor Giliran
+      </a>
 
-        <a href="passport.html" class="card">
-            🩺 Pasport Kesihatan
-        </a>
+      <!-- 4. PERINGATAN UBAT -->
+      <a href="medicine.html" class="card">
+        💊 Peringatan Ubat
+      </a>
 
-        <a href="emergency.html" class="card">
-            🚨 Panduan Kecemasan
-        </a>
+      <!-- 5. PANDUAN KECEMASAN -->
+      <a href="emergency.html" class="card">
+        🚨 Panduan Kecemasan
+      </a>
 
-        <a href="contact.html" class="card">
-            📞 Hubungi Klinik
-        </a>
+      <!-- 6. HUBUNGI KLINIK -->
+      <a href="contact.html" class="card">
+        📞 Hubungi Klinik
+      </a>
 
-        <a href="emergency-mode.html" class="card emergency-card">
-         🚨 EMERGENCY MODE
-         <small>Tekan jika berlaku kecemasan</small>
-        </a>
-        
+      <!-- 7. MOD KECEMASAN -->
+      <a href="emergency-mode.html" class="card emergency-card">
+        🚨 EMERGENCY MODE
+        <small>Tekan jika berlaku kecemasan</small>
+      </a>
+
     </div>
-</main>
 
-<hr>
+  </main>
 
-<footer>
+  <hr>
+
+  <footer>
     <p>© 2026 Marvion | Connecting Care. Empowering Lives.</p>
-</footer>
+  </footer>
 
 </body>
+
 </html>
