@@ -8,7 +8,6 @@
     <title>Panduan Kecemasan | MARVION</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
@@ -165,171 +164,164 @@
                 width: 100%;
                 padding: 15px;
             }
-
         }
-
     </style>
 </head>
 
-
 <body>
 
+    <header>
+        <img
+            src="marvion-logo.png"
+            alt="MARVION Smart Healthcare Communication Platform"
+            class="logo">
+    </header>
 
-<header>
+    <main>
 
-    <img
-        src="marvion-logo.png"
-        alt="MARVION Smart Healthcare Communication Platform"
-        class="logo">
+        <h1>🚨 Panduan Kecemasan</h1>
 
-</header>
+        <!-- MAKLUMAT PASPORT KESIHATAN -->
 
+        <div class="card">
 
-<main>
+            <h2>🩺 Maklumat Kecemasan Pesakit</h2>
 
+            <div class="info">
 
-    <h1>🚨 Panduan Kecemasan</h1>
+                <p>
+                    <strong>👤 Nama:</strong>
+                    <span id="namaPesakit">Tiada maklumat</span>
+                </p>
 
+                <p>
+                    <strong>🩸 Kumpulan Darah:</strong>
+                    <span id="darahPesakit">Tiada maklumat</span>
+                </p>
 
-    <!-- MAKLUMAT PASPORT KESIHATAN -->
+                <p>
+                    <strong>⚠️ Alahan:</strong>
+                    <span id="alahanPesakit">Tiada maklumat</span>
+                </p>
 
-    <div class="card">
+                <p>
+                    <strong>💊 Penyakit Sedia Ada:</strong>
+                    <span id="penyakitPesakit">Tiada maklumat</span>
+                </p>
 
-        <h2>🩺 Maklumat Kecemasan Pesakit</h2>
-
-        <div class="info">
-
-            <p>
-                <strong>👤 Nama:</strong>
-                <span id="namaPesakit">Tiada maklumat</span>
-            </p>
-
-          <p>
-                <strong>🩸 Kumpulan Darah:</strong>
-                <span id="darahPesakit">Tiada maklumat</span>
-            </p>
-
-            <p>
-                <strong>💊 Penyakit Sedia Ada:</strong>
-                <span id="penyakitPesakit">Tiada maklumat</span>
-            </p>
+            </div>
 
         </div>
 
-    </div>
+        <!-- NOMBOR KECEMASAN -->
 
+        <div class="card emergency-card">
 
-    <!-- NOMBOR KECEMASAN -->
+            <h2>📞 Nombor Kecemasan</h2>
 
-    <div class="card emergency-card">
+            <p>
+                Jika berlaku kecemasan, hubungi:
+            </p>
 
-        <h2>📞 Nombor Kecemasan</h2>
+            <a
+                href="tel:999"
+                class="call-button">
+                📞 Hubungi 999
+            </a>
 
-        <p>
-            Jika berlaku kecemasan, hubungi:
+        </div>
+
+        <!-- LANGKAH KECEMASAN -->
+
+        <div class="card">
+
+            <h2>🆘 Langkah Asas Kecemasan</h2>
+
+            <ol class="steps">
+
+                <li>
+                    Hubungi <strong>999</strong> jika keadaan serius.
+                </li>
+
+                <li>
+                    Pastikan mangsa berada di tempat yang selamat.
+                </li>
+
+                <li>
+                    Jangan panik dan cuba bertenang.
+                </li>
+
+                <li>
+                    Ikut arahan pegawai kecemasan.
+                </li>
+
+                <li>
+                    Berikan maklumat kesihatan pesakit jika diperlukan.
+                </li>
+
+            </ol>
+
+        </div>
+
+        <p class="warning">
+            ⚠️ Maklumat Pasport Kesihatan adalah untuk membantu
+            komunikasi semasa kecemasan dan bukan pengganti
+            nasihat atau rawatan doktor.
         </p>
 
         <a
-            href="tel:999"
-            class="call-button">
-
-            📞 Hubungi 999
-
+            href="index.html"
+            class="back">
+            ← Kembali ke Laman Utama
         </a>
 
-    </div>
+    </main>
 
+    <footer>
 
-    <!-- LANGKAH KECEMASAN -->
+        <p>© 2026 MARVION</p>
 
-    <div class="card">
+        <p>
+            Smart Healthcare Communication Platform
+        </p>
 
-        <h2>🆘 Langkah Asas Kecemasan</h2>
+    </footer>
 
-        <ol class="steps">
+    <script>
 
-            <li>
-                Hubungi <strong>999</strong> jika keadaan serius.
-            </li>
+        // AMBIL MAKLUMAT DARIPADA PASPORT KESIHATAN
 
-            <li>
-                Pastikan mangsa berada di tempat yang selamat.
-            </li>
+        let data = localStorage.getItem("maklumatKesihatan");
 
-            <li>
-                Jangan panik dan cuba bertenang.
-            </li>
+        if (data) {
 
-            <li>
-                Ikut arahan pegawai kecemasan.
-            </li>
+            try {
 
-            <li>
-                Berikan maklumat kesihatan pesakit jika diperlukan.
-            </li>
+                let maklumat = JSON.parse(data);
 
-        </ol>
+                document.getElementById("namaPesakit").textContent =
+                    maklumat.nama || "Tiada maklumat";
 
-    </div>
+                document.getElementById("darahPesakit").textContent =
+                    maklumat.darah || "Tiada maklumat";
 
+                document.getElementById("alahanPesakit").textContent =
+                    maklumat.alahan || "Tiada maklumat";
 
-    <p class="warning">
-        ⚠️ Maklumat Pasport Kesihatan adalah untuk membantu
-        komunikasi semasa kecemasan dan bukan pengganti
-        nasihat atau rawatan doktor.
-    </p>
+                document.getElementById("penyakitPesakit").textContent =
+                    maklumat.penyakit || "Tiada maklumat";
 
+            } catch (error) {
 
-    <a
-        href="index.html"
-        class="back">
+                console.error(
+                    "Ralat membaca maklumat kesihatan:",
+                    error
+                );
 
-        ← Kembali ke Laman Utama
+            }
+        }
 
-    </a>
-
-
-</main>
-
-
-<footer>
-
-    <p>© 2026 MARVION</p>
-
-    <p>
-        Smart Healthcare Communication Platform
-    </p>
-
-</footer>
-
-
-<script>
-
-/* ============================================
-   AMBIL MAKLUMAT DARIPADA PASSPORT KESIHATAN
-============================================ */
-
-let data = localStorage.getItem("maklumatKesihatan");
-
-if (data) {
-    try {
-        let maklumat = JSON.parse(data);
-
-        document.getElementById("namaPesakit").textContent =
-            maklumat.nama || "Tiada maklumat";
-
-        document.getElementById("darahPesakit").textContent =
-            maklumat.darah || "Tiada maklumat";
-
-        document.getElementById("penyakitPesakit").textContent =
-            maklumat.penyakit || "Tiada";
-    } catch (error) {
-        console.error("Ralat membaca maklumat kesihatan:", error);
-    }
-}
-</script>
-
+    </script>
 
 </body>
-
 </html>
