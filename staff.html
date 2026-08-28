@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kawalan Giliran | MARVION</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <img
+    src="marvion-logo.png"
+    alt="MARVION Smart Healthcare Communication Platform"
+    class="logo">
+</header>
+
+<hr>
+
+<main>
+
+  <h2>🩺 Kawalan Giliran</h2>
+
+  <p class="arahan">
+    Masukkan maklumat pesakit yang sedang menerima rawatan.
+  </p>
+
+  <div class="card">
+
+    <h3>🔔 Giliran Semasa</h3>
+
+    <label for="semasa">🔢 Nombor Giliran</label>
+    <input
+      type="text"
+      id="semasa"
+      placeholder="Contoh: A102">
+
+    <label for="bilik">🏥 Bilik Rawatan</label>
+    <select id="bilik">
+      <option value="">-- Pilih Bilik --</option>
+      <option value="Bilik 1">Bilik 1</option>
+      <option value="Bilik 2">Bilik 2</option>
+      <option value="Bilik 3">Bilik 3</option>
+      <option value="Bilik 4">Bilik 4</option>
+      <option value="Bilik 5">Bilik 5</option>
+    </select>
+
+    <label for="seterusnya">⏭️ Nombor Seterusnya</label>
+    <input
+      type="text"
+      id="seterusnya"
+      placeholder="Contoh: A103">
+
+    <button type="button" onclick="kemaskiniGiliran()">
+      📢 Panggil Giliran
+    </button>
+
+    <div id="mesej" class="status">
+      Sila masukkan maklumat giliran.
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h3>📋 Paparan Semasa</h3>
+
+    <p>
+      <strong>Nombor:</strong>
+      <span id="paparSemasa">-</span>
+    </p>
+
+    <p>
+      <strong>Bilik:</strong>
+      <span id="paparBilik">-</span>
+    </p>
+
+    <p>
+      <strong>Seterusnya:</strong>
+      <span id="paparSeterusnya">-</span>
+    </p>
+
+  </div>
+
+  <p>
+    <a href="index.html" class="back">
+      ← Kembali ke Laman Utama
+    </a>
+  </p>
+
+</main>
+
+<footer>
+  <p>© 2026 MARVION</p>
+  <p>Smart Healthcare Communication Platform</p>
+  <p>Connecting Care. Empowering Lives.</p>
+</footer>
+
+
+<script>
+
+function kemaskiniGiliran() {
+
+  const semasa =
+    document.getElementById("semasa").value.trim().toUpperCase();
+
+  const bilik =
+    document.getElementById("bilik").value;
+
+  const seterusnya =
+    document.getElementById("seterusnya").value.trim().toUpperCase();
+
+  const mesej =
+    document.getElementById("mesej");
+
+  if (semasa === ""  bilik === ""  seterusnya === "") {
+
+    mesej.innerHTML =
+      "⚠️ Sila lengkapkan semua maklumat.";
+
+    return;
+  }
+
+  const data = {
+    semasa: semasa,
+    bilik: bilik,
+    seterusnya: seterusnya
+  };
+
+  localStorage.setItem(
+    "marvionQueue",
+    JSON.stringify(data)
+  );
+
+  document.getElementById("paparSemasa").textContent = semasa;
+  document.getElementById("paparBilik").textContent = bilik;
+  document.getElementById("paparSeterusnya").textContent = seterusnya;
+
+  mesej.innerHTML =
+    "✅ Giliran berjaya dikemaskini.";
+
+}
+
+
+/* Paparkan data yang telah disimpan apabila page dibuka */
+
+window.onload = function() {
+
+  const data =
+    localStorage.getItem("marvionQueue");
+
+  if (data) {
+
+    try {
+
+      const queue =
+        JSON.parse(data);
+
+      document.getElementById("paparSemasa").textContent =
+        queue.semasa || "-";
+
+      document.getElementById("paparBilik").textContent =
+        queue.bilik || "-";
+
+      document.getElementById("paparSeterusnya").textContent =
+        queue.seterusnya || "-";
+
+    } catch (error) {
+
+      console.error(
+        "Ralat membaca data giliran:",
+        error
+      );
+
+    }
+
+  }
+
+};
+
+</script>
+
+</body>
+</html>
