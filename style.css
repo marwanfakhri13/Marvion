@@ -6,10 +6,16 @@ body {
 }
 
 header {
-    background: white;
+    background:
+        radial-gradient(circle at 15% 30%, rgba(5,150,105,0.08) 0, rgba(5,150,105,0.08) 35px, transparent 36px),
+        radial-gradient(circle at 85% 70%, rgba(13,76,139,0.08) 0, rgba(13,76,139,0.08) 45px, transparent 46px),
+        linear-gradient(135deg, #ffffff 0%, #f2fbfa 50%, #ffffff 100%);
     color: white;
-    padding: 5px 10px;
+    padding: 10px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid #d8eee5;
 }
 
 header h1 {
