@@ -298,3 +298,62 @@
         height: 62px !important;
     }
 }
+
+/* MIRA - robot terapung sahaja */
+#mira-chat-button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    width: 105px;
+    height: 105px;
+}
+
+#mira-chat-button #mira-avatar {
+    width: 105px !important;
+    height: 105px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    animation: miraFloat 3s ease-in-out infinite;
+}
+
+#mira-chat-button #mira-avatar img {
+    width: 105px !important;
+    height: 105px !important;
+    object-fit: contain;
+    border-radius: 0 !important;
+}
+
+/* Sembunyikan tulisan Tanya MIRA */
+#mira-chat-button > span:last-child {
+    display: none !important;
+}
+
+/* MIRA terapung perlahan */
+@keyframes miraFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Telefon */
+@media (max-width: 600px) {
+    #mira-chat-button {
+        width: 85px;
+        height: 85px;
+    }
+
+    #mira-chat-button #mira-avatar {
+        width: 85px !important;
+        height: 85px !important;
+    }
+
+    #mira-chat-button #mira-avatar img {
+        width: 85px !important;
+        height: 85px !important;
+    }
+}
