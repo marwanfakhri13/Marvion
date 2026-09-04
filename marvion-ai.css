@@ -231,3 +231,70 @@
         border-radius: 20px;
     }
 }
+
+/* =====================================================
+   MIRA - Paparan Robot Besar & Terapung
+   ===================================================== */
+
+#mira-chat-button {
+    padding: 6px 18px 6px 6px;
+    gap: 10px;
+}
+
+#mira-avatar {
+    width: 68px;
+    height: 68px;
+    background: transparent;
+    box-shadow: none;
+    animation: miraFloat 3s ease-in-out infinite;
+}
+
+#mira-avatar img {
+    width: 68px !important;
+    height: 68px !important;
+    object-fit: contain;
+    border-radius: 0 !important;
+}
+
+/* Animasi terapung */
+@keyframes miraFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Sedikit efek cahaya */
+#mira-avatar::after {
+    content: "";
+    position: absolute;
+    width: 55px;
+    height: 18px;
+    background: rgba(0, 190, 220, 0.18);
+    border-radius: 50%;
+    filter: blur(8px);
+    bottom: -3px;
+    left: 7px;
+    z-index: -1;
+}
+
+/* Telefon */
+@media (max-width: 600px) {
+
+    #mira-chat-button {
+        padding: 5px 13px 5px 5px;
+    }
+
+    #mira-avatar {
+        width: 62px;
+        height: 62px;
+    }
+
+    #mira-avatar img {
+        width: 62px !important;
+        height: 62px !important;
+    }
+}
