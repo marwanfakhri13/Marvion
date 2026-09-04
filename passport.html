@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pasport Kesihatan | MARVION</title>
+<title>Passport Kesihatan | MARVION</title>
 
 <style>
 * {
@@ -18,24 +18,27 @@ body {
     color: #222;
 }
 
+/* HEADER */
 header {
     background: white;
     text-align: center;
-    padding: 30px 20px;
+    padding: 18px 10px;
     border-bottom: 1px solid #ddd;
 }
 
 header img {
-    width: 220px;
+    width: 160px;
     max-width: 80%;
 }
 
+/* MAIN */
 main {
     max-width: 700px;
     margin: 30px auto;
     padding: 0 20px;
 }
 
+/* TITLE */
 .title {
     text-align: center;
     margin-bottom: 25px;
@@ -44,6 +47,7 @@ main {
 .title h1 {
     font-size: 32px;
     margin: 10px 0;
+    color: #0d1b3d;
 }
 
 .title p {
@@ -51,10 +55,11 @@ main {
     line-height: 1.5;
 }
 
+/* FORM CARD */
 .form-card {
     background: white;
-    padding: 28px;
-    border-radius: 18px;
+    padding: 20px;
+    border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
@@ -64,16 +69,18 @@ label {
     font-size: 17px;
     margin-top: 18px;
     margin-bottom: 8px;
+    color: #0d1b3d;
 }
 
 input[type="text"] {
     width: 100%;
     padding: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid #cce;
     border-radius: 10px;
     font-size: 16px;
 }
 
+/* DISEASE TITLE */
 .disease-title {
     font-weight: bold;
     font-size: 17px;
@@ -82,19 +89,23 @@ input[type="text"] {
     color: #247447;
 }
 
+/* CHECKBOX */
 .checkbox {
     display: flex;
     align-items: center;
     gap: 10px;
     margin: 12px 0;
     font-size: 16px;
+    font-weight: normal;
 }
 
 .checkbox input {
     width: 18px;
     height: 18px;
+    flex-shrink: 0;
 }
 
+/* SAVE BUTTON */
 .save-button {
     width: 100%;
     border: none;
@@ -112,10 +123,11 @@ input[type="text"] {
     background: #12833c;
 }
 
+/* SUCCESS */
 .success {
     display: none;
     background: #effaf2;
-    border: 2px solid #42a85f;
+    border: 2px solid #2aa85f;
     border-radius: 14px;
     padding: 20px;
     margin-top: 25px;
@@ -127,6 +139,7 @@ input[type="text"] {
     margin-top: 0;
 }
 
+/* BACK */
 .back {
     display: block;
     text-align: center;
@@ -136,12 +149,70 @@ input[type="text"] {
     text-decoration: none;
 }
 
+/* FOOTER */
 footer {
     background: #101d4a;
     color: white;
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+    padding: 14px 10px;
+    margin-top: 25px;
+    line-height: 1.4;
+}
+
+footer .footer-title {
+    margin: 0 0 4px;
+}
+
+footer .footer-subtitle {
+    margin: 0;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+    header {
+        padding: 12px 10px;
+    }
+
+    header img {
+        width: 160px;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 0 16px;
+    }
+
+    .title h1 {
+        font-size: 27px;
+    }
+
+    .title p {
+        font-size: 16px;
+    }
+
+    .form-card {
+        padding: 20px 16px;
+    }
+
+    label {
+        font-size: 17px;
+    }
+
+    input[type="text"] {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .save-button {
+        font-size: 17px;
+        padding: 15px;
+    }
+
+    footer {
+        font-size: 15px;
+        padding: 14px 8px;
+    }
 }
 </style>
 </head>
@@ -149,13 +220,14 @@ footer {
 <body>
 
 <header>
-    <img src="marvion-logo.png" alt="MARVION Smart Healthcare Communication Platform" class="logo">
+    <img src="marvion-logo.png"
+         alt="MARVION Smart Healthcare Communication Platform">
 </header>
 
 <main>
 
     <div class="title">
-        <h1>🩺 Pasport Kesihatan</h1>
+        <h1>🩺 Passport Kesihatan</h1>
         <p>
             Simpan maklumat kesihatan penting anda
             untuk rujukan yang lebih mudah dan teratur.
@@ -164,9 +236,7 @@ footer {
 
     <div class="form-card">
 
-        <label for="nama">
-            👤 Nama
-        </label>
+        <label for="nama">👤 Nama</label>
 
         <input
             type="text"
@@ -174,10 +244,7 @@ footer {
             placeholder="Masukkan nama"
         >
 
-
-        <label for="darah">
-            🩸 Kumpulan Darah
-        </label>
+        <label for="darah">🩸 Kumpulan Darah</label>
 
         <input
             type="text"
@@ -185,10 +252,7 @@ footer {
             placeholder="Contoh: O+"
         >
 
-
-        <label for="alahan">
-            ⚠️ Alahan
-        </label>
+        <label for="alahan">⚠️ Alahan</label>
 
         <input
             type="text"
@@ -196,49 +260,68 @@ footer {
             placeholder="Contoh: Penicillin / makanan laut / Tiada"
         >
 
-
         <div class="disease-title">
             🩺 Penyakit Sedia Ada
         </div>
 
         <label class="checkbox">
-            <input type="checkbox" value="Kencing Manis">
+            <input
+                type="checkbox"
+                value="Kencing Manis"
+            >
             Kencing Manis
         </label>
 
         <label class="checkbox">
-            <input type="checkbox" value="Darah Tinggi">
+            <input
+                type="checkbox"
+                value="Darah Tinggi"
+            >
             Darah Tinggi
         </label>
 
         <label class="checkbox">
-            <input type="checkbox" value="Penyakit Jantung">
+            <input
+                type="checkbox"
+                value="Penyakit Jantung"
+            >
             Penyakit Jantung
         </label>
 
         <label class="checkbox">
-            <input type="checkbox" value="Asma">
+            <input
+                type="checkbox"
+                value="Asma"
+            >
             Asma
         </label>
 
         <label class="checkbox">
-            <input type="checkbox" value="Kanser">
+            <input
+                type="checkbox"
+                value="Kanser"
+            >
             Kanser
         </label>
 
         <label class="checkbox">
-            <input type="checkbox" value="Lain-lain">
+            <input
+                type="checkbox"
+                value="Lain-lain"
+            >
             Lain-lain
         </label>
 
-
-        <button class="save-button" onclick="simpanMaklumat()">
+        <button
+            class="save-button"
+            onclick="simpanMaklumat()"
+        >
             💾 Simpan Maklumat
         </button>
 
         <div class="success" id="successMessage">
 
-            <h2>✅ Maklumat Berjaya Disimpan!</h2>
+            <h2>💾 Maklumat Berjaya Disimpan!</h2>
 
             <p>
                 Maklumat kesihatan anda telah disimpan
@@ -250,29 +333,17 @@ footer {
     </div>
 
     <a class="back" href="index.html">
-        ← Kembali ke Laman Utama
+        🏠 Kembali ke Laman Utama
     </a>
 
 </main>
 
 <footer>
-    © 2026 MARVION<br>
-    Smart Healthcare Communication Platform
+    <p class="footer-title">© 2026 MARVION</p>
+    <p class="footer-subtitle">
+        Smart Healthcare Communication Platform
+    </p>
 </footer>
-
-
-<div class="success" id="successMessage">
-
-            <h2>✅ Maklumat Berjaya Disimpan!</h2>
-
-            <p>
-                Maklumat kesihatan anda telah disimpan
-                dan akan digunakan dalam Emergency Mode.
-            </p>
-
-        </div>
-
-    </div>
 
 <script>
 
@@ -284,7 +355,6 @@ function simpanMaklumat() {
 
     let alahan = document.getElementById("alahan").value.trim();
 
-
     if (nama === "") {
         alert("Sila masukkan nama.");
         return;
@@ -295,24 +365,20 @@ function simpanMaklumat() {
         return;
     }
 
-
     if (alahan === "") {
         alahan = "Tiada";
     }
-
 
     let checkbox =
         document.querySelectorAll(
             '.checkbox input[type="checkbox"]:checked'
         );
 
-
     let penyakit = [];
 
     checkbox.forEach(function(item) {
         penyakit.push(item.value);
     });
-
 
     let maklumat = {
 
@@ -326,26 +392,19 @@ function simpanMaklumat() {
             penyakit.length > 0
             ? penyakit.join(", ")
             : "Tiada"
-
     };
-
 
     localStorage.setItem(
         "maklumatKesihatan",
         JSON.stringify(maklumat)
     );
 
-
     document.getElementById(
         "successMessage"
     ).style.display = "block";
-
 }
 
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
