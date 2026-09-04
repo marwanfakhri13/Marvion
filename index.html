@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* Kemasan halaman utama */
+
         main {
             text-align: center;
             max-width: 700px;
@@ -44,6 +44,44 @@
             margin-top: 5px;
         }
 
+        /* KOTAK TEMPAHAN DI LAMAN UTAMA */
+
+        .appointment-summary {
+            display: none;
+            width: 92%;
+            max-width: 550px;
+            box-sizing: border-box;
+            margin: 18px auto 0;
+            padding: 18px 16px;
+            background: #effcf6;
+            border: 2px solid #159b72;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .appointment-summary h3 {
+            margin: 0 0 12px;
+            color: #247653;
+            font-size: 20px;
+        }
+
+        .appointment-summary p {
+            margin: 7px 0;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .appointment-summary .view-button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 18px;
+            border-radius: 9px;
+            background: #099b70;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         footer {
             text-align: center;
         }
@@ -68,25 +106,42 @@
                 width: 92%;
                 padding: 18px 12px;
             }
+
+            .appointment-summary {
+                width: 92%;
+                padding: 17px 14px;
+            }
+
+            .appointment-summary h3 {
+                font-size: 19px;
+            }
+
+            .appointment-summary p {
+                font-size: 16px;
+            }
         }
+
     </style>
 </head>
 
 <body>
 
-   <header>
-    <img
-        src="marvion-logo.png"
-        alt="MARVION Smart Healthcare Communication Platform"
-        class="logo"
-        style="width: 160px !important; max-width: none !important; height: auto; display: block; margin: 0 auto;">
-</header>
+    <header>
+
+        <img
+            src="marvion-logo.png"
+            alt="MARVION Smart Healthcare Communication Platform"
+            class="logo"
+            style="width: 160px !important; max-width: none !important; height: auto; display: block; margin: 0 auto;">
+
+    </header>
 
     <hr>
 
     <main>
 
         <h2>👋 Selamat Datang ke MARVION 👋</h2>
+
 
         <div class="menu">
 
@@ -95,35 +150,66 @@
                 📅 Tempahan Janji Temu
             </a>
 
+
             <!-- 2. PASSPORT KESIHATAN -->
             <a href="passport.html" class="card">
                 🩺 Passport Kesihatan
             </a>
+
 
             <!-- 3. DAPATKAN NOMBOR GILIRAN -->
             <a href="queue.html" class="card">
                 🎟️ Dapatkan Nombor Giliran
             </a>
 
+
             <!-- 4. PERINGATAN UBAT -->
             <a href="medicine.html" class="card">
                 💊 Peringatan Ubat
             </a>
+
 
             <!-- 5. PANDUAN KECEMASAN -->
             <a href="emergency.html" class="card">
                 🚨 Panduan Kecemasan
             </a>
 
+
             <!-- 6. HUBUNGI KLINIK -->
             <a href="contact.html" class="card">
                 📞 Hubungi Klinik
             </a>
 
-            <!-- 7. MOD KECEMASAN -->
-            <a href="emergency-mode.html" class="card emergency-card">
+            <!-- 7. EMERGENCY MODE -->
+            <a
+                href="emergency-mode.html"
+                class="card emergency-card">
+
                 🚨 EMERGENCY MODE
-                <small>Tekan jika berlaku kecemasan</small>
+
+                <small>
+                    Tekan jika berlaku kecemasan
+                </small>
+
+            </a>
+
+        </div>
+
+
+        <!-- TEMPAHAN YANG TELAH DISIMPAN -->
+
+        <div
+            id="appointmentSummary"
+            class="appointment-summary">
+
+            <h3>📅 Temujanji Anda</h3>
+
+            <div id="appointmentDetails"></div>
+
+            <a
+                href="appointment.html"
+                class="view-button">
+                Lihat Tempahan
             </a>
 
         </div>
@@ -133,8 +219,82 @@
     <hr>
 
     <footer>
-        <p>© 2026 MARVION | Connecting Care. Empowering Lives.</p>
+
+        <p>
+            © 2026 MARVION | Connecting Care. Empowering Lives.
+        </p>
+
     </footer>
+
+
+    <script>
+
+        function paparTemujanji() {
+
+            let data =
+                localStorage.getItem("tempahanJanjiTemu");
+
+            if (!data) {
+                return;
+            }
+
+            let tempahan =
+                JSON.parse(data);
+
+
+            /* Tukar tarikh kepada format lebih cantik */
+
+            let tarikhPaparan = tempahan.tarikh;
+
+            if (tempahan.tarikh) {
+
+                let bahagian =
+                    tempahan.tarikh.split("-");
+
+                if (bahagian.length === 3) {
+
+                    tarikhPaparan =
+                        bahagian[2] + "/" +
+                        bahagian[1] + "/" +
+                        bahagian[0];
+                }
+            }
+
+
+            document.getElementById(
+                "appointmentDetails"
+            ).innerHTML =
+
+                "<p><strong>Nama:</strong> " +
+                tempahan.nama +
+                "</p>" +
+
+                "<p><strong>Tarikh:</strong> " +
+                tarikhPaparan +
+                "</p>" +
+
+                "<p><strong>Masa:</strong> " +
+                tempahan.masa +
+                "</p>" +
+
+                "<p><strong>Jenis:</strong> " +
+                tempahan.jenis +
+                "</p>";
+
+
+            document.getElementById(
+                "appointmentSummary"
+            ).style.display = "block";
+        }
+
+
+        window.onload = function() {
+
+            paparTemujanji();
+
+        };
+
+    </script>
 
 </body>
 
