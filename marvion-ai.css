@@ -343,17 +343,17 @@
 /* Telefon */
 @media (max-width: 600px) {
     #mira-chat-button {
-        width: 85px;
-        height: 85px;
+        width: 105px;
+        height: 105px;
     }
 
     #mira-chat-button #mira-avatar {
-        width: 85px !important;
-        height: 85px !important;
+        width: 105px !important;
+        height: 105px !important;
     }
 
     #mira-chat-button #mira-avatar img {
-        width: 85px !important;
-        height: 85px !important;
+        width: 105px !important;
+        height: 105px !important;
     }
 }
