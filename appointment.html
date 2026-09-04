@@ -3,415 +3,319 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tempahan Janji Temu | Marvion</title>
+    <title>Tempahan Janji Temu | MARVION</title>
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-
-        /* =========================
-           TETAPAN HALAMAN
-           ========================= */
-
-        html {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        body {
-            width: 100%;
-            min-width: 0;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            overflow-x: hidden;
-            box-sizing: border-box;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-
-        /* =========================
-           HEADER & LOGO
-           ========================= */
-
-        header {
-            width: 100%;
-            margin: 0;
-            padding: 5px 10px;
-            text-align: center;
-        }
-
-        header .logo {
-            width: 150px !important;
-            height: auto;
-            display: block;
-            margin: 5px auto 10px;
-        }
-
-
-        /* =========================
-           KANDUNGAN UTAMA
-           ========================= */
+        /* ================================
+           HALAMAN TEMPAHAN JANJI TEMU
+           ================================ */
 
         main {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 16px;
-            text-align: center;
+            max-width: 700px;
+            margin: auto;
+            padding: 20px 15px 35px;
         }
 
         main h2 {
-            width: 100%;
-            margin: 20px auto 15px;
             text-align: center;
-            font-size: 28px;
+            margin: 5px 0 15px;
             line-height: 1.3;
         }
 
-        main > p {
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto 25px;
+        .intro {
             text-align: center;
-            line-height: 1.6;
-            font-size: 16px;
-        }
-
-
-        /* =========================
-           BORANG
-           ========================= */
-
-        form {
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 0;
-            text-align: left;
-        }
-
-        form label {
-            display: block;
-            width: 100%;
-            margin-top: 18px;
-            margin-bottom: 7px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        form input,
-        form select {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-            min-height: 50px;
-            padding: 12px;
-            margin: 0;
-            font-size: 16px;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
-
-
-        /* =========================
-           BUTANG
-           ========================= */
-
-        form button {
-            display: block;
-            width: 100%;
-            max-width: 650px;
-            min-height: 50px;
-            margin: 25px auto;
-            padding: 13px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            box-sizing: border-box;
-        }
-
-
-        /* =========================
-           PENGESAHAN
-           ========================= */
-
-        #pengesahan {
-            width: 100%;
-            max-width: 650px;
-            margin: 25px auto;
-            padding: 20px;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        #pengesahan h3 {
-            margin-top: 0;
-        }
-
-        #pengesahan p {
-            margin: 8px 0;
+            font-size: 18px;
             line-height: 1.5;
+            margin: 0 auto 25px;
         }
 
+        /* Kotak utama borang */
+        .appointment-form {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px 25px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+            border: 2px solid #dcefe9;
+            box-sizing: border-box;
+        }
 
-        /* =========================
-           LINK KEMBALI
-           ========================= */
+        /* Setiap ruangan */
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-        main > a {
-            display: inline-block;
-            margin: 20px auto 25px;
+        .form-group label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #0d1b3d;
+        }
+
+        /* Input dan pilihan */
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 15px;
+            font-size: 17px;
+            font-family: Arial, sans-serif;
+            border: 2px solid #dcefe9;
+            border-radius: 10px;
+            background: #fbfefd;
+            color: #222;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #159b72;
+        }
+
+        /* Butang hantar */
+        .submit-button {
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            background: #099b70;
+            color: white;
+            cursor: pointer;
+            margin-top: 2px;
+        }
+
+        .submit-button:active {
+            transform: scale(0.99);
+        }
+
+        /* Kotak pengesahan */
+        .success {
+            display: none;
+            background: #effcf6;
+            border: 2px solid #159b72;
+            border-radius: 18px;
+            padding: 22px 18px;
+            margin-top: 28px;
+            text-align: center;
+            color: #0d1b3d;
+            box-sizing: border-box;
+        }
+
+        .success h3 {
+            color: #247653;
+            font-size: 22px;
+            margin: 0 0 18px;
+        }
+
+        .success p {
+            font-size: 17px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+        .back-link {
+            display: block;
+            width: fit-content;
+            margin: 45px auto 10px;
             text-align: center;
         }
-
-
-        /* =========================
-           FOOTER
-           ========================= */
 
         footer {
-            width: 100% !important;
-            max-width: none !important;
-            margin: 20px 0 0 !important;
-            padding: 18px 12px !important;
-            text-align: center !important;
-            box-sizing: border-box;
+            text-align: center;
         }
 
-        footer p {
-            margin: 5px 0 !important;
-            padding: 0 !important;
-            line-height: 1.4 !important;
-        }
-
-
-        /* =========================
+        /* ================================
            PAPARAN TELEFON
-           ========================= */
+           ================================ */
 
         @media (max-width: 600px) {
 
-            header {
-                padding: 5px 8px;
-            }
-
-            header .logo {
-                width: 150px !important;
-                margin: 5px auto 8px;
-            }
-
             main {
-                width: 100%;
-                max-width: 100%;
-                padding: 0 16px;
-                margin: 0 auto;
+                padding: 18px 10px 30px;
             }
 
             main h2 {
-                font-size: 24px;
-                margin-top: 18px;
-                margin-bottom: 14px;
+                font-size: 22px;
+                margin: 5px 0 14px;
             }
 
-            main > p {
-                font-size: 15px;
+            .intro {
+                font-size: 17px;
                 line-height: 1.5;
-                margin-bottom: 22px;
+                margin-bottom: 25px;
             }
 
-            form {
+            .appointment-form {
                 width: 100%;
-                max-width: 100%;
-                margin: 0 auto;
+                padding: 20px 18px 25px;
+                border-radius: 18px;
             }
 
-            form label {
-                font-size: 16px;
-                margin-top: 16px;
-                margin-bottom: 6px;
+            .form-group {
+                margin-bottom: 19px;
             }
 
-            form input,
-            form select {
+            .form-group label {
+                font-size: 18px;
+                margin-bottom: 7px;
+            }
+
+        .form-group input,
+            .form-group select {
                 width: 100%;
-                min-height: 50px;
-                padding: 12px;
-                font-size: 16px;
+                padding: 14px 14px;
+                font-size: 17px;
+                min-height: 52px;
             }
 
-            form button {
-                width: 100%;
-                min-height: 50px;
-                margin: 24px auto;
-                font-size: 16px;
+            .submit-button {
+                min-height: 55px;
+                font-size: 18px;
             }
 
-            #pengesahan {
-                width: 100%;
-                max-width: 100%;
-                margin: 24px auto;
-                padding: 18px;
+            .success {
+                margin-top: 28px;
+                padding: 22px 16px;
             }
 
-            main > a {
-                margin: 18px auto 22px;
+            .success h3 {
+                font-size: 21px;
             }
 
-            footer {
-                width: 100% !important;
-                margin: 18px 0 0 !important;
-                padding: 16px 10px !important;
-            }
-
-            footer p {
-                margin: 4px 0 !important;
-                line-height: 1.35 !important;
+            .success p {
+                font-size: 17px;
             }
         }
-
     </style>
 </head>
 
-
 <body>
 
-    <!-- =========================
-         HEADER
-         ========================= -->
-
     <header>
-
         <img
             src="marvion-logo.png"
             alt="MARVION Smart Healthcare Communication Platform"
             class="logo"
-            style="width:150px; height:auto;"
-        >
-
+            style="width: 160px !important; max-width: none !important; height: auto; display: block; margin: 0 auto;">
     </header>
 
-
-    <!-- =========================
-         KANDUNGAN UTAMA
-         ========================= -->
+    <hr>
 
     <main>
 
         <h2>📅 Tempahan Janji Temu</h2>
 
-        <p>
+        <p class="intro">
             Tempah janji temu dengan klinik atau hospital
             dengan lebih mudah dan teratur.
         </p>
 
+        <div class="appointment-form">
 
-        <!-- BORANG TEMPAHAN -->
+            <!-- NAMA PESAKIT -->
+            <div class="form-group">
+                <label for="nama">Nama Pesakit</label>
+                <input
+                    type="text"
+                    id="nama"
+                    placeholder="Masukkan nama pesakit">
+            </div>
 
-        <form>
+            <!-- TARIKH -->
+            <div class="form-group">
+                <label for="tarikh">Tarikh Janji Temu</label>
+                <input
+                    type="date"
+                    id="tarikh">
+            </div>
 
-            <label for="nama">
-                Nama Pesakit
-            </label>
+            <!-- MASA -->
+            <div class="form-group">
+                <label for="masa">Masa</label>
+                <input
+                    type="time"
+                    id="masa">
+            </div>
 
-            <input
-                type="text"
-                id="nama"
-                placeholder="Masukkan nama"
-            >
+            <!-- JENIS TEMU JANJI -->
+            <div class="form-group">
+                <label for="jenis">Jenis Temu Janji</label>
 
+                <select id="jenis">
+                    <option value="Pemeriksaan Kesihatan">
+                        Pemeriksaan Kesihatan
+                    </option>
 
-            <label for="tarikh">
-                Tarikh Janji Temu
-            </label>
+                    <option value="Rawatan Susulan">
+                        Rawatan Susulan
+                    </option>
 
-            <input
-                type="date"
-                id="tarikh"
-            >
+                    <option value="Konsultasi Doktor">
+                        Konsultasi Doktor
+                    </option>
 
-
-            <label for="masa">
-                Masa
-            </label>
-
-            <input
-                type="time"
-                id="masa"
-            >
-
-
-            <label for="jenis">
-                Jenis Temu Janji
-            </label>
-
-            <select id="jenis">
-
-                <option>
-                    Pemeriksaan Kesihatan
-                </option>
-
-                <option>
-                    Rawatan Susulan
-                </option>
-
-                <option>
-                    Konsultasi Doktor
-                </option>
-
-                <option>
-                    Lain-lain
-                </option>
-
+                    <option value="Pemeriksaan Pergigian">
+                        Pemeriksaan Pergigian
+                    </option>
                 </select>
+            </div>
 
-
+            <!-- BUTANG -->
             <button
                 type="button"
-                onclick="hantarTempahan()"
-            >
+                class="submit-button"
+                onclick="hantarTempahan()">
                 📩 Hantar Tempahan
             </button>
 
-        </form>
+        </div>
 
+        <!-- MESEJ BERJAYA -->
+        <div
+            class="success"
+            id="pengesahan">
 
-        <!-- RUANG PENGESAHAN -->
+            <h3>📅 Tempahan Berjaya!</h3>
 
-        <div id="pengesahan"></div>
+            <div id="butiranTempahan"></div>
 
+            <p>
+                Terima kasih kerana menggunakan MARVION.
+            </p>
 
-        <br>
-
+        </div>
 
         <!-- KEMBALI -->
-
-        <a href="index.html">
+        <a
+            href="index.html"
+            class="back-link">
             🏠 Kembali ke Laman Utama
         </a>
 
     </main>
 
+    <hr>
 
-    <!-- =========================
-         JAVASCRIPT
-         ========================= -->
+    <footer>
+        <p>© 2026 MARVION</p>
+        <p>Smart Healthcare Communication Platform</p>
+    </footer>
+
 
     <script>
 
         function hantarTempahan() {
 
             let nama =
-                document.getElementById("nama").value;
+                document.getElementById("nama").value.trim();
 
             let tarikh =
                 document.getElementById("tarikh").value;
@@ -423,78 +327,67 @@
                 document.getElementById("jenis").value;
 
 
-            /* Semak maklumat */
+            /* Semak nama */
+            if (nama === "") {
 
-            if (
-                nama === "" ||
-                tarikh === "" ||
-                masa === ""
-            ) {
-
-                alert(
-                    "⚠️ Sila lengkapkan semua maklumat tempahan."
-                );
-
+                alert("Sila masukkan nama pesakit.");
                 return;
             }
 
 
-            /* Paparan berjaya */
+            /* Semak tarikh */
+            if (tarikh === "") {
 
-            alert(
-                "📩 Tempahan berjaya dihantar!\n\n" +
-                "Nama: " + nama +
-                "\nTarikh: " + tarikh +
-                "\nMasa: " + masa +
-                "\nJenis: " + jenis
-            );
+            alert("Sila pilih tarikh janji temu.");
+                return;
+            }
 
 
-            /* Kotak pengesahan */
+            /* Semak masa */
+            if (masa === "") {
 
-            document.getElementById("pengesahan").innerHTML =
+                alert("Sila pilih masa janji temu.");
+                return;
+            }
 
-                "<h3>📅 Tempahan Berjaya!</h3>" +
 
-                "<p><b>Nama:</b> " +
+            /* Paparkan pengesahan */
+            document.getElementById(
+                "butiranTempahan"
+            ).innerHTML =
+
+                "<p><strong>Nama:</strong> " +
                 nama +
                 "</p>" +
 
-                "<p><b>Tarikh:</b> " +
+                "<p><strong>Tarikh:</strong> " +
                 tarikh +
                 "</p>" +
 
-                "<p><b>Masa:</b> " +
+                "<p><strong>Masa:</strong> " +
                 masa +
                 "</p>" +
 
-                "<p><b>Jenis Temu Janji:</b> " +
+                "<p><strong>Jenis Temu Janji:</strong> " +
                 jenis +
-                "</p>" +
+                "</p>";
 
-                "<p>Terima kasih kerana menggunakan MARVION.</p>";
 
+            document.getElementById(
+                "pengesahan"
+            ).style.display = "block";
+
+
+            /* Pergi ke bahagian pengesahan */
+            document.getElementById(
+                "pengesahan"
+            ).scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
         }
 
     </script>
-
-
-    <!-- =========================
-         FOOTER
-         ========================= -->
-
-    <footer>
-
-        <p>
-            © 2026 MARVION
-        </p>
-
-        <p>
-            Smart Healthcare Communication Platform
-        </p>
-
-    </footer>
-
 
 </body>
 
