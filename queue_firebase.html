@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Semakan Giliran | MARVION</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7f7;
+            color: #183b5b;
+            text-align: center;
+        }
+
+        header {
+            background: white;
+            padding: 15px 10px;
+        }
+
+        .logo {
+            width: 160px;
+            max-width: 80%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        main {
+            max-width: 700px;
+            margin: auto;
+            padding: 25px 15px 40px;
+        }
+
+        h1 {
+            color: #168044;
+            font-size: 30px;
+            margin: 10px 0;
+        }
+
+        .intro {
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            color: #168044;
+            font-size: 25px;
+            margin-top: 0;
+        }
+
+        .info-box {
+            background: #f8fbfa;
+            border: 3px solid #dcece4;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .current-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #168044;
+        }
+
+        .room {
+            font-size: 30px;
+            font-weight: bold;
+            color: #183b5b;
+        }
+
+        .instruction {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        #getButton {
+            width: 100%;
+            padding: 17px 12px;
+            border: none;
+            border-radius: 14px;
+            background: #168044;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #getButton:active {
+            transform: scale(0.98);
+        }
+
+        #getButton:disabled {
+            background: #9bb8aa;
+            cursor: not-allowed;
+        }
+
+        #myNumberBox {
+            display: none;
+            margin-top: 25px;
+            padding: 22px;
+            border: 4px solid #168044;
+            border-radius: 18px;
+            background: white;
+        }
+
+        .my-label {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        #myNumber {
+            display: block;
+            font-size: 58px;
+            font-weight: bold;
+            color: #168044;
+        }
+
+        #message {
+            font-size: 17px;
+            line-height: 1.6;
+            margin-top: 18px;
+        }
+
+        .back {
+            display: block;
+            color: #174c8a;
+            font-size: 19px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 25px;
+        }
+
+        footer {
+            background: #183b5b;
+            color: white;
+            padding: 25px 15px;
+        }
+
+        footer p {
+            margin: 6px 0;
+            font-size: 17px;
+        }
+
+        @media (max-width: 600px) {
+
+            main {
+                padding: 22px 12px 35px;
+            }
+
+            .logo {
+                width: 160px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .intro {
+                font-size: 17px;
+            }
+
+            .card {
+                padding: 23px 18px;
+            }
+
+        .card h2 {
+                font-size: 24px;
+            }
+
+            .current-number {
+                font-size: 45px;
+            }
+
+            .room {
+                font-size: 28px;
+            }
+
+            #getButton {
+                font-size: 18px;
+            }
+
+            #myNumber {
+                font-size: 52px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <header>
+        <img
+            src="marvion-logo.png"
+            alt="MARVION"
+            class="logo">
+    </header>
+
+
+    <main>
+
+        <h1>🎟️ Giliran Semasa</h1>
+
+        <p class="intro">
+            Semak nombor yang sedang dirawat
+            dan dapatkan nombor giliran anda.
+        </p>
+
+
+        <!-- GILIRAN SEMASA -->
+        <div class="card">
+
+            <h2>🔔 Giliran Semasa</h2>
+
+            <div class="info-box">
+
+                <span class="label">
+                    Nombor Sedang Dirawat
+                </span>
+
+                <span
+                    id="currentNumber"
+                    class="current-number">
+                    A102
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span class="label">
+                    🏥 Bilik Rawatan
+                </span>
+
+                <span
+                    id="currentRoom"
+                    class="room">
+                    Bilik 3
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NOMBOR GILIRAN -->
+        <div class="card">
+
+            <h2>🎫 Nombor Giliran Anda</h2>
+
+            <p
+                id="instruction"
+                class="instruction">
+                Anda belum mempunyai nombor giliran.
+                <br>
+                Tekan butang di bawah untuk mendapatkan
+                nombor giliran.
+            </p>
+
+
+            <button
+                id="getButton"
+                type="button">
+                🎫 Dapatkan Nombor Giliran
+            </button>
+
+
+            <!-- NOMBOR SENDIRI -->
+            <div
+                id="myNumberBox">
+
+                <span class="my-label">
+                    Nombor Giliran Anda
+                </span>
+
+                <span id="myNumber">
+                </span>
+
+            </div>
+
+
+            <div id="message">
+            </div>
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="back">
+            ← Kembali ke Laman Utama
+        </a>
+
+    </main>
+
+
+    <footer>
+
+        <p>© 2026 MARVION</p>
+
+        <p>
+            Smart Healthcare Communication Platform
+        </p>
+
+    </footer>
+
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+        import { getDatabase, ref, runTransaction } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBTXSUp6va3ilK-2RxDTuXkRiv7Xjp7xLE",
+            authDomain: "marvion-199bc.firebaseapp.com",
+            databaseURL: "https://marvion-199bc-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "marvion-199bc",
+            storageBucket: "marvion-199bc.firebasestorage.app",
+            messagingSenderId: "1024552011140",
+            appId: "1:1024552011140:web:0753fa1d3eda77e94209d1",
+            measurementId: "G-BH0XVNP0BS"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const queueCounterRef = ref(db, "queue/lastNumber");
+
+        let sedangMemproses = false;
+
+        function paparkanGiliranSemasa() {
+            let currentNumber = localStorage.getItem("currentQueue");
+            let currentRoom = localStorage.getItem("currentRoom");
+
+            if (!currentNumber) currentNumber = "A102";
+            if (!currentRoom) currentRoom = "Bilik 3";
+
+            document.getElementById("currentNumber").textContent = currentNumber;
+            document.getElementById("currentRoom").textContent = currentRoom;
+        }
+
+        function paparkanNomborSaya(nombor) {
+            document.getElementById("myNumber").textContent = nombor;
+            document.getElementById("myNumberBox").style.display = "block";
+
+            document.getElementById("instruction").innerHTML =
+                "Nombor giliran anda telah ditetapkan.";
+
+            document.getElementById("message").innerHTML =
+                "🎫 <b>Nombor giliran anda ialah " + nombor + ".</b><br>" +
+                "Sila tunggu sehingga nombor anda dipanggil.";
+
+            document.getElementById("getButton").textContent =
+                "🔒 Nombor Anda Telah Ditetapkan";
+
+            document.getElementById("getButton").disabled = true;
+        }
+
+        async function dapatkanNombor() {
+
+            if (sedangMemproses) return;
+
+            sedangMemproses = true;
+
+            const button = document.getElementById("getButton");
+            button.disabled = true;
+            button.textContent = "⏳ Sedang mendapatkan nombor...";
+
+            let nomborSaya =
+                localStorage.getItem("marvionMyQueueNumberV2");
+
+            if (nomborSaya) {
+                paparkanNomborSaya(nomborSaya);
+                sedangMemproses = false;
+                return;
+            }
+
+            try {
+
+                const result = await runTransaction(
+                    queueCounterRef,
+                    (currentValue) => {
+                        if (
+                            currentValue === null ||
+                            isNaN(Number(currentValue))
+                        ) {
+                            return 102;
+                        }
+
+                        return Number(currentValue) + 1;
+                    }
+                );
+
+                const nomborFirebase =
+                    Number(result.snapshot.val());
+
+                nomborSaya = "A" + nomborFirebase;
+
+                localStorage.setItem(
+                    "marvionMyQueueNumberV2",
+                    nomborSaya
+                );
+
+                paparkanNomborSaya(nomborSaya);
+
+            } catch (error) {
+
+                console.error(
+                    "Ralat mendapatkan nombor giliran:",
+                    error
+                );
+
+                button.disabled = false;
+                button.textContent = "🎫 Cuba Lagi";
+
+                document.getElementById("message").innerHTML =
+                    "⚠️ Nombor giliran tidak dapat diperoleh. Sila cuba lagi.";
+
+            } finally {
+
+                sedangMemproses = false;
+
+            }
+        }
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                paparkanGiliranSemasa();
+
+                const nomborSaya =
+                    localStorage.getItem("marvionMyQueueNumberV2");
+
+                if (nomborSaya) {
+                    paparkanNomborSaya(nomborSaya);
+                }
+
+                document.getElementById("getButton")
+                    .addEventListener("click", dapatkanNombor);
+            }
+        );
+
+        setInterval(
+            paparkanGiliranSemasa,
+            2000
+        );
+
+    </script>
+
+</body>
+
+</html>
