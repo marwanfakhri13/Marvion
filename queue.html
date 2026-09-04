@@ -24,7 +24,7 @@
 
         header {
             background: white;
-            padding: 18px 15px 20px;
+            padding: 15px 10px 18px;
             border-bottom: 1px solid #ddd;
         }
 
@@ -101,18 +101,6 @@
             color: #183b5b;
         }
 
-        .my-number {
-            background: #fff;
-            border: 3px solid #168044;
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 15px;
-        }
-
-        .my-number .number {
-            font-size: 50px;
-        }
-
         .get-button {
             width: 100%;
             max-width: 450px;
@@ -131,8 +119,21 @@
             background: #10703b;
         }
 
-        .get-button:active {
-            transform: scale(0.98);
+        .get-button:disabled {
+            background: #9bb8aa;
+            cursor: not-allowed;
+        }
+
+        .my-number {
+            background: #fff;
+            border: 3px solid #168044;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .my-number .number {
+            font-size: 50px;
         }
 
         .message {
@@ -191,11 +192,11 @@
                 padding: 20px;
             }
 
-            .card h2 {
+        .card h2 {
                 font-size: 22px;
             }
 
-        .number {
+            .number {
                 font-size: 36px;
             }
 
@@ -214,6 +215,7 @@
         }
     </style>
 </head>
+
 
 <body>
 
@@ -280,13 +282,16 @@
 
             <h2>🎫 Nombor Giliran Anda</h2>
 
-            <p>
+            <p id="instruction">
+                Anda belum mempunyai nombor giliran.
+                <br>
                 Tekan butang di bawah untuk mendapatkan
-                nombor giliran secara automatik.
+                nombor giliran.
             </p>
 
 
             <button
+                id="getButton"
                 type="button"
                 class="get-button"
                 onclick="dapatkanNombor()">
@@ -296,6 +301,7 @@
             </button>
 
 
+            <!-- NOMBOR PENGGUNA -->
             <div
                 id="myNumberBox"
                 class="my-number"
@@ -369,14 +375,10 @@
                 localStorage.getItem("currentRoom");
 
 
-            /*
-            Jika belum ada data,
-            guna contoh.
-            */
-
             if (!currentNumber) {
                 currentNumber = "A102";
             }
+
 
             if (!currentRoom) {
                 currentRoom = "Bilik 3";
@@ -388,47 +390,41 @@
 
             document.getElementById("currentRoom")
                 .textContent = currentRoom;
+
         }
 
 
 
         /*
         ============================================
-        DAPATKAN NOMBOR PESAKIT
+        DAPATKAN NOMBOR GILIRAN
         ============================================
         */
 
         function dapatkanNombor() {
 
-            /*
-            SEMAK DAH ADA NOMBOR ATAU BELUM.
-
-            Jika pengguna sudah pernah mendapatkan
-            nombor, jangan tambah nombor lagi.
+        /*
+            Semak sama ada pengguna sudah
+            mempunyai nombor.
+            
+            Kita gunakan nama key baharu supaya
+            nombor lama A104 tidak mengganggu
+            sistem baharu ini.
             */
 
             let nomborSaya =
-                localStorage.getItem("marvionMyQueueNumber");
+                localStorage.getItem(
+                    "marvionMyQueueNumberV2"
+                );
 
 
             /*
-            JIKA DAH ADA NOMBOR
+            JIKA SUDAH ADA NOMBOR
             */
 
             if (nomborSaya) {
 
-                document.getElementById("myNumber")
-                    .textContent = nomborSaya;
-
-                document.getElementById("myNumberBox")
-                    .style.display = "block";
-
-                document.getElementById("message")
-                    .innerHTML =
-                    "🎫 <b>Nombor giliran anda masih " +
-                    nomborSaya +
-                    ".</b><br>" +
-                    "Sila tunggu sehingga nombor anda dipanggil.";
+                paparkanNomborSaya(nomborSaya);
 
                 return;
             }
@@ -436,7 +432,7 @@
 
             /*
             ========================================
-            JIKA BELUM ADA NOMBOR
+            AMBIL NOMBOR TERAKHIR
             ========================================
             */
 
@@ -459,7 +455,7 @@
 
 
             /*
-            Tambah satu nombor.
+            Tambah satu.
             */
 
             lastNumber++;
@@ -477,27 +473,28 @@
 
             /*
             Bentukkan nombor.
-
+            
             Contoh:
             A101
             A102
             A103
             */
 
-            let nomborAnda =
+            nomborSaya =
                 "A" + lastNumber;
 
 
             /*
             Simpan nombor pengguna.
 
-            Ini penting supaya jika butang ditekan
-            berkali-kali, nombor tidak berubah.
+            Ini menyebabkan nombor yang sama
+            akan digunakan walaupun butang
+            ditekan berkali-kali.
             */
 
             localStorage.setItem(
-                "marvionMyQueueNumber",
-                nomborAnda
+                "marvionMyQueueNumberV2",
+                nomborSaya
             );
 
 
@@ -505,24 +502,67 @@
             Paparkan nombor.
             */
 
-            document.getElementById("myNumber")
-                .textContent = nomborAnda;
+            paparkanNomborSaya(nomborSaya);
 
-            document.getElementById("myNumberBox")
-                .style.display = "block";
-
-
-            document.getElementById("message")
-                .innerHTML =
-                "🎫 <b>Nombor giliran anda telah berjaya diperoleh.</b><br>" +
-                "Sila tunggu sehingga nombor anda dipanggil.";
         }
 
 
 
         /*
         ============================================
-        PAPARKAN NOMBOR YANG TELAH ADA
+        PAPARKAN NOMBOR PENGGUNA
+        ============================================
+        */
+
+        function paparkanNomborSaya(nomborSaya) {
+
+            document.getElementById("myNumber")
+                .textContent = nomborSaya;
+
+
+            document.getElementById("myNumberBox")
+                .style.display = "block";
+
+
+            document.getElementById("instruction")
+                .innerHTML =
+                "Nombor giliran anda telah ditetapkan.";
+
+
+            /*
+            Tukarkan butang supaya pengguna
+            tahu nombor tidak akan berubah.
+            */
+
+            let button =
+                document.getElementById("getButton");
+
+
+            button.textContent =
+                "🔒 Nombor Anda Telah Ditetapkan";
+
+
+            button.disabled = true;
+
+
+            /*
+            Paparkan mesej.
+            */
+
+            document.getElementById("message")
+                .innerHTML =
+                "🎫 <b>Nombor giliran anda ialah " +
+                nomborSaya +
+                ".</b><br>" +
+                "Sila tunggu sehingga nombor anda dipanggil.";
+
+        }
+
+
+
+        /*
+        ============================================
+        APABILA HALAMAN DIBUKA
         ============================================
         */
 
@@ -530,44 +570,238 @@
             "load",
             function() {
 
+                /*
+                Paparkan giliran semasa.
+                */
+
                 paparkanGiliranSemasa();
 
 
                 /*
-                Jika pengguna pernah dapat nombor
-                sebelum ini, paparkan semula.
+                Semak sama ada pengguna
+                sudah pernah mengambil nombor.
                 */
 
                 let nomborSaya =
                     localStorage.getItem(
-                        "marvionMyQueueNumber"
+                        "marvionMyQueueNumberV2"
                     );
 
 
+                /*
+                Jika sudah ada,
+                paparkan semula.
+                */
+
                 if (nomborSaya) {
 
-                    document.getElementById("myNumber")
-                        .textContent = nomborSaya;
+                    paparkanNomborSaya(nomborSaya);
 
-                    document.getElementById("myNumberBox")
-                        .style.display = "block";
-
-                    document.getElementById("message")
-                        .innerHTML =
-                        "🎫 <b>Nombor giliran anda masih " +
-                        nomborSaya +
-                        ".</b><br>" +
-                        "Sila tunggu sehingga nombor anda dipanggil.";
                 }
 
             }
-        );
+        );/*
+            Semak sama ada pengguna sudah
+            mempunyai nombor.
+            
+            Kita gunakan nama key baharu supaya
+            nombor lama A104 tidak mengganggu
+            sistem baharu ini.
+            */
+
+            let nomborSaya =
+                localStorage.getItem(
+                    "marvionMyQueueNumberV2"
+                );
+
+
+            /*
+            JIKA SUDAH ADA NOMBOR
+            */
+
+            if (nomborSaya) {
+
+                paparkanNomborSaya(nomborSaya);
+
+                return;
+            }
+
+
+            /*
+            ========================================
+            AMBIL NOMBOR TERAKHIR
+            ========================================
+            */
+
+            let lastNumber =
+                parseInt(
+                    localStorage.getItem(
+                        "marvionLastQueueNumber"
+                    )
+                );
+
+
+            /*
+            Jika belum ada nombor,
+            mula daripada 100.
+            */
+
+            if (isNaN(lastNumber)) {
+                lastNumber = 100;
+            }
+
+
+            /*
+            Tambah satu.
+            */
+
+            lastNumber++;
+
+
+            /*
+            Simpan nombor terakhir.
+            */
+
+            localStorage.setItem(
+                "marvionLastQueueNumber",
+                lastNumber
+            );
+
+
+            /*
+            Bentukkan nombor.
+            
+            Contoh:
+            A101
+            A102
+            A103
+            */
+
+            nomborSaya =
+                "A" + lastNumber;
+
+
+            /*
+            Simpan nombor pengguna.
+
+            Ini menyebabkan nombor yang sama
+            akan digunakan walaupun butang
+            ditekan berkali-kali.
+            */
+
+            localStorage.setItem(
+                "marvionMyQueueNumberV2",
+                nomborSaya
+            );
+
+
+            /*
+            Paparkan nombor.
+            */
+
+            paparkanNomborSaya(nomborSaya);
+
+        }
 
 
 
         /*
         ============================================
-        KEMAS KINI PAPARAN
+        PAPARKAN NOMBOR PENGGUNA
+        ============================================
+        */
+
+        function paparkanNomborSaya(nomborSaya) {
+
+            document.getElementById("myNumber")
+                .textContent = nomborSaya;
+
+
+            document.getElementById("myNumberBox")
+                .style.display = "block";
+
+
+            document.getElementById("instruction")
+                .innerHTML =
+                "Nombor giliran anda telah ditetapkan.";
+
+
+            /*
+            Tukarkan butang supaya pengguna
+            tahu nombor tidak akan berubah.
+            */
+
+            let button =
+                document.getElementById("getButton");
+
+
+            button.textContent =
+                "🔒 Nombor Anda Telah Ditetapkan";
+
+
+            button.disabled = true;
+
+
+            /*
+            Paparkan mesej.
+            */
+
+            document.getElementById("message")
+                .innerHTML =
+                "🎫 <b>Nombor giliran anda ialah " +
+                nomborSaya +
+                ".</b><br>" +
+                "Sila tunggu sehingga nombor anda dipanggil.";
+
+        }
+
+
+
+        /*
+        ============================================
+        APABILA HALAMAN DIBUKA
+        ============================================
+        */
+
+        window.addEventListener(
+            "load",
+            function() {
+
+                /*
+                Paparkan giliran semasa.
+                */
+
+                paparkanGiliranSemasa();
+
+
+                /*
+                Semak sama ada pengguna
+                sudah pernah mengambil nombor.
+                */
+
+                let nomborSaya =
+                    localStorage.getItem(
+                        "marvionMyQueueNumberV2"
+                    );
+
+
+                /*
+                Jika sudah ada,
+                paparkan semula.
+                */
+
+                if (nomborSaya) {
+
+                    paparkanNomborSaya(nomborSaya);
+
+                }
+
+            }
+        );
+
+        /*
+        ============================================
+        KEMAS KINI GILIRAN SEMASA
         ============================================
         */
 
