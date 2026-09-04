@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Semakan Giliran | MARVION</title>
 
@@ -24,193 +22,194 @@
 
         header {
             background: white;
-            padding: 15px 10px 18px;
-            border-bottom: 1px solid #ddd;
+            padding: 15px 10px;
         }
 
         .logo {
-            display: block;
             width: 160px;
             max-width: 80%;
             height: auto;
-            margin: 0 auto;
+            display: block;
+            margin: auto;
         }
 
         main {
-            width: 100%;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 30px 15px 45px;
+            max-width: 700px;
+            margin: auto;
+            padding: 25px 15px 40px;
         }
 
         h1 {
+            color: #168044;
             font-size: 30px;
-            margin: 5px 0 10px;
-            color: #183b5b;
+            margin: 10px 0;
         }
 
-        .subtitle {
+        .intro {
             font-size: 17px;
-            line-height: 1.6;
-            color: #555;
+            line-height: 1.5;
             margin-bottom: 25px;
         }
 
         .card {
-            width: 100%;
-            max-width: 620px;
-            margin: 0 auto 22px;
-            padding: 25px;
             background: white;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
         }
 
         .card h2 {
-            margin-top: 0;
             color: #168044;
-            font-size: 24px;
+            font-size: 25px;
+            margin-top: 0;
         }
 
-        .queue-box {
-            background: #f7fbfb;
-            border: 2px solid #dcebe3;
-            border-radius: 15px;
+        .info-box {
+            background: #f8fbfa;
+            border: 3px solid #dcece4;
+            border-radius: 16px;
             padding: 20px;
-            margin-top: 15px;
+            margin: 15px 0;
         }
 
         .label {
             display: block;
+            font-size: 18px;
             font-weight: bold;
             color: #555;
             margin-bottom: 8px;
         }
 
-        .number {
-            display: block;
-            font-size: 42px;
+        .current-number {
+            font-size: 48px;
             font-weight: bold;
             color: #168044;
         }
 
         .room {
-            display: block;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: bold;
             color: #183b5b;
         }
 
-        .get-button {
+        .instruction {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        #getButton {
             width: 100%;
-            max-width: 450px;
-            padding: 16px;
-            margin-top: 20px;
+            padding: 17px 12px;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             background: #168044;
             color: white;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: bold;
             cursor: pointer;
+            margin-top: 10px;
         }
 
-        .get-button:hover {
-            background: #10703b;
+        #getButton:active {
+            transform: scale(0.98);
         }
 
-        .get-button:disabled {
+        #getButton:disabled {
             background: #9bb8aa;
             cursor: not-allowed;
         }
 
-        .my-number {
-            background: #fff;
-            border: 3px solid #168044;
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
+        #myNumberBox {
+            display: none;
+            margin-top: 25px;
+            padding: 22px;
+            border: 4px solid #168044;
+            border-radius: 18px;
+            background: white;
         }
 
-        .my-number .number {
-            font-size: 50px;
+        .my-label {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
         }
 
-        .message {
-            margin-top: 18px;
-            font-size: 16px;
+        #myNumber {
+            display: block;
+            font-size: 58px;
+            font-weight: bold;
+            color: #168044;
+        }
+
+        #message {
+            font-size: 17px;
             line-height: 1.6;
+            margin-top: 18px;
         }
 
         .back {
             display: block;
-            width: fit-content;
-            margin: 25px auto 0;
             color: #174c8a;
+            font-size: 19px;
             font-weight: bold;
             text-decoration: none;
-        }
-
-        .back:hover {
-            text-decoration: underline;
+            margin-top: 25px;
         }
 
         footer {
             background: #183b5b;
             color: white;
-            text-align: center;
-            padding: 20px 15px;
+            padding: 25px 15px;
         }
 
         footer p {
-            margin: 5px 0;
+            margin: 6px 0;
+            font-size: 17px;
         }
 
         @media (max-width: 600px) {
 
-            header {
-                padding: 15px 10px 18px;
+            main {
+                padding: 22px 12px 35px;
             }
 
             .logo {
                 width: 160px;
             }
 
-            main {
-                padding: 22px 12px 35px;
-            }
-
             h1 {
-                font-size: 26px;
+                font-size: 27px;
             }
 
-            .subtitle {
-                font-size: 16px;
+            .intro {
+                font-size: 17px;
             }
 
             .card {
-                padding: 20px;
+                padding: 23px 18px;
             }
 
         .card h2 {
-                font-size: 22px;
-            }
-
-            .number {
-                font-size: 36px;
-            }
-
-            .my-number .number {
-                font-size: 44px;
-            }
-
-            .room {
                 font-size: 24px;
             }
 
-            .get-button {
-                font-size: 17px;
-                padding: 15px;
+            .current-number {
+                font-size: 45px;
+            }
+
+            .room {
+                font-size: 28px;
+            }
+
+            #getButton {
+                font-size: 18px;
+            }
+
+            #myNumber {
+                font-size: 52px;
             }
         }
     </style>
@@ -219,24 +218,21 @@
 
 <body>
 
-    <!-- HEADER -->
     <header>
-
         <img
             src="marvion-logo.png"
-            alt="MARVION Smart Healthcare Communication Platform"
+            alt="MARVION"
             class="logo">
-
     </header>
 
 
     <main>
 
-        <h1>🎟️ Semakan Giliran</h1>
+        <h1>🎟️ Giliran Semasa</h1>
 
-        <p class="subtitle">
-            Dapatkan nombor giliran anda dan lihat
-            nombor yang sedang menerima rawatan.
+        <p class="intro">
+            Semak nombor yang sedang dirawat
+            dan dapatkan nombor giliran anda.
         </p>
 
 
@@ -245,7 +241,7 @@
 
             <h2>🔔 Giliran Semasa</h2>
 
-            <div class="queue-box">
+            <div class="info-box">
 
                 <span class="label">
                     Nombor Sedang Dirawat
@@ -253,14 +249,14 @@
 
                 <span
                     id="currentNumber"
-                    class="number">
+                    class="current-number">
                     A102
                 </span>
 
             </div>
 
 
-            <div class="queue-box">
+            <div class="info-box">
 
                 <span class="label">
                     🏥 Bilik Rawatan
@@ -277,12 +273,14 @@
         </div>
 
 
-        <!-- DAPATKAN NOMBOR -->
+        <!-- NOMBOR GILIRAN -->
         <div class="card">
 
             <h2>🎫 Nombor Giliran Anda</h2>
 
-            <p id="instruction">
+            <p
+                id="instruction"
+                class="instruction">
                 Anda belum mempunyai nombor giliran.
                 <br>
                 Tekan butang di bawah untuk mendapatkan
@@ -292,42 +290,31 @@
 
             <button
                 id="getButton"
-                type="button"
-                class="get-button"
-                onclick="dapatkanNombor()">
-
+                type="button">
                 🎫 Dapatkan Nombor Giliran
-
             </button>
 
 
-            <!-- NOMBOR PENGGUNA -->
+            <!-- NOMBOR SENDIRI -->
             <div
-                id="myNumberBox"
-                class="my-number"
-                style="display:none;">
+                id="myNumberBox">
 
-                <span class="label">
+                <span class="my-label">
                     Nombor Giliran Anda
                 </span>
 
-                <span
-                    id="myNumber"
-                    class="number">
+                <span id="myNumber">
                 </span>
 
             </div>
 
 
-            <div
-                id="message"
-                class="message">
+            <div id="message">
             </div>
 
         </div>
 
 
-        <!-- KEMBALI -->
         <a
             href="index.html"
             class="back">
@@ -337,12 +324,9 @@
     </main>
 
 
-    <!-- FOOTER -->
     <footer>
 
-        <p>
-            © 2026 MARVION
-        </p>
+        <p>© 2026 MARVION</p>
 
         <p>
             Smart Healthcare Communication Platform
@@ -353,19 +337,12 @@
 
     <script>
 
-        /*
-        ============================================
-        MARVION - SISTEM GILIRAN
-        ============================================
-        */
+        // ==========================================
+        // MARVION - SISTEM NOMBOR GILIRAN
+        // ==========================================
 
 
-        /*
-        ============================================
-        PAPARKAN GILIRAN SEMASA
-        ============================================
-        */
-
+        // PAPARKAN GILIRAN SEMASA
         function paparkanGiliranSemasa() {
 
             let currentNumber =
@@ -388,40 +365,56 @@
             document.getElementById("currentNumber")
                 .textContent = currentNumber;
 
+
             document.getElementById("currentRoom")
                 .textContent = currentRoom;
-
         }
 
 
+        // PAPARKAN NOMBOR SAYA
+        function paparkanNomborSaya(nombor) {
 
-        /*
-        ============================================
-        DAPATKAN NOMBOR GILIRAN
-        ============================================
-        */
+            document.getElementById("myNumber")
+                .textContent = nombor;
 
+
+            document.getElementById("myNumberBox")
+                .style.display = "block";
+
+
+            document.getElementById("instruction")
+                .innerHTML =
+                "Nombor giliran anda telah ditetapkan.";
+
+
+            document.getElementById("message")
+                .innerHTML =
+                "🎫 <b>Nombor giliran anda ialah " +
+                nombor +
+                ".</b><br>" +
+                "Sila tunggu sehingga nombor anda dipanggil.";
+
+        document.getElementById("getButton")
+                .textContent =
+                "🔒 Nombor Anda Telah Ditetapkan";
+
+
+            document.getElementById("getButton")
+                .disabled = true;
+        }
+
+
+        // DAPATKAN NOMBOR
         function dapatkanNombor() {
 
-        /*
-            Semak sama ada pengguna sudah
-            mempunyai nombor.
-            
-            Kita gunakan nama key baharu supaya
-            nombor lama A104 tidak mengganggu
-            sistem baharu ini.
-            */
-
+            // Semak nombor yang sudah dimiliki
             let nomborSaya =
                 localStorage.getItem(
                     "marvionMyQueueNumberV2"
                 );
 
 
-            /*
-            JIKA SUDAH ADA NOMBOR
-            */
-
+            // Kalau sudah ada, jangan beri nombor baru
             if (nomborSaya) {
 
                 paparkanNomborSaya(nomborSaya);
@@ -430,12 +423,7 @@
             }
 
 
-            /*
-            ========================================
-            AMBIL NOMBOR TERAKHIR
-            ========================================
-            */
-
+            // Ambil nombor terakhir
             let lastNumber =
                 parseInt(
                     localStorage.getItem(
@@ -444,367 +432,78 @@
                 );
 
 
-            /*
-            Jika belum ada nombor,
-            mula daripada 100.
-            */
-
+            // Kalau belum ada, mula daripada 100
             if (isNaN(lastNumber)) {
                 lastNumber = 100;
             }
 
 
-            /*
-            Tambah satu.
-            */
-
+            // Tambah satu
             lastNumber++;
 
 
-            /*
-            Simpan nombor terakhir.
-            */
-
+            // Simpan nombor terakhir
             localStorage.setItem(
                 "marvionLastQueueNumber",
                 lastNumber
             );
 
 
-            /*
-            Bentukkan nombor.
-            
-            Contoh:
-            A101
-            A102
-            A103
-            */
-
+            // Bentukkan nombor
             nomborSaya =
                 "A" + lastNumber;
 
 
-            /*
-            Simpan nombor pengguna.
-
-            Ini menyebabkan nombor yang sama
-            akan digunakan walaupun butang
-            ditekan berkali-kali.
-            */
-
+            // Simpan nombor pengguna
             localStorage.setItem(
                 "marvionMyQueueNumberV2",
                 nomborSaya
             );
 
 
-            /*
-            Paparkan nombor.
-            */
-
+            // Paparkan
             paparkanNomborSaya(nomborSaya);
-
         }
 
 
+        // ==========================================
+        // APABILA HALAMAN DIBUKA
+        // ==========================================
 
-        /*
-        ============================================
-        PAPARKAN NOMBOR PENGGUNA
-        ============================================
-        */
-
-        function paparkanNomborSaya(nomborSaya) {
-
-            document.getElementById("myNumber")
-                .textContent = nomborSaya;
-
-
-            document.getElementById("myNumberBox")
-                .style.display = "block";
-
-
-            document.getElementById("instruction")
-                .innerHTML =
-                "Nombor giliran anda telah ditetapkan.";
-
-
-            /*
-            Tukarkan butang supaya pengguna
-            tahu nombor tidak akan berubah.
-            */
-
-            let button =
-                document.getElementById("getButton");
-
-
-            button.textContent =
-                "🔒 Nombor Anda Telah Ditetapkan";
-
-
-            button.disabled = true;
-
-
-            /*
-            Paparkan mesej.
-            */
-
-            document.getElementById("message")
-                .innerHTML =
-                "🎫 <b>Nombor giliran anda ialah " +
-                nomborSaya +
-                ".</b><br>" +
-                "Sila tunggu sehingga nombor anda dipanggil.";
-
-        }
-
-
-
-        /*
-        ============================================
-        APABILA HALAMAN DIBUKA
-        ============================================
-        */
-
-        window.addEventListener(
-            "load",
+        document.addEventListener(
+            "DOMContentLoaded",
             function() {
-
-                /*
-                Paparkan giliran semasa.
-                */
 
                 paparkanGiliranSemasa();
 
 
-                /*
-                Semak sama ada pengguna
-                sudah pernah mengambil nombor.
-                */
-
+                // Cari nombor pengguna
                 let nomborSaya =
                     localStorage.getItem(
                         "marvionMyQueueNumberV2"
                     );
 
 
-                /*
-                Jika sudah ada,
-                paparkan semula.
-                */
-
+                // Kalau sudah pernah ambil nombor
                 if (nomborSaya) {
 
                     paparkanNomborSaya(nomborSaya);
 
                 }
 
-            }
-        );/*
-            Semak sama ada pengguna sudah
-            mempunyai nombor.
-            
-            Kita gunakan nama key baharu supaya
-            nombor lama A104 tidak mengganggu
-            sistem baharu ini.
-            */
 
-            let nomborSaya =
-                localStorage.getItem(
-                    "marvionMyQueueNumberV2"
-                );
-
-
-            /*
-            JIKA SUDAH ADA NOMBOR
-            */
-
-            if (nomborSaya) {
-
-                paparkanNomborSaya(nomborSaya);
-
-                return;
-            }
-
-
-            /*
-            ========================================
-            AMBIL NOMBOR TERAKHIR
-            ========================================
-            */
-
-            let lastNumber =
-                parseInt(
-                    localStorage.getItem(
-                        "marvionLastQueueNumber"
-                    )
-                );
-
-
-            /*
-            Jika belum ada nombor,
-            mula daripada 100.
-            */
-
-            if (isNaN(lastNumber)) {
-                lastNumber = 100;
-            }
-
-
-            /*
-            Tambah satu.
-            */
-
-            lastNumber++;
-
-
-            /*
-            Simpan nombor terakhir.
-            */
-
-            localStorage.setItem(
-                "marvionLastQueueNumber",
-                lastNumber
-            );
-
-
-            /*
-            Bentukkan nombor.
-            
-            Contoh:
-            A101
-            A102
-            A103
-            */
-
-            nomborSaya =
-                "A" + lastNumber;
-
-
-            /*
-            Simpan nombor pengguna.
-
-            Ini menyebabkan nombor yang sama
-            akan digunakan walaupun butang
-            ditekan berkali-kali.
-            */
-
-            localStorage.setItem(
-                "marvionMyQueueNumberV2",
-                nomborSaya
-            );
-
-
-            /*
-            Paparkan nombor.
-            */
-
-            paparkanNomborSaya(nomborSaya);
-
-        }
-
-
-
-        /*
-        ============================================
-        PAPARKAN NOMBOR PENGGUNA
-        ============================================
-        */
-
-        function paparkanNomborSaya(nomborSaya) {
-
-            document.getElementById("myNumber")
-                .textContent = nomborSaya;
-
-
-            document.getElementById("myNumberBox")
-                .style.display = "block";
-
-
-            document.getElementById("instruction")
-                .innerHTML =
-                "Nombor giliran anda telah ditetapkan.";
-
-
-            /*
-            Tukarkan butang supaya pengguna
-            tahu nombor tidak akan berubah.
-            */
-
-            let button =
-                document.getElementById("getButton");
-
-
-            button.textContent =
-                "🔒 Nombor Anda Telah Ditetapkan";
-
-
-            button.disabled = true;
-
-
-            /*
-            Paparkan mesej.
-            */
-
-            document.getElementById("message")
-                .innerHTML =
-                "🎫 <b>Nombor giliran anda ialah " +
-                nomborSaya +
-                ".</b><br>" +
-                "Sila tunggu sehingga nombor anda dipanggil.";
-
-        }
-
-
-
-        /*
-        ============================================
-        APABILA HALAMAN DIBUKA
-        ============================================
-        */
-
-        window.addEventListener(
-            "load",
-            function() {
-
-                /*
-                Paparkan giliran semasa.
-                */
-
-                paparkanGiliranSemasa();
-
-
-                /*
-                Semak sama ada pengguna
-                sudah pernah mengambil nombor.
-                */
-
-                let nomborSaya =
-                    localStorage.getItem(
-                        "marvionMyQueueNumberV2"
+                // AKTIFKAN BUTANG
+                document.getElementById("getButton")
+                    .addEventListener(
+                        "click",
+                        dapatkanNombor
                     );
-
-
-                /*
-                Jika sudah ada,
-                paparkan semula.
-                */
-
-                if (nomborSaya) {
-
-                    paparkanNomborSaya(nomborSaya);
-
-                }
 
             }
         );
 
-        /*
-        ============================================
-        KEMAS KINI GILIRAN SEMASA
-        ============================================
-        */
 
+        // Kemas kini giliran semasa setiap 2 saat
         setInterval(
             paparkanGiliranSemasa,
             2000
