@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
 
-    <!-- Penting untuk paparan telefon -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tempahan Janji Temu | Marvion</title>
@@ -12,13 +11,43 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* Tetapan khas halaman Temujanji */
-        body {
+
+        /* =========================
+           TETAPAN HALAMAN
+           ========================= */
+
+        html {
+            width: 100%;
             margin: 0;
-            text-align: center;
+            padding: 0;
+            overflow-x: hidden;
         }
 
+        body {
+            width: 100%;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           HEADER & LOGO
+           ========================= */
+
         header {
+            width: 100%;
+            margin: 0;
+            padding: 5px 10px;
             text-align: center;
         }
 
@@ -29,128 +58,252 @@
             margin: 5px auto 10px;
         }
 
+
+        /* =========================
+           KANDUNGAN UTAMA
+           ========================= */
+
         main {
-            width: calc(100% - 30px);
+            width: 100%;
             max-width: 900px;
             margin: 0 auto;
+            padding: 0 16px;
             text-align: center;
         }
 
         main h2 {
+            width: 100%;
+            margin: 20px auto 15px;
             text-align: center;
             font-size: 28px;
-            margin-top: 20px;
-            margin-bottom: 15px;
+            line-height: 1.3;
         }
 
         main > p {
+            width: 100%;
             max-width: 650px;
             margin: 0 auto 25px;
+            text-align: center;
             line-height: 1.6;
             font-size: 16px;
         }
+
+
+        /* =========================
+           BORANG
+           ========================= */
 
         form {
             width: 100%;
             max-width: 650px;
             margin: 0 auto;
+            padding: 0;
             text-align: left;
         }
 
         form label {
             display: block;
-            font-weight: bold;
+            width: 100%;
             margin-top: 18px;
             margin-bottom: 7px;
             font-size: 16px;
+            font-weight: bold;
         }
 
         form input,
         form select {
+            display: block;
             width: 100%;
-            box-sizing: border-box;
+            max-width: 100%;
+            min-height: 50px;
             padding: 12px;
+            margin: 0;
             font-size: 16px;
             border-radius: 8px;
+            box-sizing: border-box;
         }
+
+
+        /* =========================
+           BUTANG
+           ========================= */
 
         form button {
             display: block;
             width: 100%;
             max-width: 650px;
+            min-height: 50px;
             margin: 25px auto;
             padding: 13px 15px;
             font-size: 16px;
             cursor: pointer;
+            box-sizing: border-box;
         }
+
+
+        /* =========================
+           PENGESAHAN
+           ========================= */
 
         #pengesahan {
             width: 100%;
             max-width: 650px;
-            box-sizing: border-box;
             margin: 25px auto;
+            padding: 20px;
             text-align: center;
+            box-sizing: border-box;
         }
+
+        #pengesahan h3 {
+            margin-top: 0;
+        }
+
+        #pengesahan p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           LINK KEMBALI
+           ========================= */
 
         main > a {
             display: inline-block;
-            margin: 20px auto;
+            margin: 20px auto 25px;
             text-align: center;
         }
+
+
+        /* =========================
+           FOOTER
+           ========================= */
 
         footer {
-            text-align: center;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 20px 0 0 !important;
+            padding: 18px 12px !important;
+            text-align: center !important;
+            box-sizing: border-box;
         }
 
-        /* Paparan telefon */
+        footer p {
+            margin: 5px 0 !important;
+            padding: 0 !important;
+            line-height: 1.4 !important;
+        }
+
+
+        /* =========================
+           PAPARAN TELEFON
+           ========================= */
+
         @media (max-width: 600px) {
+
+            header {
+                padding: 5px 8px;
+            }
 
             header .logo {
                 width: 150px !important;
+                margin: 5px auto 8px;
             }
 
             main {
-                width: calc(100% - 24px);
+                width: 100%;
+                max-width: 100%;
+                padding: 0 16px;
+                margin: 0 auto;
             }
 
             main h2 {
                 font-size: 24px;
-                line-height: 1.3;
+                margin-top: 18px;
+                margin-bottom: 14px;
             }
 
             main > p {
                 font-size: 15px;
                 line-height: 1.5;
+                margin-bottom: 22px;
+            }
+
+            form {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
             }
 
             form label {
                 font-size: 16px;
+                margin-top: 16px;
+                margin-bottom: 6px;
             }
 
             form input,
             form select {
+                width: 100%;
+                min-height: 50px;
+                padding: 12px;
                 font-size: 16px;
-                padding: 13px 12px;
             }
 
             form button {
+                width: 100%;
+                min-height: 50px;
+                margin: 24px auto;
                 font-size: 16px;
-                padding: 14px 12px;
+            }
+
+            #pengesahan {
+                width: 100%;
+                max-width: 100%;
+                margin: 24px auto;
+                padding: 18px;
+            }
+
+            main > a {
+                margin: 18px auto 22px;
+            }
+
+            footer {
+                width: 100% !important;
+                margin: 18px 0 0 !important;
+                padding: 16px 10px !important;
+            }
+
+            footer p {
+                margin: 4px 0 !important;
+                line-height: 1.35 !important;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
+    <!-- =========================
+         HEADER
+         ========================= -->
+
     <header>
+
         <img
             src="marvion-logo.png"
             alt="MARVION Smart Healthcare Communication Platform"
             class="logo"
             style="width:150px; height:auto;"
         >
+
     </header>
+
+
+    <!-- =========================
+         KANDUNGAN UTAMA
+         ========================= -->
 
     <main>
 
@@ -161,35 +314,66 @@
             dengan lebih mudah dan teratur.
         </p>
 
+
+        <!-- BORANG TEMPAHAN -->
+
         <form>
 
-            <label for="nama">Nama Pesakit</label>
+            <label for="nama">
+                Nama Pesakit
+            </label>
+
             <input
                 type="text"
                 id="nama"
                 placeholder="Masukkan nama"
             >
 
-            <label for="tarikh">Tarikh Janji Temu</label>
+
+            <label for="tarikh">
+                Tarikh Janji Temu
+            </label>
+
             <input
                 type="date"
                 id="tarikh"
             >
 
-            <label for="masa">Masa</label>
+
+            <label for="masa">
+                Masa
+            </label>
+
             <input
                 type="time"
                 id="masa"
             >
 
-            <label for="jenis">Jenis Temu Janji</label>
+
+            <label for="jenis">
+                Jenis Temu Janji
+            </label>
 
             <select id="jenis">
-                <option>Pemeriksaan Kesihatan</option>
-                <option>Rawatan Susulan</option>
-                <option>Konsultasi Doktor</option>
-                <option>Lain-lain</option>
-            </select>
+
+                <option>
+                    Pemeriksaan Kesihatan
+                </option>
+
+                <option>
+                    Rawatan Susulan
+                </option>
+
+                <option>
+                    Konsultasi Doktor
+                </option>
+
+                <option>
+                    Lain-lain
+                </option>
+
+                </select>
+
 
             <button
                 type="button"
@@ -200,15 +384,27 @@
 
         </form>
 
+
+        <!-- RUANG PENGESAHAN -->
+
         <div id="pengesahan"></div>
 
+
         <br>
+
+
+        <!-- KEMBALI -->
 
         <a href="index.html">
             🏠 Kembali ke Laman Utama
         </a>
 
     </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
 
     <script>
 
@@ -227,6 +423,8 @@
                 document.getElementById("jenis").value;
 
 
+            /* Semak maklumat */
+
             if (
                 nama === "" ||
                 tarikh === "" ||
@@ -241,6 +439,8 @@
             }
 
 
+            /* Paparan berjaya */
+
             alert(
                 "📩 Tempahan berjaya dihantar!\n\n" +
                 "Nama: " + nama +
@@ -249,6 +449,8 @@
                 "\nJenis: " + jenis
             );
 
+
+            /* Kotak pengesahan */
 
             document.getElementById("pengesahan").innerHTML =
 
@@ -277,6 +479,10 @@
     </script>
 
 
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
     <footer>
 
         <p>
@@ -288,6 +494,7 @@
         </p>
 
     </footer>
+
 
 </body>
 
