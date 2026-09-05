@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="marvion-ai.css">
+
     <title>Semakan Giliran | MARVION</title>
 
     <style>
@@ -476,6 +478,72 @@
         );
 
     </script>
+
+
+<!-- MIRA - MARVION Intelligent Response Assistant -->
+
+<button id="mira-chat-button" type="button">
+    <span id="mira-avatar">
+        <img src="mira-robot.png" alt="MIRA" style="width:42px; height:42px; object-fit:contain; border-radius:50%;">
+    </span>
+    <span>Tanya MIRA</span>
+</button>
+
+<div id="mira-chat-box">
+
+    <div id="mira-header">
+        <div id="mira-header-avatar">👩🏻‍⚕️🤖</div>
+
+        <div id="mira-header-info">
+            <strong>MIRA 💙</strong>
+            <span>MARVION Intelligent Response Assistant</span>
+            <div class="mira-online">● Online</div>
+        </div>
+
+        <button id="mira-close" type="button">×</button>
+    </div>
+
+    <div id="mira-messages">
+
+        <div class="mira-message bot">
+            <div class="mira-bubble">
+                Hai! 👋 Saya <strong>MIRA</strong>, pembantu maya MARVION. 💙
+                <br><br>
+                Ada apa yang saya boleh bantu?
+            </div>
+        </div>
+
+    </div>
+
+    <div id="mira-quick-buttons">
+
+        <button class="mira-quick-btn" type="button">
+            📅 Temujanji
+        </button>
+
+        <button class="mira-quick-btn" type="button">
+            🎟️ Nombor giliran
+        </button>
+
+        <button class="mira-quick-btn" type="button">
+            🚨 Emergency Mode
+        </button>
+
+    </div>
+
+    <div id="mira-input-area">
+
+        <input
+            id="mira-input"
+            type="text"
+            placeholder="Tanya MIRA di sini..."
+        >
+
+        <button id="mira-send" type="button">➤</button>
+
+    </div>
+
+</div>
 
 </body>
 
