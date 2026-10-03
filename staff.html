@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -7,35 +8,27 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="marvion-ai.css">
 </head>
-
 <body>
 
 <header>
-  <img
-    src="marvion-logo.png"
-    alt="MARVION Smart Healthcare Communication Platform"
-    class="logo">
+  <img src="marvion-logo.png"
+       alt="MARVION Smart Healthcare Communication Platform"
+       class="logo">
 </header>
 
 <hr>
 
 <main>
-
   <h2>🩺 Kawalan Giliran</h2>
-
   <p class="arahan">
     Masukkan maklumat pesakit yang sedang menerima rawatan.
   </p>
 
   <div class="card">
-
     <h3>🔔 Giliran Semasa</h3>
 
     <label for="semasa">🔢 Nombor Giliran</label>
-    <input
-      type="text"
-      id="semasa"
-      placeholder="Contoh: A102">
+    <input type="text" id="semasa" placeholder="Contoh: A101">
 
     <label for="bilik">🏥 Bilik Rawatan</label>
     <select id="bilik">
@@ -48,48 +41,25 @@
     </select>
 
     <label for="seterusnya">⏭️ Nombor Seterusnya</label>
-    <input
-      type="text"
-      id="seterusnya"
-      placeholder="Contoh: A103">
+    <input type="text" id="seterusnya" placeholder="Contoh: A102">
 
-    <button type="button" onclick="kemaskiniGiliran()">
+    <button type="button" id="panggilButton">
       📢 Panggil Giliran
     </button>
 
     <div id="mesej" class="status">
       Sila masukkan maklumat giliran.
     </div>
-
   </div>
 
   <div class="card">
-
     <h3>📋 Paparan Semasa</h3>
-
-    <p>
-      <strong>Nombor:</strong>
-      <span id="paparSemasa">-</span>
-    </p>
-
-    <p>
-      <strong>Bilik:</strong>
-      <span id="paparBilik">-</span>
-    </p>
-
-    <p>
-      <strong>Seterusnya:</strong>
-      <span id="paparSeterusnya">-</span>
-    </p>
-
+    <p><strong>Nombor:</strong> <span id="paparSemasa">-</span></p>
+    <p><strong>Bilik:</strong> <span id="paparBilik">-</span></p>
+    <p><strong>Seterusnya:</strong> <span id="paparSeterusnya">-</span></p>
   </div>
 
-  <p>
-    <a href="index.html" class="back">
-      ← Kembali ke Laman Utama
-    </a>
-  </p>
-
+  <p><a href="index.html" class="back">← Kembali ke Laman Utama</a></p>
 </main>
 
 <footer>
@@ -98,165 +68,138 @@
   <p>Connecting Care. Empowering Lives.</p>
 </footer>
 
-<!-- MIRA - MARVION Intelligent Response Assistant -->
-
+<!-- MIRA -->
 <button id="mira-chat-button" type="button">
   <span id="mira-avatar">
-    <img src="mira-robot.png" alt="MIRA" style="width:42px; height:42px; object-fit:contain; border-radius:50%;">
+    <img src="mira-robot.png" alt="MIRA"
+         style="width:42px;height:42px;object-fit:contain;border-radius:50%;">
   </span>
   <span>Tanya MIRA</span>
 </button>
 
 <div id="mira-chat-box">
-
   <div id="mira-header">
     <div id="mira-header-avatar">👩🏻‍⚕️🤖</div>
-
     <div id="mira-header-info">
       <strong>MIRA 💙</strong>
       <span>MARVION Intelligent Response Assistant</span>
       <div class="mira-online">● Online</div>
     </div>
-
     <button id="mira-close" type="button">×</button>
   </div>
 
   <div id="mira-messages">
-
     <div class="mira-message bot">
       <div class="mira-bubble">
         Hai! 👋 Saya <strong>MIRA</strong>, pembantu maya MARVION. 💙
-        <br><br>
-        Ada apa yang saya boleh bantu?
+        <br><br>Ada apa yang saya boleh bantu?
       </div>
     </div>
-
   </div>
 
   <div id="mira-quick-buttons">
-
-    <button class="mira-quick-btn" type="button">
-      📅 Temujanji
-    </button>
-
-    <button class="mira-quick-btn" type="button">
-      🎟️ Nombor giliran
-    </button>
-
-    <button class="mira-quick-btn" type="button">
-      🚨 Emergency Mode
-    </button>
-
+    <button class="mira-quick-btn" type="button">📅 Temujanji</button>
+    <button class="mira-quick-btn" type="button">🎟️ Nombor giliran</button>
+    <button class="mira-quick-btn" type="button">🚨 Emergency Mode</button>
   </div>
 
   <div id="mira-input-area">
-
-    <input
-      id="mira-input"
-      type="text"
-      placeholder="Tanya MIRA di sini...">
-
+    <input id="mira-input" type="text" placeholder="Tanya MIRA di sini...">
     <button id="mira-send" type="button">➤</button>
-
   </div>
-
 </div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
-function kemaskiniGiliran() {
+const firebaseConfig = {
+  apiKey: "AIzaSyBTXSUp6va3ilK-2RxDTuXkRiv7Xjp7xLE",
+  authDomain: "marvion-199bc.firebaseapp.com",
+  databaseURL: "https://marvion-199bc-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "marvion-199bc",
+  storageBucket: "marvion-199bc.firebasestorage.app",
+  messagingSenderId: "1024552011140",
+  appId: "1:1024552011140:web:0753fa1d3eda77e94209d1",
+  measurementId: "G-BH0XVNP0BS"
+};
 
-  const semasa =
-    document.getElementById("semasa").value.trim().toUpperCase();
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const giliranRef = ref(db, "queue/current");
 
-  const bilik =
-    document.getElementById("bilik").value;
+const medanSemasa = document.getElementById("semasa");
+const medanBilik = document.getElementById("bilik");
+const medanSeterusnya = document.getElementById("seterusnya");
+const mesej = document.getElementById("mesej");
 
-  const seterusnya =
-    document.getElementById("seterusnya").value.trim().toUpperCase();
+document.getElementById("panggilButton").addEventListener("click", async () => {
+  const semasa = medanSemasa.value.trim().toUpperCase();
+  const bilik = medanBilik.value;
+  const seterusnya = medanSeterusnya.value.trim().toUpperCase();
 
-  const mesej =
-    document.getElementById("mesej");
-
-  if (semasa === "" || bilik === "" || seterusnya === "") {
-
-    mesej.innerHTML =
-      "⚠️ Sila lengkapkan semua maklumat.";
-
+  if (!semasa || !bilik || !seterusnya) {
+    mesej.textContent = "⚠️ Sila lengkapkan semua maklumat.";
     return;
   }
 
-  const data = {
-    semasa: semasa,
-    bilik: bilik,
-    seterusnya: seterusnya
-  };
+  const button = document.getElementById("panggilButton");
+  button.disabled = true;
+  mesej.textContent = "⏳ Sedang menyimpan maklumat...";
 
-  localStorage.setItem(
-    "marvionQueue",
-    JSON.stringify(data)
-  );
+  try {
+    await set(giliranRef, {
+      semasa,
+      bilik,
+      seterusnya,
+      dikemas kini: new Date().toISOString()
+    });
 
-  document.getElementById("paparSemasa").textContent = semasa;
-  document.getElementById("paparBilik").textContent = bilik;
-  document.getElementById("paparSeterusnya").textContent = seterusnya;
-
-  mesej.innerHTML =
-    "✅ Giliran berjaya dikemaskini.";
-
-}
-
-/* Paparkan data yang telah disimpan apabila page dibuka */
-
-window.onload = function() {
-
-  const data =
-    localStorage.getItem("marvionQueue");
-
-  if (data) {
-
-    try {
-
-      const queue =
-        JSON.parse(data);
-
-      document.getElementById("paparSemasa").textContent =
-        queue.semasa || "-";
-
-      document.getElementById("paparBilik").textContent =
-        queue.bilik || "-";
-
-      document.getElementById("paparSeterusnya").textContent =
-        queue.seterusnya || "-";
-
-    } catch (error) {
-
-      console.error(
-        "Ralat membaca data giliran:",
-        error
-      );
-
-    }
-
+    mesej.textContent = "✅ Giliran berjaya dikemaskini.";
+  } catch (error) {
+    console.error(error);
+    mesej.textContent =
+      "⚠️ Gagal menyimpan. Semak sambungan dan Firebase Rules.";
+  } finally {
+    button.disabled = false;
   }
+});
 
-};
+onValue(giliranRef, (snapshot) => {
+  const data = snapshot.val();
+  if (!data) return;
 
-</script>
+  document.getElementById("paparSemasa").textContent = data.semasa || "-";
+  document.getElementById("paparBilik").textContent = data.bilik || "-";
+  document.getElementById("paparSeterusnya").textContent = data.seterusnya || "-";
 
-<script>
-  const miraButton = document.getElementById("mira-chat-button");
-  const miraBox = document.getElementById("mira-chat-box");
-  const miraClose = document.getElementById("mira-close");
+  if (data.semasa) medanSemasa.value = data.semasa;
+  if (data.bilik) medanBilik.value = data.bilik;
+  if (data.seterusnya) medanSeterusnya.value = data.seterusnya;
+}, (error) => {
+  console.error(error);
+  mesej.textContent = "⚠️ Tidak dapat membaca data Firebase.";
+});
 
-  miraButton.addEventListener("click", function () {
-    miraBox.classList.add("active");
-  });
+// Kawalan buka dan tutup MIRA
+const miraButton = document.getElementById("mira-chat-button");
+const miraBox = document.getElementById("mira-chat-box");
+const miraClose = document.getElementById("mira-close");
 
-  miraClose.addEventListener("click", function () {
-    miraBox.classList.remove("active");
-  });
+miraButton.addEventListener("click", () => {
+  miraBox.classList.add("active");
+});
+
+miraClose.addEventListener("click", () => {
+  miraBox.classList.remove("active");
+});
 </script>
 
 </body>
 </html>
+```
