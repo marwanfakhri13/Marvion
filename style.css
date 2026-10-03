@@ -319,3 +319,34 @@ header .logo {
 footer {
     text-align: center;
 }
+
+
+/* ===== SERAGAMKAN SAIZ MIRA MARVION ===== */
+#mira-chat-button {
+    position: fixed !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    z-index: 9999 !important;
+}
+
+#mira-chat-button img {
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: contain !important;
+}
+
+#mira-chat-box {
+    z-index: 10000 !important;
+}
+
+@media (max-width: 600px) {
+    #mira-chat-button {
+        right: 12px !important;
+        bottom: 12px !important;
+    }
+
+    #mira-chat-button img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
