@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Semakan Giliran | MARVION</title>
 <link rel="stylesheet" href="marvion-ai.css">
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f5f7f7;color:#183b5b;text-align:center}
@@ -26,13 +27,88 @@ h1{color:#168044;font-size:30px}
 #myNumberBox{display:none;margin-top:25px;padding:22px;border:4px solid #168044;border-radius:18px;background:white}
 .my-label{display:block;font-size:20px;font-weight:bold;color:#555}
 #myNumber{display:block;font-size:58px;font-weight:bold;color:#168044}
-#message{font-size:17px;line-height:1.6;margin-top:18px}
+#message{font-size:17px;line-height:1.6;margin-top:18px;overflow-wrap:anywhere}
 .back{display:block;color:#174c8a;font-size:19px;font-weight:bold;text-decoration:none;margin-top:25px}
 footer{background:#183b5b;color:white;padding:25px 15px}
 footer p{margin:6px}
-@media(max-width:600px){main{padding:22px 12px 35px}.card{padding:23px 18px}.current-number{font-size:45px}#myNumber{font-size:52px}}
+
+/* MIRA: besarkan semula robot terapung */
+#mira-chat-button{
+ position:fixed!important;
+ right:18px!important;
+ bottom:18px!important;
+ z-index:9999!important;
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:center!important;
+ justify-content:center!important;
+ gap:3px!important;
+ width:105px!important;
+ height:auto!important;
+ min-height:100px!important;
+ padding:5px!important;
+ border:0!important;
+ border-radius:16px!important;
+ background:transparent!important;
+ box-shadow:none!important;
+ cursor:pointer!important;
+}
+#mira-chat-button img{
+ display:block!important;
+ width:88px!important;
+ height:88px!important;
+ max-width:none!important;
+ object-fit:contain!important;
+}
+#mira-chat-button span{
+ display:block!important;
+ padding:4px 8px!important;
+ border-radius:12px!important;
+ background:#183b5b!important;
+ color:white!important;
+ font-size:12px!important;
+ font-weight:bold!important;
+ white-space:nowrap!important;
+}
+#mira-chat-box{
+ display:none;
+ position:fixed;
+ right:18px;
+ bottom:130px;
+ width:min(340px,calc(100vw - 30px));
+ max-height:65vh;
+ z-index:10000;
+ background:white;
+ border:2px solid #dcece4;
+ border-radius:18px;
+ box-shadow:0 8px 28px #0003;
+ overflow:hidden;
+ text-align:left;
+}
+#mira-chat-box.active{display:flex;flex-direction:column}
+#mira-header{display:flex;justify-content:space-between;align-items:center;background:#183b5b;color:white;padding:14px}
+#mira-close{border:0;background:transparent;color:white;font-size:28px;cursor:pointer}
+#mira-messages{padding:14px;overflow-y:auto;flex:1;min-height:100px}
+.mira-message{margin:0 0 10px}
+.mira-bubble{background:#f0f7f4;border-radius:12px;padding:10px;line-height:1.5}
+#mira-input-area{display:flex;gap:6px;padding:10px;border-top:1px solid #ddd}
+#mira-input{min-width:0;flex:1;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:15px}
+#mira-send{padding:8px 13px;border:0;border-radius:8px;background:#168044;color:white;cursor:pointer}
+.mira-user-text{background:#eaf1ff;border-radius:10px;padding:9px;margin:8px 0;overflow-wrap:anywhere}
+.mira-bot-text{background:#f0f7f4;border-radius:10px;padding:9px;margin:8px 0;overflow-wrap:anywhere}
+
+@media(max-width:600px){
+ main{padding:22px 12px 35px}
+ .card{padding:23px 18px}
+ .current-number{font-size:45px}
+ #myNumber{font-size:52px}
+ #mira-chat-button{right:8px!important;bottom:8px!important;width:88px!important;min-height:88px!important}
+ #mira-chat-button img{width:72px!important;height:72px!important}
+ #mira-chat-box{right:10px;bottom:105px}
+}
 </style>
 </head>
+
 <body>
 <header>
 <img src="marvion-logo.png" alt="MARVION" class="logo">
@@ -56,13 +132,13 @@ footer p{margin:6px}
 
 <div class="card">
 <h2>🎫 Nombor Giliran Anda</h2>
-<p id="instruction" class="instruction">Semak giliran semasa terlebih dahulu.</p>
+<p id="instruction" class="instruction">Menyemak status giliran...</p>
 <button id="getButton" type="button">🎫 Dapatkan Nombor Giliran</button>
 <div id="myNumberBox">
 <span class="my-label">Nombor Giliran Anda</span>
 <span id="myNumber"></span>
 </div>
-<div id="message"></div>
+<div id="message" aria-live="polite"></div>
 </div>
 
 <a href="index.html" class="back">← Kembali ke Laman Utama</a>
@@ -74,17 +150,20 @@ footer p{margin:6px}
 <p>Connecting Care. Empowering Lives.</p>
 </footer>
 
-<button id="mira-chat-button" type="button">
-<img src="mira-robot.png" alt="MIRA" style="width:42px;height:42px;object-fit:contain">
+<button id="mira-chat-button" type="button" aria-label="Buka MIRA">
+<img src="mira-robot.png" alt="MIRA">
 <span>Tanya MIRA</span>
 </button>
+
 <div id="mira-chat-box">
 <div id="mira-header">
 <strong>MIRA 💙</strong>
-<button id="mira-close" type="button">×</button>
+<button id="mira-close" type="button" aria-label="Tutup MIRA">×</button>
 </div>
 <div id="mira-messages">
-<div class="mira-message bot"><div class="mira-bubble">Hai! 👋 Saya MIRA, pembantu maya MARVION. Ada apa yang saya boleh bantu?</div></div>
+<div class="mira-message bot">
+<div class="mira-bubble">Hai! 👋 Saya MIRA, pembantu maya MARVION. Ada apa yang saya boleh bantu?</div>
+</div>
 </div>
 <div id="mira-input-area">
 <input id="mira-input" type="text" placeholder="Tanya MIRA di sini...">
@@ -95,18 +174,18 @@ footer p{margin:6px}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import {
-  getDatabase, ref, runTransaction, onValue, get
+ getDatabase, ref, runTransaction, onValue, get
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBTXSUp6va3ilK-2RxDTuXkRiv7Xjp7xLE",
-  authDomain: "marvion-199bc.firebaseapp.com",
-  databaseURL: "https://marvion-199bc-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "marvion-199bc",
-  storageBucket: "marvion-199bc.firebasestorage.app",
-  messagingSenderId: "1024552011140",
-  appId: "1:1024552011140:web:0753fa1d3eda77e94209d1",
-  measurementId: "G-BH0XVNP0BS"
+ apiKey: "AIzaSyBTXSUp6va3ilK-2RxDTuXkRiv7Xjp7xLE",
+ authDomain: "marvion-199bc.firebaseapp.com",
+ databaseURL: "https://marvion-199bc-default-rtdb.asia-southeast1.firebasedatabase.app",
+ projectId: "marvion-199bc",
+ storageBucket: "marvion-199bc.firebasestorage.app",
+ messagingSenderId: "1024552011140",
+ appId: "1:1024552011140:web:0753fa1d3eda77e94209d1",
+ measurementId: "G-BH0XVNP0BS"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -117,122 +196,129 @@ const currentRef = ref(db, "queue/current");
 const button = document.getElementById("getButton");
 const instruction = document.getElementById("instruction");
 const message = document.getElementById("message");
+
 let currentQueueNumber = 0;
-let currentData = null;
 let processing = false;
 
-function numberValue(value) {
-  const match = String(value || "").trim().toUpperCase().match(/^A(\d+)$/);
-  return match ? Number(match[1]) : 0;
+function numberValue(value){
+ const match = String(value || "").trim().toUpperCase().match(/^A(\d+)$/);
+ return match ? Number(match[1]) : 0;
 }
 
-function showMyNumber(ticket) {
-  document.getElementById("myNumber").textContent = ticket;
-  document.getElementById("myNumberBox").style.display = "block";
+function showMyNumber(ticket){
+ document.getElementById("myNumber").textContent = ticket;
+ document.getElementById("myNumberBox").style.display = "block";
 
-  if (numberValue(ticket) <= currentQueueNumber && currentQueueNumber > 0) {
-    instruction.textContent = "Nombor giliran ini telah dipanggil atau dilepasi.";
-    message.textContent = "⚠️ Nombor " + ticket + " sudah lepas. Sila rujuk petugas untuk mendapatkan arahan.";
-    button.textContent = "Giliran Telah Lepas";
-    button.disabled = true;
-    return;
-  }
-
-  instruction.textContent = "Nombor giliran anda telah ditetapkan.";
-  message.textContent = "🎫 Nombor giliran anda ialah " + ticket + ". Sila tunggu sehingga nombor anda dipanggil.";
-  button.textContent = "🔒 Nombor Anda Telah Ditetapkan";
+ if(currentQueueNumber > 0 && numberValue(ticket) <= currentQueueNumber){
+  instruction.textContent = "Nombor giliran ini telah dipanggil atau dilepasi.";
+  message.textContent = "⚠️ Nombor " + ticket + " sudah lepas. Sila rujuk petugas untuk mendapatkan arahan.";
+  button.textContent = "Giliran Telah Lepas";
   button.disabled = true;
+  return;
+ }
+
+ instruction.textContent = "Nombor giliran anda telah ditetapkan.";
+ message.textContent = "🎫 Nombor giliran anda ialah " + ticket + ". Sila tunggu sehingga nombor anda dipanggil.";
+ button.textContent = "🔒 Nombor Anda Telah Ditetapkan";
+ button.disabled = true;
 }
 
-onValue(currentRef, (snapshot) => {
-  currentData = snapshot.val();
+function showCurrent(data){
+ const currentText = data?.semasa || "-";
+ document.getElementById("currentNumber").textContent = currentText;
+ document.getElementById("currentRoom").textContent = data?.bilik || "-";
+ currentQueueNumber = numberValue(currentText);
 
-  if (currentData) {
-    const currentText = currentData.semasa || "-";
-    document.getElementById("currentNumber").textContent = currentText;
-    document.getElementById("currentRoom").textContent = currentData.bilik || "-";
-    currentQueueNumber = numberValue(currentText);
-  } else {
-    document.getElementById("currentNumber").textContent = "-";
-    document.getElementById("currentRoom").textContent = "-";
-    currentQueueNumber = 0;
-  }
-
-  const savedTicket = localStorage.getItem("marvionMyQueueNumberV2");
-  if (savedTicket) showMyNumber(savedTicket);
-}, (error) => {
-  console.error(error);
-  message.textContent = "⚠️ Tidak dapat membaca giliran semasa. Sila cuba muat semula.";
-});
-
-const savedTicket = localStorage.getItem("marvionMyQueueNumberV2");
-if (savedTicket) {
+ const savedTicket = localStorage.getItem("marvionMyQueueNumberV2");
+ if(savedTicket){
   showMyNumber(savedTicket);
-} else {
+ }else{
   instruction.innerHTML = "Anda belum mempunyai nombor giliran.<br>Tekan butang di bawah untuk mendapatkan nombor giliran.";
+ }
 }
+
+onValue(currentRef, snapshot => {
+ showCurrent(snapshot.val());
+}, error => {
+ console.error("Ralat membaca giliran:", error);
+ document.getElementById("currentNumber").textContent = "-";
+ document.getElementById("currentRoom").textContent = "-";
+ message.textContent = "⚠️ Tidak dapat membaca giliran semasa. Sila muat semula halaman.";
+});
 
 button.addEventListener("click", async () => {
-  if (processing) return;
+ if(processing) return;
 
-  const existingTicket = localStorage.getItem("marvionMyQueueNumberV2");
-  if (existingTicket) {
-    showMyNumber(existingTicket);
-    return;
+ const existingTicket = localStorage.getItem("marvionMyQueueNumberV2");
+ if(existingTicket){
+  showMyNumber(existingTicket);
+  return;
+ }
+
+ processing = true;
+ button.disabled = true;
+ button.textContent = "⏳ Sedang mendapatkan nombor...";
+ message.textContent = "";
+
+ try{
+  const currentSnapshot = await get(currentRef);
+  const liveCurrent = currentSnapshot.val();
+  const liveCurrentNumber = numberValue(liveCurrent?.semasa);
+
+  const transaction = await runTransaction(counterRef, value => {
+   const lastIssued = Number(value) || 100;
+   return Math.max(lastIssued, liveCurrentNumber, 100) + 1;
+  });
+
+  if(!transaction.committed){
+   throw new Error("Nombor giliran tidak berjaya disimpan.");
   }
 
-  processing = true;
-  button.disabled = true;
-  button.textContent = "⏳ Sedang mendapatkan nombor...";
-  message.textContent = "";
-
-  try {
-    const currentSnapshot = await get(currentRef);
-    const liveCurrent = currentSnapshot.val();
-    const liveCurrentNumber = numberValue(liveCurrent?.semasa);
-
-    const transaction = await runTransaction(counterRef, (value) => {
-      const lastIssued = Number(value) || 100;
-      return Math.max(lastIssued, liveCurrentNumber, 100) + 1;
-    });
-
-    if (!transaction.committed) {
-      throw new Error("Nombor giliran tidak berjaya disimpan.");
-    }
-
-    const ticket = "A" + transaction.snapshot.val();
-    localStorage.setItem("marvionMyQueueNumberV2", ticket);
-    showMyNumber(ticket);
-  } catch (error) {
-    console.error("Ralat giliran:", error);
-    button.disabled = false;
-    button.textContent = "🎫 Cuba Lagi";
-    message.textContent = "⚠️ Gagal mendapatkan nombor. Semak sambungan internet dan Firebase Rules.";
-  } finally {
-    processing = false;
-  }
+  const ticket = "A" + transaction.snapshot.val();
+  localStorage.setItem("marvionMyQueueNumberV2", ticket);
+  showMyNumber(ticket);
+ }catch(error){
+  console.error("Ralat giliran:", error);
+  button.disabled = false;
+  button.textContent = "🎫 Cuba Lagi";
+  message.textContent = "⚠️ Gagal mendapatkan nombor. Semak sambungan internet dan Firebase Rules.";
+ }finally{
+  processing = false;
+ }
 });
 
+/* Fungsi buka dan tutup MIRA */
 document.getElementById("mira-chat-button").addEventListener("click", () => {
-  document.getElementById("mira-chat-box").classList.add("active");
+ document.getElementById("mira-chat-box").classList.add("active");
 });
 document.getElementById("mira-close").addEventListener("click", () => {
-  document.getElementById("mira-chat-box").classList.remove("active");
+ document.getElementById("mira-chat-box").classList.remove("active");
 });
-document.getElementById("mira-send").addEventListener("click", () => {
-  const input = document.getElementById("mira-input");
-  const messages = document.getElementById("mira-messages");
-  const question = input.value.trim();
-  if (!question) return;
-  const userMessage = document.createElement("p");
-  userMessage.textContent = "Anda: " + question;
-  messages.appendChild(userMessage);
-  const reply = document.createElement("p");
-  reply.textContent = "MIRA: Terima kasih. Untuk urusan giliran atau rawatan, sila rujuk petugas klinik.";
-  messages.appendChild(reply);
-  input.value = "";
+
+/* Respons asas MIRA */
+function sendMiraMessage(){
+ const input = document.getElementById("mira-input");
+ const messages = document.getElementById("mira-messages");
+ const question = input.value.trim();
+ if(!question) return;
+
+ const userMessage = document.createElement("div");
+ userMessage.className = "mira-user-text";
+ userMessage.textContent = "Anda: " + question;
+ messages.appendChild(userMessage);
+
+ const reply = document.createElement("div");
+ reply.className = "mira-bot-text";
+ reply.textContent = "MIRA: Terima kasih kerana bertanya. Untuk urusan giliran atau rawatan, sila rujuk petugas klinik.";
+ messages.appendChild(reply);
+
+ input.value = "";
+ messages.scrollTop = messages.scrollHeight;
+}
+document.getElementById("mira-send").addEventListener("click", sendMiraMessage);
+document.getElementById("mira-input").addEventListener("keydown", event => {
+ if(event.key === "Enter") sendMiraMessage();
 });
 </script>
 </body>
 </html>
-```
