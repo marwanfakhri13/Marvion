@@ -108,7 +108,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/fireba
 import {
   getDatabase,
   ref,
-  set,
+  get,
+  update,
   onValue
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
@@ -125,7 +126,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+
 const giliranRef = ref(db, "queue/current");
+const nomborTerakhirRef = ref(db, "queue/lastNumber");
 
 const medanSemasa = document.getElementById("semasa");
 const medanBilik = document.getElementById("bilik");
@@ -133,10 +136,24 @@ const medanSeterusnya = document.getElementById("seterusnya");
 const mesej = document.getElementById("mesej");
 const button = document.getElementById("panggilButton");
 
+function nilaiNombor(value) {
+  const match = String(value || "")
+    .trim()
+    .toUpperCase()
+    .match(/^A(\d+)$/);
+
+  return match ? Number(match[1]) : 0;
+}
+
 function paparkanData(data) {
-  document.getElementById("paparSemasa").textContent = data.semasa || "-";
-  document.getElementById("paparBilik").textContent = data.bilik || "-";
-  document.getElementById("paparSeterusnya").textContent = data.seterusnya || "-";
+  document.getElementById("paparSemasa").textContent =
+    data.semasa || "-";
+
+  document.getElementById("paparBilik").textContent =
+    data.bilik || "-";
+
+  document.getElementById("paparSeterusnya").textContent =
+    data.seterusnya || "-";
 
   if (data.semasa) medanSemasa.value = data.semasa;
   if (data.bilik) medanBilik.value = data.bilik;
@@ -148,8 +165,17 @@ button.addEventListener("click", async function () {
   const bilik = medanBilik.value;
   const seterusnya = medanSeterusnya.value.trim().toUpperCase();
 
-  if (!semasa || !bilik || !seterusnya) {
-    mesej.textContent = "⚠️ Sila lengkapkan semua maklumat.";
+  if (!/^A\d+$/.test(semasa) ||
+      !/^A\d+$/.test(seterusnya) ||
+      !bilik) {
+    mesej.textContent =
+      "⚠️ Sila masukkan nombor seperti A110, pilih bilik dan lengkapkan semua maklumat.";
+    return;
+  }
+
+  if (nilaiNombor(seterusnya) <= nilaiNombor(semasa)) {
+    mesej.textContent =
+      "⚠️ Nombor seterusnya mestilah lebih besar daripada nombor semasa.";
     return;
   }
 
@@ -157,6 +183,20 @@ button.addEventListener("click", async function () {
   mesej.textContent = "⏳ Sedang menyimpan maklumat...";
 
   try {
+    const snapshot = await get(nomborTerakhirRef);
+    const nomborSediaAda = Number(snapshot.val()) || 100;
+
+    /*
+      Selaraskan kaunter dengan nombor terakhir yang telah
+      ditetapkan supaya kaunter tidak ketinggalan.
+    */
+    const nomborTerkini = Math.max(
+      nomborSediaAda,
+      nilaiNombor(semasa),
+      nilaiNombor(seterusnya),
+      100
+    );
+
     const data = {
       semasa: semasa,
       bilik: bilik,
@@ -164,13 +204,21 @@ button.addEventListener("click", async function () {
       dikemasKini: new Date().toISOString()
     };
 
-    await set(giliranRef, data);
+    await update(ref(db), {
+      "queue/current": data,
+      "queue/lastNumber": nomborTerkini
+    });
+
     paparkanData(data);
-    mesej.textContent = "✅ Giliran berjaya dikemaskini.";
+    mesej.textContent =
+      "✅ Giliran berjaya dikemas kini.";
+
   } catch (error) {
     console.error("Firebase error:", error);
+
     mesej.textContent =
-      "⚠️ Gagal menyimpan. Semak Firebase Rules dan sambungan internet.";
+      "⚠️ Gagal menyimpan. Semak sambungan internet dan Firebase Rules.";
+
   } finally {
     button.disabled = false;
   }
@@ -178,12 +226,17 @@ button.addEventListener("click", async function () {
 
 onValue(giliranRef, (snapshot) => {
   const data = snapshot.val();
-  if (data) paparkanData(data);
+
+  if (data) {
+    paparkanData(data);
+  }
 }, (error) => {
   console.error("Firebase read error:", error);
-  mesej.textContent = "⚠️ Tidak dapat membaca data Firebase.";
+  mesej.textContent =
+    "⚠️ Tidak dapat membaca data Firebase.";
 });
 
+/* Buka dan tutup MIRA */
 document.getElementById("mira-chat-button").addEventListener("click", () => {
   document.getElementById("mira-chat-box").classList.add("active");
 });
@@ -191,8 +244,38 @@ document.getElementById("mira-chat-button").addEventListener("click", () => {
 document.getElementById("mira-close").addEventListener("click", () => {
   document.getElementById("mira-chat-box").classList.remove("active");
 });
+
+/* Respons asas MIRA */
+function hantarMesejMira() {
+  const input = document.getElementById("mira-input");
+  const messages = document.getElementById("mira-messages");
+  const soalan = input.value.trim();
+
+  if (!soalan) return;
+
+  const mesejPengguna = document.createElement("div");
+  mesejPengguna.className = "mira-user-text";
+  mesejPengguna.textContent = "Anda: " + soalan;
+  messages.appendChild(mesejPengguna);
+
+  const jawapan = document.createElement("div");
+  jawapan.className = "mira-bot-text";
+  jawapan.textContent =
+    "MIRA: Terima kasih kerana bertanya. Untuk urusan giliran atau rawatan, sila rujuk petugas klinik.";
+
+  messages.appendChild(jawapan);
+  input.value = "";
+  messages.scrollTop = messages.scrollHeight;
+}
+
+document.getElementById("mira-send").addEventListener("click", hantarMesejMira);
+
+document.getElementById("mira-input").addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    hantarMesejMira();
+  }
+});
 </script>
 
 </body>
 </html>
-```
