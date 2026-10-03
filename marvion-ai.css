@@ -357,3 +357,40 @@
         height: 105px !important;
     }
 }
+
+/* ===== SAIZ MIRA SERAGAM UNTUK SEMUA HALAMAN MARVION ===== */
+
+#mira-chat-button {
+    position: fixed !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+#mira-chat-button img,
+#mira-avatar img {
+    width: 42px !important;
+    height: 42px !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+}
+
+#mira-chat-box {
+    z-index: 10000 !important;
+}
+
+@media (max-width: 600px) {
+    #mira-chat-button {
+        right: 12px !important;
+        bottom: 12px !important;
+    }
+
+    #mira-chat-button img,
+    #mira-avatar img {
+        width: 42px !important;
+        height: 42px !important;
+    }
+}
