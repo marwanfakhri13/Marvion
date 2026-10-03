@@ -32,7 +32,7 @@ h1{color:#168044;font-size:30px}
 footer{background:#183b5b;color:white;padding:25px 15px}
 footer p{margin:6px}
 
-/* MIRA: besarkan semula robot terapung */
+/* MIRA: saiz sederhana dan konsisten */
 #mira-chat-button{
  position:fixed!important;
  right:18px!important;
@@ -43,30 +43,30 @@ footer p{margin:6px}
  align-items:center!important;
  justify-content:center!important;
  gap:3px!important;
- width:105px!important;
+ width:76px!important;
  height:auto!important;
- min-height:100px!important;
- padding:5px!important;
+ min-height:76px!important;
+ padding:3px!important;
  border:0!important;
- border-radius:16px!important;
+ border-radius:12px!important;
  background:transparent!important;
  box-shadow:none!important;
  cursor:pointer!important;
 }
 #mira-chat-button img{
  display:block!important;
- width:88px!important;
- height:88px!important;
+ width:58px!important;
+ height:58px!important;
  max-width:none!important;
  object-fit:contain!important;
 }
 #mira-chat-button span{
  display:block!important;
- padding:4px 8px!important;
- border-radius:12px!important;
+ padding:4px 7px!important;
+ border-radius:10px!important;
  background:#183b5b!important;
  color:white!important;
- font-size:12px!important;
+ font-size:11px!important;
  font-weight:bold!important;
  white-space:nowrap!important;
 }
@@ -74,7 +74,7 @@ footer p{margin:6px}
  display:none;
  position:fixed;
  right:18px;
- bottom:130px;
+ bottom:100px;
  width:min(340px,calc(100vw - 30px));
  max-height:65vh;
  z-index:10000;
@@ -102,9 +102,9 @@ footer p{margin:6px}
  .card{padding:23px 18px}
  .current-number{font-size:45px}
  #myNumber{font-size:52px}
- #mira-chat-button{right:8px!important;bottom:8px!important;width:88px!important;min-height:88px!important}
- #mira-chat-button img{width:72px!important;height:72px!important}
- #mira-chat-box{right:10px;bottom:105px}
+ #mira-chat-button{right:10px!important;bottom:10px!important;width:70px!important;min-height:70px!important}
+ #mira-chat-button img{width:52px!important;height:52px!important}
+ #mira-chat-box{right:10px;bottom:90px}
 }
 </style>
 </head>
@@ -174,18 +174,18 @@ footer p{margin:6px}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import {
- getDatabase, ref, runTransaction, onValue, get
+  getDatabase, ref, runTransaction, onValue, get
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
 const firebaseConfig = {
- apiKey: "AIzaSyBTXSUp6va3ilK-2RxDTuXkRiv7Xjp7xLE",
- authDomain: "marvion-199bc.firebaseapp.com",
- databaseURL: "https://marvion-199bc-default-rtdb.asia-southeast1.firebasedatabase.app",
- projectId: "marvion-199bc",
- storageBucket: "marvion-199bc.firebasestorage.app",
- messagingSenderId: "1024552011140",
- appId: "1:1024552011140:web:0753fa1d3eda77e94209d1",
- measurementId: "G-BH0XVNP0BS"
+  apiKey: "AIzaSyBTXSUp6va3ilK-2RxDTuXkRiv7Xjp7xLE",
+  authDomain: "marvion-199bc.firebaseapp.com",
+  databaseURL: "https://marvion-199bc-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "marvion-199bc",
+  storageBucket: "marvion-199bc.firebasestorage.app",
+  messagingSenderId: "1024552011140",
+  appId: "1:1024552011140:web:0753fa1d3eda77e94209d1",
+  measurementId: "G-BH0XVNP0BS"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -197,127 +197,191 @@ const button = document.getElementById("getButton");
 const instruction = document.getElementById("instruction");
 const message = document.getElementById("message");
 
+const STORAGE_KEY = "marvionMyQueueNumberV2";
+
 let currentQueueNumber = 0;
+let nextQueueNumber = 0;
 let processing = false;
 
-function numberValue(value){
- const match = String(value || "").trim().toUpperCase().match(/^A(\d+)$/);
- return match ? Number(match[1]) : 0;
+function numberValue(value) {
+  const match = String(value || "").trim().toUpperCase().match(/^A(\d+)$/);
+  return match ? Number(match[1]) : 0;
 }
 
-function showMyNumber(ticket){
- document.getElementById("myNumber").textContent = ticket;
- document.getElementById("myNumberBox").style.display = "block";
+function showMyNumber(ticket) {
+  const ticketNumber = numberValue(ticket);
 
- if(currentQueueNumber > 0 && numberValue(ticket) <= currentQueueNumber){
-  instruction.textContent = "Nombor giliran ini telah dipanggil atau dilepasi.";
-  message.textContent = "⚠️ Nombor " + ticket + " sudah lepas. Sila rujuk petugas untuk mendapatkan arahan.";
-  button.textContent = "Giliran Telah Lepas";
+  document.getElementById("myNumber").textContent = ticket;
+  document.getElementById("myNumberBox").style.display = "block";
+
+  if (currentQueueNumber > 0 && ticketNumber < currentQueueNumber) {
+    instruction.textContent = "Nombor giliran anda telah lepas.";
+    message.textContent =
+      "⚠️ Nombor " + ticket +
+      " lebih rendah daripada nombor semasa. Jika anda masih belum menerima rawatan, sila rujuk petugas klinik.";
+
+    button.disabled = false;
+    button.textContent = "🎫 Ambil Nombor Giliran Baharu";
+    return;
+  }
+
+  if (currentQueueNumber > 0 && ticketNumber === currentQueueNumber) {
+    instruction.textContent = "Nombor giliran anda sedang dipanggil.";
+    message.textContent =
+      "🔔 Nombor " + ticket + " sedang dipanggil. Sila ke bilik rawatan yang dipaparkan.";
+
+    button.disabled = true;
+    button.textContent = "🔔 Giliran Sedang Dipanggil";
+    return;
+  }
+
+  instruction.textContent = "Nombor giliran anda telah ditetapkan.";
+  message.textContent =
+    "🎫 Nombor giliran anda ialah " + ticket +
+    ". Sila tunggu sehingga nombor anda dipanggil.";
+
   button.disabled = true;
-  return;
- }
-
- instruction.textContent = "Nombor giliran anda telah ditetapkan.";
- message.textContent = "🎫 Nombor giliran anda ialah " + ticket + ". Sila tunggu sehingga nombor anda dipanggil.";
- button.textContent = "🔒 Nombor Anda Telah Ditetapkan";
- button.disabled = true;
+  button.textContent = "🔒 Nombor Anda Telah Ditetapkan";
 }
 
-function showCurrent(data){
- const currentText = data?.semasa || "-";
- document.getElementById("currentNumber").textContent = currentText;
- document.getElementById("currentRoom").textContent = data?.bilik || "-";
- currentQueueNumber = numberValue(currentText);
+function showCurrent(data) {
+  const currentText = data?.semasa || "-";
+  document.getElementById("currentNumber").textContent = currentText;
+  document.getElementById("currentRoom").textContent = data?.bilik || "-";
 
- const savedTicket = localStorage.getItem("marvionMyQueueNumberV2");
- if(savedTicket){
-  showMyNumber(savedTicket);
- }else{
-  instruction.innerHTML = "Anda belum mempunyai nombor giliran.<br>Tekan butang di bawah untuk mendapatkan nombor giliran.";
- }
+  currentQueueNumber = numberValue(currentText);
+  nextQueueNumber = numberValue(data?.seterusnya);
+
+  const savedTicket = localStorage.getItem(STORAGE_KEY);
+
+  if (savedTicket) {
+    showMyNumber(savedTicket);
+  } else {
+    instruction.innerHTML =
+      "Anda belum mempunyai nombor giliran.<br>Tekan butang di bawah untuk mendapatkan nombor giliran.";
+    button.disabled = false;
+    button.textContent = "🎫 Dapatkan Nombor Giliran";
+  }
 }
 
 onValue(currentRef, snapshot => {
- showCurrent(snapshot.val());
+  showCurrent(snapshot.val());
 }, error => {
- console.error("Ralat membaca giliran:", error);
- document.getElementById("currentNumber").textContent = "-";
- document.getElementById("currentRoom").textContent = "-";
- message.textContent = "⚠️ Tidak dapat membaca giliran semasa. Sila muat semula halaman.";
+  console.error("Ralat membaca giliran:", error);
+  document.getElementById("currentNumber").textContent = "-";
+  document.getElementById("currentRoom").textContent = "-";
+  message.textContent =
+    "⚠️ Tidak dapat membaca giliran semasa. Sila semak sambungan internet.";
 });
 
 button.addEventListener("click", async () => {
- if(processing) return;
+  if (processing) return;
 
- const existingTicket = localStorage.getItem("marvionMyQueueNumberV2");
- if(existingTicket){
-  showMyNumber(existingTicket);
-  return;
- }
+  const existingTicket = localStorage.getItem(STORAGE_KEY);
 
- processing = true;
- button.disabled = true;
- button.textContent = "⏳ Sedang mendapatkan nombor...";
- message.textContent = "";
+  if (existingTicket) {
+    const oldTicketNumber = numberValue(existingTicket);
 
- try{
-  const currentSnapshot = await get(currentRef);
-  const liveCurrent = currentSnapshot.val();
-  const liveCurrentNumber = numberValue(liveCurrent?.semasa);
+    // Nombor baharu hanya boleh diminta jika nombor lama lebih
+    // rendah daripada nombor semasa yang dipaparkan.
+    if (currentQueueNumber > 0 && oldTicketNumber < currentQueueNumber) {
+      const confirmNew = confirm(
+        "Nombor lama anda ialah " + existingTicket +
+        ". Ambil nombor giliran baharu?"
+      );
 
-  const transaction = await runTransaction(counterRef, value => {
-   const lastIssued = Number(value) || 100;
-   return Math.max(lastIssued, liveCurrentNumber, 100) + 1;
-  });
+      if (!confirmNew) return;
 
-  if(!transaction.committed){
-   throw new Error("Nombor giliran tidak berjaya disimpan.");
+      localStorage.removeItem(STORAGE_KEY);
+    } else {
+      showMyNumber(existingTicket);
+      return;
+    }
   }
 
-  const ticket = "A" + transaction.snapshot.val();
-  localStorage.setItem("marvionMyQueueNumberV2", ticket);
-  showMyNumber(ticket);
- }catch(error){
-  console.error("Ralat giliran:", error);
-  button.disabled = false;
-  button.textContent = "🎫 Cuba Lagi";
-  message.textContent = "⚠️ Gagal mendapatkan nombor. Semak sambungan internet dan Firebase Rules.";
- }finally{
-  processing = false;
- }
+  processing = true;
+  button.disabled = true;
+  button.textContent = "⏳ Sedang mendapatkan nombor...";
+  message.textContent = "";
+
+  try {
+    // Dapatkan nilai giliran terkini daripada Firebase sebelum
+    // menjana nombor seterusnya.
+    const currentSnapshot = await get(currentRef);
+    const liveCurrent = currentSnapshot.val();
+    const liveCurrentNumber = numberValue(liveCurrent?.semasa);
+    const liveNextNumber = numberValue(liveCurrent?.seterusnya);
+
+    const transaction = await runTransaction(counterRef, value => {
+      const lastIssued = Number(value) || 100;
+
+      // Elakkan nombor baharu berulang dengan nombor terakhir,
+      // nombor semasa atau nombor seterusnya yang ditetapkan.
+      return Math.max(
+        lastIssued,
+        liveCurrentNumber,
+        liveNextNumber,
+        100
+      ) + 1;
+    });
+
+    if (!transaction.committed) {
+      throw new Error("Nombor giliran tidak berjaya disimpan.");
+    }
+
+    const ticket = "A" + transaction.snapshot.val();
+    localStorage.setItem(STORAGE_KEY, ticket);
+
+    currentQueueNumber = liveCurrentNumber;
+    nextQueueNumber = liveNextNumber;
+    showMyNumber(ticket);
+
+  } catch (error) {
+    console.error("Ralat giliran:", error);
+    button.disabled = false;
+    button.textContent = "🎫 Cuba Lagi";
+    message.textContent =
+      "⚠️ Gagal mendapatkan nombor. Semak sambungan internet dan Firebase Rules.";
+  } finally {
+    processing = false;
+  }
 });
 
 /* Fungsi buka dan tutup MIRA */
 document.getElementById("mira-chat-button").addEventListener("click", () => {
- document.getElementById("mira-chat-box").classList.add("active");
+  document.getElementById("mira-chat-box").classList.add("active");
 });
+
 document.getElementById("mira-close").addEventListener("click", () => {
- document.getElementById("mira-chat-box").classList.remove("active");
+  document.getElementById("mira-chat-box").classList.remove("active");
 });
 
 /* Respons asas MIRA */
-function sendMiraMessage(){
- const input = document.getElementById("mira-input");
- const messages = document.getElementById("mira-messages");
- const question = input.value.trim();
- if(!question) return;
+function sendMiraMessage() {
+  const input = document.getElementById("mira-input");
+  const messages = document.getElementById("mira-messages");
+  const question = input.value.trim();
 
- const userMessage = document.createElement("div");
- userMessage.className = "mira-user-text";
- userMessage.textContent = "Anda: " + question;
- messages.appendChild(userMessage);
+  if (!question) return;
 
- const reply = document.createElement("div");
- reply.className = "mira-bot-text";
- reply.textContent = "MIRA: Terima kasih kerana bertanya. Untuk urusan giliran atau rawatan, sila rujuk petugas klinik.";
- messages.appendChild(reply);
+  const userMessage = document.createElement("div");
+  userMessage.className = "mira-user-text";
+  userMessage.textContent = "Anda: " + question;
+  messages.appendChild(userMessage);
 
- input.value = "";
- messages.scrollTop = messages.scrollHeight;
+  const reply = document.createElement("div");
+  reply.className = "mira-bot-text";
+  reply.textContent =
+    "MIRA: Terima kasih kerana bertanya. Untuk urusan giliran atau rawatan, sila rujuk petugas klinik.";
+  messages.appendChild(reply);
+
+  input.value = "";
+  messages.scrollTop = messages.scrollHeight;
 }
+
 document.getElementById("mira-send").addEventListener("click", sendMiraMessage);
 document.getElementById("mira-input").addEventListener("keydown", event => {
- if(event.key === "Enter") sendMiraMessage();
+  if (event.key === "Enter") sendMiraMessage();
 });
 </script>
 </body>
