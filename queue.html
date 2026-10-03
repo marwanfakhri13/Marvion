@@ -32,7 +32,7 @@ h1{color:#168044;font-size:30px}
 footer{background:#183b5b;color:white;padding:25px 15px}
 footer p{margin:6px}
 
-/* MIRA: saiz sederhana dan konsisten */
+/* MIRA - saiz dibesarkan */
 #mira-chat-button{
  position:fixed!important;
  right:18px!important;
@@ -43,9 +43,9 @@ footer p{margin:6px}
  align-items:center!important;
  justify-content:center!important;
  gap:3px!important;
- width:76px!important;
+ width:100px!important;
  height:auto!important;
- min-height:76px!important;
+ min-height:100px!important;
  padding:3px!important;
  border:0!important;
  border-radius:12px!important;
@@ -55,8 +55,8 @@ footer p{margin:6px}
 }
 #mira-chat-button img{
  display:block!important;
- width:58px!important;
- height:58px!important;
+ width:78px!important;
+ height:78px!important;
  max-width:none!important;
  object-fit:contain!important;
 }
@@ -66,7 +66,7 @@ footer p{margin:6px}
  border-radius:10px!important;
  background:#183b5b!important;
  color:white!important;
- font-size:11px!important;
+ font-size:12px!important;
  font-weight:bold!important;
  white-space:nowrap!important;
 }
@@ -74,7 +74,7 @@ footer p{margin:6px}
  display:none;
  position:fixed;
  right:18px;
- bottom:100px;
+ bottom:120px;
  width:min(340px,calc(100vw - 30px));
  max-height:65vh;
  z-index:10000;
@@ -102,9 +102,9 @@ footer p{margin:6px}
  .card{padding:23px 18px}
  .current-number{font-size:45px}
  #myNumber{font-size:52px}
- #mira-chat-button{right:10px!important;bottom:10px!important;width:70px!important;min-height:70px!important}
- #mira-chat-button img{width:52px!important;height:52px!important}
- #mira-chat-box{right:10px;bottom:90px}
+ #mira-chat-button{right:10px!important;bottom:10px!important;width:88px!important;min-height:88px!important}
+ #mira-chat-button img{width:68px!important;height:68px!important}
+ #mira-chat-box{right:10px;bottom:105px}
 }
 </style>
 </head>
@@ -282,8 +282,6 @@ button.addEventListener("click", async () => {
   if (existingTicket) {
     const oldTicketNumber = numberValue(existingTicket);
 
-    // Nombor baharu hanya boleh diminta jika nombor lama lebih
-    // rendah daripada nombor semasa yang dipaparkan.
     if (currentQueueNumber > 0 && oldTicketNumber < currentQueueNumber) {
       const confirmNew = confirm(
         "Nombor lama anda ialah " + existingTicket +
@@ -305,8 +303,6 @@ button.addEventListener("click", async () => {
   message.textContent = "";
 
   try {
-    // Dapatkan nilai giliran terkini daripada Firebase sebelum
-    // menjana nombor seterusnya.
     const currentSnapshot = await get(currentRef);
     const liveCurrent = currentSnapshot.val();
     const liveCurrentNumber = numberValue(liveCurrent?.semasa);
@@ -315,8 +311,6 @@ button.addEventListener("click", async () => {
     const transaction = await runTransaction(counterRef, value => {
       const lastIssued = Number(value) || 100;
 
-      // Elakkan nombor baharu berulang dengan nombor terakhir,
-      // nombor semasa atau nombor seterusnya yang ditetapkan.
       return Math.max(
         lastIssued,
         liveCurrentNumber,
