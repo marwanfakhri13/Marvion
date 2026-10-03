@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -20,15 +20,13 @@
 
 <main>
   <h2>🩺 Kawalan Giliran</h2>
-  <p class="arahan">
-    Masukkan maklumat pesakit yang sedang menerima rawatan.
-  </p>
+  <p class="arahan">Masukkan maklumat pesakit yang sedang menerima rawatan.</p>
 
   <div class="card">
     <h3>🔔 Giliran Semasa</h3>
 
     <label for="semasa">🔢 Nombor Giliran</label>
-    <input type="text" id="semasa" placeholder="Contoh: A101">
+    <input type="text" id="semasa" placeholder="Contoh: A109">
 
     <label for="bilik">🏥 Bilik Rawatan</label>
     <select id="bilik">
@@ -41,15 +39,11 @@
     </select>
 
     <label for="seterusnya">⏭️ Nombor Seterusnya</label>
-    <input type="text" id="seterusnya" placeholder="Contoh: A102">
+    <input type="text" id="seterusnya" placeholder="Contoh: A110">
 
-    <button type="button" id="panggilButton">
-      📢 Panggil Giliran
-    </button>
+    <button type="button" id="panggilButton">📢 Panggil Giliran</button>
 
-    <div id="mesej" class="status">
-      Sila masukkan maklumat giliran.
-    </div>
+    <div id="mesej" class="status">Sila masukkan maklumat giliran.</div>
   </div>
 
   <div class="card">
@@ -137,8 +131,19 @@ const medanSemasa = document.getElementById("semasa");
 const medanBilik = document.getElementById("bilik");
 const medanSeterusnya = document.getElementById("seterusnya");
 const mesej = document.getElementById("mesej");
+const button = document.getElementById("panggilButton");
 
-document.getElementById("panggilButton").addEventListener("click", async () => {
+function paparkanData(data) {
+  document.getElementById("paparSemasa").textContent = data.semasa || "-";
+  document.getElementById("paparBilik").textContent = data.bilik || "-";
+  document.getElementById("paparSeterusnya").textContent = data.seterusnya || "-";
+
+  if (data.semasa) medanSemasa.value = data.semasa;
+  if (data.bilik) medanBilik.value = data.bilik;
+  if (data.seterusnya) medanSeterusnya.value = data.seterusnya;
+}
+
+button.addEventListener("click", async function () {
   const semasa = medanSemasa.value.trim().toUpperCase();
   const bilik = medanBilik.value;
   const seterusnya = medanSeterusnya.value.trim().toUpperCase();
@@ -148,23 +153,24 @@ document.getElementById("panggilButton").addEventListener("click", async () => {
     return;
   }
 
-  const button = document.getElementById("panggilButton");
   button.disabled = true;
   mesej.textContent = "⏳ Sedang menyimpan maklumat...";
 
   try {
-    await set(giliranRef, {
-      semasa,
-      bilik,
-      seterusnya,
-      dikemas kini: new Date().toISOString()
-    });
+    const data = {
+      semasa: semasa,
+      bilik: bilik,
+      seterusnya: seterusnya,
+      dikemasKini: new Date().toISOString()
+    };
 
+    await set(giliranRef, data);
+    paparkanData(data);
     mesej.textContent = "✅ Giliran berjaya dikemaskini.";
   } catch (error) {
-    console.error(error);
+    console.error("Firebase error:", error);
     mesej.textContent =
-      "⚠️ Gagal menyimpan. Semak sambungan dan Firebase Rules.";
+      "⚠️ Gagal menyimpan. Semak Firebase Rules dan sambungan internet.";
   } finally {
     button.disabled = false;
   }
@@ -172,31 +178,18 @@ document.getElementById("panggilButton").addEventListener("click", async () => {
 
 onValue(giliranRef, (snapshot) => {
   const data = snapshot.val();
-  if (!data) return;
-
-  document.getElementById("paparSemasa").textContent = data.semasa || "-";
-  document.getElementById("paparBilik").textContent = data.bilik || "-";
-  document.getElementById("paparSeterusnya").textContent = data.seterusnya || "-";
-
-  if (data.semasa) medanSemasa.value = data.semasa;
-  if (data.bilik) medanBilik.value = data.bilik;
-  if (data.seterusnya) medanSeterusnya.value = data.seterusnya;
+  if (data) paparkanData(data);
 }, (error) => {
-  console.error(error);
+  console.error("Firebase read error:", error);
   mesej.textContent = "⚠️ Tidak dapat membaca data Firebase.";
 });
 
-// Kawalan buka dan tutup MIRA
-const miraButton = document.getElementById("mira-chat-button");
-const miraBox = document.getElementById("mira-chat-box");
-const miraClose = document.getElementById("mira-close");
-
-miraButton.addEventListener("click", () => {
-  miraBox.classList.add("active");
+document.getElementById("mira-chat-button").addEventListener("click", () => {
+  document.getElementById("mira-chat-box").classList.add("active");
 });
 
-miraClose.addEventListener("click", () => {
-  miraBox.classList.remove("active");
+document.getElementById("mira-close").addEventListener("click", () => {
+  document.getElementById("mira-chat-box").classList.remove("active");
 });
 </script>
 
